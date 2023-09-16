@@ -1,0 +1,36 @@
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 100px;
+    padding-top: 48px;
+}
+
+.container-start-page {
+    display: flex;
+}
+
+.left-col {
+    width: 1000px;
+    padding-right: 5px;
+    border-right: 4px solid rgba(26, 31, 22, 0.50);
+}
+
+.right-col {
+    padding-left: 35px;
+    width: 400px;
+}
+
+.black-btn {
+    padding: 8px 24px;
+    background-color: $black-color;
+    border-radius: 14px;
+    border: none;
+    color: #fff;
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+    justify-content: center;
+    &:hover{
+        opacity: .8;
+    }
+}
