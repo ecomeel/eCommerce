@@ -109,6 +109,11 @@ html, body {
   opacity: 0.8;
 }
 
+.preview-title {
+  text-align: center;
+  font-size: 39px;
+}
+
 .preview-items {
   display: flex;
   column-gap: 16px;
@@ -153,6 +158,28 @@ html, body {
   width: 34px;
   height: 34px;
   border-radius: 9px;
+}
+
+.preview-bag__items {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.preview-bag__item {
+  padding: 8px;
+  border-radius: 12px;
+  background-color: #fff;
+}
+.preview-bag__img {
+  height: 64px;
+  width: 64px;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.preview-bag__bag-btn {
+  margin: 0 auto;
+  margin-top: 34px;
 }
 
 /*# sourceMappingURL=style.css.map */
