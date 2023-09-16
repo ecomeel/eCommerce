@@ -5,6 +5,10 @@
     padding-top: 48px;
 }
 
+.subtitle {
+    font-size: 31px;
+}
+
 .container-start-page {
     display: flex;
 }
@@ -12,7 +16,7 @@
 .left-col {
     width: 1000px;
     padding-right: 5px;
-    border-right: 4px solid rgba(26, 31, 22, 0.50);
+    border-right: 4px solid rgba(26, 31, 22, 0.4);
 }
 
 .right-col {
@@ -38,4 +42,19 @@
 .preview-title {
     text-align: center;
     font-size: 39px;
+}
+
+.go-back-btn {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    border: none;
+    border-radius: 15px;
+    background-color: transparent;
+    transition: background-color .5s ease;
+
+    &:hover {
+        background-color: rgba(128, 128, 128, 0.162);
+    }
 }

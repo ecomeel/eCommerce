@@ -1,0 +1,15 @@
+.preview-orders {
+    display: none;
+
+    margin-top: 44px;
+    &__order-list {
+        margin-top: 24px;
+
+        & > *:not(:last-child) {
+            margin-bottom: 10px;
+        }
+    }
+    &__order {
+
+    }
+}
