@@ -110,9 +110,10 @@ html, body {
   column-gap: 8px;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.6s ease;
 }
 .black-btn:hover {
-  opacity: 0.8;
+  background-color: rgba(141, 83, 56, 0.653);
 }
 
 .preview-title {
@@ -169,10 +170,10 @@ html, body {
   padding: 16px;
   max-height: 410px;
   cursor: pointer;
-  transition: all 0.5s ease;
+  transition: all 0.4s ease-in-out;
 }
 .preview-item:hover {
-  background-color: rgba(161, 126, 126, 0.15);
+  background-color: rgba(160, 141, 141, 0.15);
   border-radius: 22px;
 }
 .preview-item__img {
@@ -342,6 +343,17 @@ html, body {
 .bag-item__description {
   margin-top: 16px;
   letter-spacing: -0.4px;
+}
+
+.preview-price {
+  margin-top: 20px;
+  padding: 16px;
+}
+.preview-price__total {
+  text-align: center;
+}
+.preview-price__black-btn {
+  margin: 32px auto 0;
 }
 
 /*# sourceMappingURL=style.css.map */

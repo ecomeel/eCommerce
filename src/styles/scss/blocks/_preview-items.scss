@@ -9,10 +9,10 @@
     padding: 16px;
     max-height: 410px;
     cursor: pointer;
-    transition: all .5s ease;
+    transition: all .4s ease-in-out;
 
     &:hover {
-        background-color: rgba($color: #a17e7e, $alpha: 0.15);
+        background-color: rgba($color: #a08d8d, $alpha: 0.15);
         border-radius: 22px;
     }
 

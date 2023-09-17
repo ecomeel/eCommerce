@@ -36,8 +36,9 @@
     column-gap: 8px;
     align-items: center;
     justify-content: center;
+    transition: background-color .6s ease;
     &:hover {
-        opacity: 0.8;
+        background-color: rgba(141, 83, 56, 0.653);
     }
 }
 
