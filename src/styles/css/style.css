@@ -460,4 +460,14 @@ html, body {
   font-size: 16px;
 }
 
+.order > *:not(:last-child) {
+  margin-bottom: 24px;
+}
+.order__title {
+  font-size: 49px;
+}
+.order__bag-list > *:not(:last-child) {
+  margin-bottom: 24px;
+}
+
 /*# sourceMappingURL=style.css.map */

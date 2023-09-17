@@ -1,0 +1,13 @@
+.order {
+    & > *:not(:last-child) {
+        margin-bottom: 24px;
+    }
+    &__title {
+        font-size: 49px;
+    }
+    &__bag-list {
+        & > *:not(:last-child) {
+            margin-bottom: 24px;
+        }
+    }
+}
