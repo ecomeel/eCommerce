@@ -151,6 +151,25 @@ html, body {
   letter-spacing: -0.4px;
 }
 
+.address {
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 13px;
+}
+.address__content {
+  margin-top: 8px;
+  padding: 8px;
+  position: relative;
+}
+.address__content > *:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.order__title {
+  padding: 8px;
+  text-transform: uppercase;
+}
+
 .active {
   display: block !important;
 }
@@ -354,6 +373,54 @@ html, body {
 }
 .preview-price__black-btn {
   margin: 32px auto 0;
+}
+
+.pre-order > *:not(:last-child) {
+  margin-bottom: 24px;
+}
+.pre-order__change-btn {
+  padding: 8px 24px;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  font-size: 16px;
+  letter-spacing: -0.32px;
+  border: 1px solid #1A1F16;
+  border-radius: 11px;
+  background-color: transparent;
+  transition: all 0.5s ease-in-out;
+}
+.pre-order__change-btn:hover {
+  background-color: rgba(138, 138, 138, 0.2);
+}
+.pre-order__bag {
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 13px;
+}
+.pre-order__bag h2 {
+  margin-bottom: 32px;
+}
+.pay-type {
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 13px;
+}
+.pay-type__selector {
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pay-type__result {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+.pay-type__change-btn {
+  position: relative;
+  margin-top: -10px;
+  margin-right: -8px;
 }
 
 /*# sourceMappingURL=style.css.map */
