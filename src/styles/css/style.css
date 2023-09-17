@@ -90,6 +90,7 @@ html, body {
 .left-col {
   width: 1000px;
   padding-right: 5px;
+  padding-top: 40px;
   border-right: 4px solid rgba(26, 31, 22, 0.4);
 }
 
@@ -130,6 +131,22 @@ html, body {
 }
 .go-back-btn:hover {
   background-color: rgba(128, 128, 128, 0.162);
+}
+
+.rating {
+  padding: 16px 8px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+.rating__star {
+  width: 24px;
+  height: 24px;
+}
+.rating__value {
+  margin-left: 16px;
+  color: #12805D;
+  letter-spacing: -0.4px;
 }
 
 .active {
@@ -241,21 +258,6 @@ html, body {
 .item-card__model {
   font-size: 31px;
   color: rgba(26, 31, 22, 0.5);
-}
-.item-card__rating {
-  padding: 16px 8px;
-  display: flex;
-  align-items: center;
-  column-gap: 8px;
-}
-.item-card__rating-star {
-  width: 24px;
-  height: 24px;
-}
-.item-card__rating-value {
-  margin-left: 16px;
-  color: #12805D;
-  letter-spacing: -0.4px;
 }
 .item-card__price {
   font-size: 31px;

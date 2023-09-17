@@ -16,6 +16,7 @@
 .left-col {
     width: 1000px;
     padding-right: 5px;
+    padding-top: 40px;
     border-right: 4px solid rgba(26, 31, 22, 0.4);
 }
 
@@ -34,8 +35,8 @@
     column-gap: 8px;
     align-items: center;
     justify-content: center;
-    &:hover{
-        opacity: .8;
+    &:hover {
+        opacity: 0.8;
     }
 }
 
@@ -52,10 +53,26 @@
     border: none;
     border-radius: 15px;
     background-color: transparent;
-    transition: background-color .5s ease;
+    transition: background-color 0.5s ease;
 
     &:hover {
         background-color: rgba(128, 128, 128, 0.162);
+    }
+}
+
+.rating {
+    padding: 16px 8px;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    &__star {
+        width: 24px;
+        height: 24px;
+    }
+    &__value {
+        margin-left: 16px;
+        color: $green-color;
+        letter-spacing: -0.4px;
     }
 }
 

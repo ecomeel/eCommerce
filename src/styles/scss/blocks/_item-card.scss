@@ -23,21 +23,21 @@
         font-size: 31px;
         color: rgba(26, 31, 22, 0.50);
     }
-    &__rating {
-        padding: 16px 8px;
-        display: flex;
-        align-items: center;
-        column-gap: 8px;
-    }
-    &__rating-star {
-        width: 24px;
-        height: 24px;
-    }
-    &__rating-value {
-        margin-left: 16px;
-        color: $green-color;
-        letter-spacing: -0.4px;
-    }
+    // &__rating {
+    //     padding: 16px 8px;
+    //     display: flex;
+    //     align-items: center;
+    //     column-gap: 8px;
+    // }
+    // &__rating-star {
+    //     width: 24px;
+    //     height: 24px;
+    // }
+    // &__rating-value {
+    //     margin-left: 16px;
+    //     color: $green-color;
+    //     letter-spacing: -0.4px;
+    // }
     &__price {
         font-size: 31px;
     }
