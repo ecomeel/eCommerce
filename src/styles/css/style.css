@@ -515,4 +515,21 @@ html, body {
   letter-spacing: -0.32px;
 }
 
+.pay-type-popup > *:not(:last-child) {
+  margin-bottom: 24px;
+}
+.pay-type-popup__selector {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+.pay-type-popup__selector img {
+  width: 16px;
+  height: 20px;
+  cursor: pointer;
+}
+.pay-type-popup__selector p {
+  color: rgba(26, 31, 22, 0.5);
+}
+
 /*# sourceMappingURL=style.css.map */
