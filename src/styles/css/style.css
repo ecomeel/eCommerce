@@ -454,6 +454,9 @@ html, body {
   border-top: 1px solid #BFD1E5;
   border-bottom: 1px solid #BFD1E5;
 }
+.preview-make-order__total_done {
+  border-bottom: none;
+}
 .preview-make-order button {
   margin: 0 auto;
   margin-top: 16px;
