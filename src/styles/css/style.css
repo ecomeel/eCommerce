@@ -80,12 +80,16 @@ html, body {
   padding-bottom: 30px;
 }
 
-.subtitle {
-  font-size: 31px;
+.main-content {
+  display: flex;
 }
 
-.container-start-page {
-  display: flex;
+.title {
+  font-size: 49px;
+}
+
+.subtitle {
+  font-size: 31px;
 }
 
 .left-col {
@@ -471,6 +475,10 @@ html, body {
 }
 .order__bag-list > *:not(:last-child) {
   margin-bottom: 24px;
+}
+
+.no-product > *:not(:last-child) {
+  margin-bottom: 32px;
 }
 
 /*# sourceMappingURL=style.css.map */

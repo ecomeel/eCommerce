@@ -1,0 +1,5 @@
+.no-product {
+    & > *:not(:last-child) {
+        margin-bottom: 32px;
+    }
+}

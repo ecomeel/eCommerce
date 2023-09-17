@@ -6,13 +6,19 @@
     padding-bottom: 30px;
 }
 
+.main-content {
+    display: flex;
+}
+
+.title {
+    font-size: 49px;
+}
+
 .subtitle {
     font-size: 31px;
 }
 
-.container-start-page {
-    display: flex;
-}
+
 
 .left-col {
     width: 1050px;
