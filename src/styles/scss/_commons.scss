@@ -94,6 +94,30 @@
     }
 }
 
+.pay-type {
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 13px;
+    &__selector {
+        padding: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__result {
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
+    }
+    &__result-img {
+    }
+    &__change-btn {
+        position: relative !important;
+        margin-top: -10px;
+        margin-right: -8px;
+    }
+}
+
 .order__title {
     padding: 8px;
     text-transform: uppercase;

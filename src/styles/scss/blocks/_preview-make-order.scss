@@ -1,0 +1,32 @@
+.preview-make-order {
+    margin: 0 auto;
+    padding: 16px;
+    width: 243px;
+    background-color: #fff;
+    border-radius: 12px;
+    &__title {
+        margin-bottom: 16px;
+    }
+    &__price {
+        margin-bottom: 16px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        color: $gray-color;
+        letter-spacing: -0.32px;
+    }
+    &__total {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        display: flex;
+        justify-content: space-between;
+        color: $red-color;
+        border-top: 1px solid $light-blue;
+        border-bottom: 1px solid $light-blue;
+    }
+    & button {
+        margin: 0 auto;
+        margin-top: 16px;
+        font-size: 16px;
+    }
+}
