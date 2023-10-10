@@ -51,7 +51,7 @@ const itemsFrSt = [
 export default class Controller {
     constructor() {
         this.view = new View({
-            userSelectedItem: this._handleSelectedItem,
+            userClickedItem: this._handleUserSelectItem,
         });
         this.model = new Model();
     }
@@ -63,12 +63,22 @@ export default class Controller {
             this.model.setIDsList(); // set IDs
             this.view.renderItems(this.model.getItems()); // render itemsF
         }, 1000);
+    }
+
+    _showItemCard(selectedItemNode) {
+        const hidePageNode = selectedItemNode.parentElement;
+        const showPageNode = hidePageNode.nextElementSibling;
+        this.view.renderChangePage(hidePageNode, showPageNode)
+
+        const itemId = selectedItemNode.getAttribute("data-item-id");
+        const item = this.model.getItemById(itemId);
+
+        this.view.renderItemCard(item)
 
     }
 
-
-
-    _handleSelectedItem(elementClicked) {
+    _handleUserSelectItem = (e) => {
+        const elementClicked = e.target;
         const selectedItemNode = elementClicked.closest("li");
 
         if (selectedItemNode == null) return;
@@ -76,18 +86,7 @@ export default class Controller {
         if (elementClicked.classList.contains("js-items-add-to-bag")) {
             console.log("add item to bag");
         } else {
-            const hidePageNode = selectedItemNode.parentElement;
-            const showPageNode = hidePageNode.nextElementSibling;
-            const selectedItemId = selectedItemNode.getAttribute('data-item-id');
-
-            console.log('id', selectedItemId)
-            // this.view.renderChangePage(hidePage, showPage)
-
+            this._showItemCard(selectedItemNode)
         }
-
-    }
-
-
-
-
+    };
 }

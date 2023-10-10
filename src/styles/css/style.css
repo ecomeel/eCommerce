@@ -223,8 +223,8 @@ html, body {
   display: block !important;
 }
 
-.deactiveted {
-  display: none;
+.deactivated {
+  display: none !important;
 }
 
 .fixe-scroll {

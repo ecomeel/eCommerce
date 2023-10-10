@@ -34,4 +34,15 @@ export default class Model {
     getItemsIDs() {
         return this.itemsIDs
     }
+
+    getItemById(itemID) {
+        let itemn
+        this.items.forEach(item => {
+            if (item.id === itemID) {
+                itemn = item;
+            }
+        });
+        return itemn
+
+    }
 }
