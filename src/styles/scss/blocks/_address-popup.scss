@@ -1,4 +1,5 @@
 .address-popup {
+    margin: 0 auto;
     & > *:not(:last-child) {
         margin-bottom: 32px;
     }
@@ -22,4 +23,13 @@
         font-size: 16px;
         letter-spacing: -0.32px;
     }
+
+    &-wrapper {
+        display: none;
+        position: absolute;
+        top: 20%;
+        width: 100%;
+    }
 }
+
+

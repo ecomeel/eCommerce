@@ -2,6 +2,9 @@
     margin-top: 20px;
     padding: 16px;
 
+    display: none;
+    position: absolute;
+    top: 0;
     &__total {
         text-align: center;
     }

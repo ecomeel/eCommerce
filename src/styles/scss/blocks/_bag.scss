@@ -1,11 +1,15 @@
 .bag {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
     &__title {
         margin-top: 18px;
         font-size: 49px;
     }
     &__items {
         margin-top: 34px;
-        
+
         & > *:not(:last-child) {
             margin-bottom: 24px;
         }
