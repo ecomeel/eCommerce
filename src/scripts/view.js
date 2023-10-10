@@ -125,3 +125,6 @@ export default class View {
         page.classList.add("activated");
     }
 }
+
+// Сделано добавление товара в корзину и превью
+// Переделать рендер препью корзины
