@@ -66,8 +66,8 @@ export default class Controller {
     }
 
     _handleAddItemToBag(item) {
-        this.model.addItemToBag(item.id);
-        console.log(this.model.getBagIds())
+        this.model.addItemToBag(item);
+        this.view.renderPreviewBag(item)
 
     }
 
@@ -93,4 +93,8 @@ export default class Controller {
             this._showItemCard(selectedItemNode, item);
         }
     };
+
+    _handleChangeBag(ids, items) {
+        console.log(ids, items)
+    }
 }

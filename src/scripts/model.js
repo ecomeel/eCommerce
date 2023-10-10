@@ -5,7 +5,10 @@ export default class Model {
     constructor() {
         this.items = [];
         this.itemsIDs = [];
-        this.bagIds = {}
+        this.bagNumItems = {};
+        this.bagItems = []
+
+
     }
 
     //Items
@@ -40,16 +43,27 @@ export default class Model {
     }
 
     //Bag
-    addItemToBag(id) {
-        if (this.bagIds[id]) {
-            this.bagIds[id] += 1;
+    addItemToBag(item) {
+        const id = item.id
+        if (this.bagNumItems[id]) {
+            this.bagNumItems[id] += 1;
         } else {
-            this.bagIds[id] = 1
+            this.bagNumItems[id] = 1
+            // this.bagItems.push(item)
         }
+
     }
 
-    getBagIds(){
+    getBagNumItemsId() {
         return this.bagIds;
+    }
+
+    getBagItems() {
+        const bag = []
+        for(item in this.bagIds) {
+            bag.push(item)
+        }
+        return bag;
     }
 
 

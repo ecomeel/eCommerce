@@ -2,6 +2,7 @@ export default class View {
     constructor({ userClickedItem }) {
         this.itemsListNode = document.getElementById("itemsList");
         this.itemCardNode = document.getElementById("itemCard");
+        this.previewBagItemsNode = document.getElementById('previewBagItems')
 
         this.itemsListNode.addEventListener("click", userClickedItem);
     }
@@ -28,6 +29,18 @@ export default class View {
             </li>`;
         });
         this.itemsListNode.innerHTML = itemsListHTML;
+    }
+
+    renderPreviewBag(item) {
+        const previewBagHTML = `
+        <li class="preview-bag__item">
+            <img
+                class="preview-bag__img"
+                src="${item.imgSrc}"
+                alt=""
+            />
+        </li>`
+        this.previewBagItemsNode.innerHTML += previewBagHTML
     }
 
     renderItemCard(item) {
