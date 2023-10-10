@@ -152,8 +152,16 @@
     }
 }
 
-.active {
+.activated {
     display: block !important;
+}
+
+.deactiveted {
+    display: none;
+}
+
+.fixe-scroll {
+    overflow-y: hidden;
 }
 
 .conceal {

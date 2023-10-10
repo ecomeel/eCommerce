@@ -9,7 +9,7 @@
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
             rel="stylesheet"
         />
-        
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>eCommerce</title>
     </head>
@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="main-content">
                     <div class="left-col">
-                        <ul class="preview-items">
+                        <ul class="preview-items" id="itemsList">
                             <li class="preview-item">
                                 <img
                                     class="preview-item__img"
@@ -1048,34 +1048,64 @@
                     <h2 class="title">Страница не найден</h2>
                 </div>
                 <div class="empty-order error">
-                  <button class="go-back-btn">
-                      <img src="img/buttons/back.png" alt="" />
-                      <p class="go-back-btn__text">Список товаров</p>
-                  </button>
-                  <h2 class="title">В заказе нет товаров</h2>
-              </div>
+                    <button class="go-back-btn">
+                        <img src="img/buttons/back.png" alt="" />
+                        <p class="go-back-btn__text">Список товаров</p>
+                    </button>
+                    <h2 class="title">В заказе нет товаров</h2>
+                </div>
             </div>
-
         </div>
         <div class="address-popup-wrapper">
             <div class="address-popup popup">
-              <div class="address-popup__form">
-                <label class="address-popup__label" for="">Имя</label>
-                <input class="address-popup__input" type="text" placeholder="name">
-              </div>
-              <div class="address-popup__form">
-                <label class="address-popup__label" for="">Улица, дом</label>
-                <input class="address-popup__input" type="text" placeholder="street, house">
-              </div>
-              <div class="address-popup__form">
-                <label class="address-popup__label" for="">Город</label>
-                <input class="address-popup__input" type="text" placeholder="city">
-              </div>
-              <div class="address-popup__form">
-                <label class="address-popup__label" for="">Телефон</label>
-                <input class="address-popup__input" type="tel" placeholder="+7 999 999 99 99">
-              </div>
-              <button class="popup__btn black-btn">Сохранить</button>
+                <div class="address-popup__form">
+                    <label class="address-popup__label" for="">Имя</label>
+                    <input
+                        class="address-popup__input"
+                        type="text"
+                        placeholder="name"
+                    />
+                </div>
+                <div class="address-popup__form">
+                    <label class="address-popup__label" for=""
+                        >Улица, дом</label
+                    >
+                    <input
+                        class="address-popup__input"
+                        type="text"
+                        placeholder="street, house"
+                    />
+                </div>
+                <div class="address-popup__form">
+                    <label class="address-popup__label" for="">Город</label>
+                    <input
+                        class="address-popup__input"
+                        type="text"
+                        placeholder="city"
+                    />
+                </div>
+                <div class="address-popup__form">
+                    <label class="address-popup__label" for="">Телефон</label>
+                    <input
+                        class="address-popup__input"
+                        type="tel"
+                        placeholder="+7 999 999 99 99"
+                    />
+                </div>
+                <button class="popup__btn black-btn">Сохранить</button>
+            </div>
+        </div>
+        <div class="pay-type-popup-wrapper">
+            <div class="pay-type-popup popup">
+                <div class="pay-type-popup__selector">
+                    <img src="img/buttons/checkbox-selected.png" alt="" />
+                    <p>Оплата картой при получении</p>
+                </div>
+                <div class="pay-type-popup__selector">
+                    <img src="img/buttons/checkbox.png" alt="" />
+                    <p>Оплата наличными при получении</p>
+                </div>
+                <button class="popup__btn black-btn">Сохранить</button>
             </div>
         </div>
 

@@ -1,5 +1,6 @@
 
 .pay-type-popup {
+    margin: 0 auto;
     & > *:not(:last-child) {
         margin-bottom: 24px;
     }
@@ -16,5 +17,11 @@
         & p {
             color: rgba(26, 31, 22, 0.50)
         }
+    }
+    &-wrapper {
+        display: none;
+        position: absolute;
+        top: 30%;
+        width: 100%;
     }
 }

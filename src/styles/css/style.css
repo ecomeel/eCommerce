@@ -219,8 +219,16 @@ html, body {
   width: 100%;
 }
 
-.active {
+.activated {
   display: block !important;
+}
+
+.deactiveted {
+  display: none;
+}
+
+.fixe-scroll {
+  overflow-y: hidden;
 }
 
 .conceal {
@@ -563,6 +571,9 @@ html, body {
   width: 100%;
 }
 
+.pay-type-popup {
+  margin: 0 auto;
+}
 .pay-type-popup > *:not(:last-child) {
   margin-bottom: 24px;
 }
@@ -578,6 +589,12 @@ html, body {
 }
 .pay-type-popup__selector p {
   color: rgba(26, 31, 22, 0.5);
+}
+.pay-type-popup-wrapper {
+  display: none;
+  position: absolute;
+  top: 30%;
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */
