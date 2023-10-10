@@ -51,7 +51,7 @@ const itemsFrSt = [
 export default class Controller {
     constructor() {
         this.view = new View({
-            userSelectedItem: this.handleSelectedItem
+            userSelectedItem: this._handleSelectedItem,
         });
         this.model = new Model();
     }
@@ -60,13 +60,34 @@ export default class Controller {
         setTimeout(() => {
             const arr = itemsFrSt;
             this.model.setItemsList(arr); // set items list
-            this.model.setIDsList(); // set IDs 
+            this.model.setIDsList(); // set IDs
             this.view.renderItems(this.model.getItems()); // render itemsF
         }, 1000);
-      
+
     }
 
-    handleSelectedItem(elementClicked) {
-        console.log(elementClicked)
+
+
+    _handleSelectedItem(elementClicked) {
+        const selectedItemNode = elementClicked.closest("li");
+
+        if (selectedItemNode == null) return;
+
+        if (elementClicked.classList.contains("js-items-add-to-bag")) {
+            console.log("add item to bag");
+        } else {
+            const hidePageNode = selectedItemNode.parentElement;
+            const showPageNode = hidePageNode.nextElementSibling;
+            const selectedItemId = selectedItemNode.getAttribute('data-item-id');
+
+            console.log('id', selectedItemId)
+            // this.view.renderChangePage(hidePage, showPage)
+
+        }
+
     }
+
+
+
+
 }

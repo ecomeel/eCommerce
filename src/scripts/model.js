@@ -5,9 +5,9 @@ export default class Model {
     constructor() {
         this.items = [];
         this.itemsIDs = [];
+        this.bag = [];
 
 
-        
     }
 
 
@@ -15,12 +15,16 @@ export default class Model {
         this.items.forEach(item => {
             this.itemsIDs.push(item.id)
         });
+
     }
 
     setItemsList(arr) {
         this.items = arr;
     }
 
+    addItemToBag(item) {
+        this.bag.push(item)
+    }
 
 
     getItems() {

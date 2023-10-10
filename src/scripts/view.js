@@ -10,7 +10,7 @@ export default class View {
         let itemsListHTML = "";
         items.forEach((item) => {
             itemsListHTML += `
-            <li class="preview-item">
+            <li data-item-id="${item.id}" class="preview-item">
                 <img
                     class="preview-item__img"
                     src=${item.imgSrc}
@@ -22,12 +22,29 @@ export default class View {
                     <img
                         src="img/buttons/to-bag-mini.png"
                         alt=""
-                        class="preview-item__to-bag-btn black-btn"
+                        class="js-items-add-to-bag preview-item__to-bag-btn black-btn"
                     />
                 </div>
             </li>`;
         });
         this.itemsListNode.innerHTML = itemsListHTML;
+    }
+
+
+
+
+
+    renderChangePage(hidePage, showPage) {
+        hidePage(hidePage);
+        showPage(showPage);
+    }
+
+    hidePage(page) {
+        console.log(page) 
+    }
+
+    showPage(page) {
+        console.log(page) 
     }
 
     _handleSelectItem = (e) => {
