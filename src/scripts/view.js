@@ -1,6 +1,9 @@
 export default class View {
-    constructor() {
+    constructor({ userSelectedItem }) {
         this.itemsListNode = document.getElementById("itemsList");
+        this.userSelectedItem = userSelectedItem
+
+        this.itemsListNode.addEventListener('click', this._handleSelectItem)
     }
 
     renderItems(items) {
@@ -16,17 +19,18 @@ export default class View {
                 <p class="preview-item__model">${item.model}</p>
                 <div class="to-bag-wrapper">
                     <p class="preview-item__price">${item.price}$</p>
-                    <button
+                    <img
+                        src="img/buttons/to-bag-mini.png"
+                        alt=""
                         class="preview-item__to-bag-btn black-btn"
-                    >
-                        <img
-                            src="img/buttons/to-bag-mini.png"
-                            alt=""
-                        />
-                    </button>
+                    />
                 </div>
             </li>`;
         });
         this.itemsListNode.innerHTML = itemsListHTML;
+    }
+
+    _handleSelectItem = (e) => {
+        this.userSelectedItem(e.target)
     }
 }

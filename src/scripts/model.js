@@ -3,8 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default class Model {
     constructor() {
-        this.items = []
-        this.itemsIDs = []
+        this.items = [];
+        this.itemsIDs = [];
+
 
         
     }
@@ -19,6 +20,8 @@ export default class Model {
     setItemsList(arr) {
         this.items = arr;
     }
+
+
 
     getItems() {
         return this.items

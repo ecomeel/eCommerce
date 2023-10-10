@@ -50,7 +50,9 @@ const itemsFrSt = [
 
 export default class Controller {
     constructor() {
-        this.view = new View();
+        this.view = new View({
+            userSelectedItem: this.handleSelectedItem
+        });
         this.model = new Model();
     }
 
@@ -59,8 +61,12 @@ export default class Controller {
             const arr = itemsFrSt;
             this.model.setItemsList(arr); // set items list
             this.model.setIDsList(); // set IDs 
-            this.view.renderItems(this.model.getItems()); // render items
-        }, 5000);
+            this.view.renderItems(this.model.getItems()); // render itemsF
+        }, 1000);
       
+    }
+
+    handleSelectedItem(elementClicked) {
+        console.log(elementClicked)
     }
 }
