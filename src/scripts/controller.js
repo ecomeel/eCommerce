@@ -65,16 +65,17 @@ export default class Controller {
         }, 1000);
     }
 
-    _showItemCard(selectedItemNode) {
+    _handleAddItemToBag(item) {
+        this.model.addItemToBag(item.id);
+        console.log(this.model.getBagIds())
+
+    }
+
+    _showItemCard(selectedItemNode, item) {
         const hidePageNode = selectedItemNode.parentElement;
         const showPageNode = hidePageNode.nextElementSibling;
-        this.view.renderChangePage(hidePageNode, showPageNode)
-
-        const itemId = selectedItemNode.getAttribute("data-item-id");
-        const item = this.model.getItemById(itemId);
-
-        this.view.renderItemCard(item)
-
+        this.view.renderChangePage(hidePageNode, showPageNode);
+        this.view.renderItemCard(item);
     }
 
     _handleUserSelectItem = (e) => {
@@ -83,10 +84,13 @@ export default class Controller {
 
         if (selectedItemNode == null) return;
 
+        const itemId = selectedItemNode.getAttribute("data-item-id");
+        const item = this.model.getItemById(itemId);
+
         if (elementClicked.classList.contains("js-items-add-to-bag")) {
-            console.log("add item to bag");
+            this._handleAddItemToBag(item);
         } else {
-            this._showItemCard(selectedItemNode)
+            this._showItemCard(selectedItemNode, item);
         }
     };
 }

@@ -5,12 +5,10 @@ export default class Model {
     constructor() {
         this.items = [];
         this.itemsIDs = [];
-        this.bag = [];
-
-
+        this.bagIds = {}
     }
 
-
+    //Items
     setIDsList() {
         this.items.forEach(item => {
             this.itemsIDs.push(item.id)
@@ -21,11 +19,6 @@ export default class Model {
     setItemsList(arr) {
         this.items = arr;
     }
-
-    addItemToBag(item) {
-        this.bag.push(item)
-    }
-
 
     getItems() {
         return this.items
@@ -45,4 +38,21 @@ export default class Model {
         return itemn
 
     }
+
+    //Bag
+    addItemToBag(id) {
+        if (this.bagIds[id]) {
+            this.bagIds[id] += 1;
+        } else {
+            this.bagIds[id] = 1
+        }
+    }
+
+    getBagIds(){
+        return this.bagIds;
+    }
+
+
+
+
 }
