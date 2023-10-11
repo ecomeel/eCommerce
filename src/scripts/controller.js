@@ -64,6 +64,7 @@ export default class Controller {
             this.view.renderItems(this.model.getItems()); // render itemsF
         }, 1000);
     }
+    
 
     _handleAddItemToBag(item) {
         this.model.addItemToBag(item);
