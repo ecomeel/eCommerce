@@ -65,6 +65,7 @@ export default class Controller {
         }, 1000);
     }
     
+    
 
     _handleAddItemToBag(item) {
         this.model.addItemToBag(item);
