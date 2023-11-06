@@ -9,7 +9,7 @@ export default class Api {
                 name: "Apple watch",
                 model: "Series 5 SE",
                 price: 529,
-                imgSrc: "../../img/products/apple-watch.png",
+                imgSrc: './img/products/apple-watch.png',
                 shortDesc:
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, ratione?",
                 mainDesc:
@@ -23,7 +23,7 @@ export default class Api {
                 name: "Apple watch",
                 model: "Series 5 SE",
                 price: 529,
-                imgSrc: "../../img/products/apple-watch.png",
+                imgSrc: "./img/products/apple-watch.png",
                 shortDesc:
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, ratione?",
                 mainDesc:
@@ -37,7 +37,7 @@ export default class Api {
                 name: "Apple watch",
                 model: "Series 5 SE",
                 price: 529,
-                imgSrc: "../../img/products/apple-watch.png",
+                imgSrc: "./img/products/apple-watch.png",
                 shortDesc:
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, ratione?",
                 mainDesc:
@@ -51,5 +51,9 @@ export default class Api {
 
     getItems() {
         return  this.items
+    }
+
+    getImg() {
+        return imagePhone
     }
 }

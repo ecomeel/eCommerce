@@ -4,7 +4,6 @@ import Api from "./api";
 
 import '../styles/scss/style.scss';
 
-
 export default class Controller {
     constructor() {
         this.view = new View({
@@ -18,9 +17,13 @@ export default class Controller {
 
         setTimeout(() => {
             const items = this.api.getItems()
-            this.model.setItemsList(items); // set items list
-            this.model.setIDsList(); // set IDs
-            this.view.renderItems(this.model.getItems()); // render itemsF
+            this.model.setItemsList(items); 
+            this.model.setIDsList();
+            this.view.renderItems(this.model.getItems());
+
+            console.log(this.api.getImg())
+
+            console.log('Товары загружены и отрисованы')
         }, 1000);
     }
     

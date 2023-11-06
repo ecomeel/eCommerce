@@ -2,7 +2,7 @@ export default class View {
     constructor({ userClickedItem }) {
         this.itemsListNode = document.getElementById("itemsList");
         this.itemCardNode = document.getElementById("itemCard");
-        this.previewBagItemsNode = document.getElementById('previewBagItems')
+        this.previewBagItemsNode = document.getElementById('previewBagItems');
 
         this.itemsListNode.addEventListener("click", userClickedItem);
     }
@@ -45,7 +45,7 @@ export default class View {
 
     renderItemCard(item) {
         let itemCardHTML = `
-        <button class="go-back-btn">
+        <button id='goBackToItemsBtn' class="go-back-btn">
             <img src="img/buttons/back.png" alt="" />
             <p class="go-back-btn__text">Список товаров</p>
         </button>
