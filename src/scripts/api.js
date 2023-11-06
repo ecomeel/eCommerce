@@ -52,8 +52,4 @@ export default class Api {
     getItems() {
         return  this.items
     }
-
-    getImg() {
-        return imagePhone
-    }
 }

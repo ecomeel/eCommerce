@@ -2,7 +2,7 @@ import View from "./view";
 import Model from "./model";
 import Api from "./api";
 
-import '../styles/scss/style.scss';
+import "../styles/scss/style.scss";
 
 export default class Controller {
     constructor() {
@@ -10,30 +10,21 @@ export default class Controller {
             userClickedItem: this._handleUserSelectItem,
         });
         this.model = new Model();
-        this.api = new Api()
+        this.api = new Api();
     }
 
     init() {
-
         setTimeout(() => {
-            const items = this.api.getItems()
-            this.model.setItemsList(items); 
+            const items = this.api.getItems();
+            this.model.setItemsList(items);
             this.model.setIDsList();
             this.view.renderItems(this.model.getItems());
-
-            console.log(this.api.getImg())
-
-            console.log('Товары загружены и отрисованы')
         }, 1000);
     }
-    
-    
-    
 
     _handleAddItemToBag(item) {
         this.model.addItemToBag(item);
-        this.view.renderPreviewBag(item)
-
+        this.view.renderPreviewBag(item);
     }
 
     _showItemCard(selectedItemNode, item) {
@@ -53,13 +44,23 @@ export default class Controller {
         const item = this.model.getItemById(itemId);
 
         if (elementClicked.classList.contains("js-items-add-to-bag")) {
+            // Клик по корзине
             this._handleAddItemToBag(item);
         } else {
+            // Клик по продукту
             this._showItemCard(selectedItemNode, item);
+
+            const goBackBtn = document.getElementById("goBackToItemsBtn");
+            goBackBtn.addEventListener("click", () => {
+                const hidePageNode = goBackBtn.parentElement;
+                const showPageNode = hidePageNode.previousElementSibling;
+                hidePageNode.classList.remove('activated');
+                showPageNode.classList.remove('deactivated')
+            });
         }
     };
 
     _handleChangeBag(ids, items) {
-        console.log(ids, items)
+        console.log(ids, items);
     }
 }
