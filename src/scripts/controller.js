@@ -1,6 +1,8 @@
 import View from "./view";
 import Model from "./model";
 
+import '../styles/scss/style.scss';
+
 import { v4 as uuidv4 } from "uuid";
 
 const itemsFrSt = [
