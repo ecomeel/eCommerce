@@ -11,19 +11,17 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>eCommerce</title>
-      <script type="module" crossorigin src="./assets/index-ffaa06ee.js"></script>
-      <link rel="stylesheet" href="./assets/index-e5c18c68.css">
+      <script type="module" crossorigin src="./assets/index-a9d4a6b2.js"></script>
+      <link rel="stylesheet" href="./assets/index-a0b2fcf5.css">
     </head>
     <body>
         <div id="app">
             <div class="container">
                 <div class="main-content">
                     <div class="left-col">
-                        <ul class="preview-items" id="itemsList">
-                        </ul>
-                        <div class="item-card" id="itemCard">
-                        </div>
-                        <div class="bag">
+                        <ul class="preview-items visible" id="itemsList"></ul>
+                        <div class="item-card" id="itemCard"></div>
+                        <div class="bag" id="bag">
                             <button class="go-back-btn">
                                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADHSURBVHgB7ZQxEoJADEV/UKlpdBi1yBE4AtzAK3gyj4JH8AgpKako1pF1EWsgy1Iww6+2yLw3mSQLbFltmDm5cpqP1UXwSAc3tilb25ZnPt2GavfwhLtnBpC0oNdQPWEOnKiopJIgAh/4ZIEvfJJgDnxUMBfeZXBNP2jyHu4Kie5a+KhgB/N0Lf7W0O38gzllKDNhBknytnFp+04kpqiQUDMIIVHcgZ9Eecl6iUrgI1H/piJ1fSBT/LeLDaIMS+XCx+XgW4LlCy0nhAeZKsc6AAAAAElFTkSuQmCC" alt="" />
                                 <p class="go-back-btn__text">Список товаров</p>
@@ -672,37 +670,14 @@
                     <div class="right-col">
                         <div class="preview-bag">
                             <h2 class="preview-title">Корзина</h2>
-                            <ul class="preview-bag__items" id="previewBagItems">
-                                <li class="preview-bag__item">
-                                    <img
-                                        class="preview-bag__img"
-                                        src="./assets/apple-watch-8263d023.png"
-                                        alt=""
-                                    />
-                                </li>
-                                <li class="preview-bag__item">
-                                    <img
-                                        class="preview-bag__img"
-                                        src="./assets/apple-watch-8263d023.png"
-                                        alt=""
-                                    />
-                                </li>
-                                <li class="preview-bag__item">
-                                    <img
-                                        class="preview-bag__img"
-                                        src="./assets/apple-watch-8263d023.png"
-                                        alt=""
-                                    />
-                                </li>
-                                <li class="preview-bag__item">
-                                    <img
-                                        class="preview-bag__img"
-                                        src="./assets/apple-watch-8263d023.png"
-                                        alt=""
-                                    />
-                                </li>
-                            </ul>
-                            <button class="preview-bag__bag-btn black-btn">
+                            <ul
+                                class="preview-bag__items"
+                                id="previewBagItems"
+                            ></ul>
+                            <button
+                                id="goToBagBtn"
+                                class="preview-bag__bag-btn black-btn"
+                            >
                                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEISURBVHgB5ZTRDYIwEIYP47uOwAiM4Ag6AYzABsAEugGMwAa4gW4gTKBOcN7JJRIstbSND/ollza9v/c37aUAfwEiJhQNxRV7eJ6AD6hQOSh6kLjI2h5coAKZFMoVuVxyKdgiJy01+ee1gWXxSE641WgS0URTmgVMs5bxptG0I+00fNJBl7jANWKVQYP+qE2uqKXYGVyRSrMyMgiCgE9ydtGYPHKn0dxH2lkG3Ka8sdJoatKErLUxYDK6giONhSJXUK6iMQYTNF2USj7kucRG1uKJPc0cA6YcFF3zHF+foNZgCWYkHLQR5vLpDZz5qkEH/mjfVrD/nn18dkyotBWTE9rToHTb7/AAp+9IEQ+t0G4AAAAASUVORK5CYII=" alt="bag icon" />
                                 <p>Корзина</p>
                             </button>
@@ -759,34 +734,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="no-product error">
-                    <button class="go-back-btn">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADHSURBVHgB7ZQxEoJADEV/UKlpdBi1yBE4AtzAK3gyj4JH8AgpKako1pF1EWsgy1Iww6+2yLw3mSQLbFltmDm5cpqP1UXwSAc3tilb25ZnPt2GavfwhLtnBpC0oNdQPWEOnKiopJIgAh/4ZIEvfJJgDnxUMBfeZXBNP2jyHu4Kie5a+KhgB/N0Lf7W0O38gzllKDNhBknytnFp+04kpqiQUDMIIVHcgZ9Eecl6iUrgI1H/piJ1fSBT/LeLDaIMS+XCx+XgW4LlCy0nhAeZKsc6AAAAAElFTkSuQmCC" alt="" />
-                        <p class="go-back-btn__text">Список товаров</p>
-                    </button>
-                    <h2 class="title">Упс, ошибка. Такого товара нет.</h2>
-                </div>
-                <div class="empty-bag error">
-                    <button class="go-back-btn">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADHSURBVHgB7ZQxEoJADEV/UKlpdBi1yBE4AtzAK3gyj4JH8AgpKako1pF1EWsgy1Iww6+2yLw3mSQLbFltmDm5cpqP1UXwSAc3tilb25ZnPt2GavfwhLtnBpC0oNdQPWEOnKiopJIgAh/4ZIEvfJJgDnxUMBfeZXBNP2jyHu4Kie5a+KhgB/N0Lf7W0O38gzllKDNhBknytnFp+04kpqiQUDMIIVHcgZ9Eecl6iUrgI1H/piJ1fSBT/LeLDaIMS+XCx+XgW4LlCy0nhAeZKsc6AAAAAElFTkSuQmCC" alt="" />
-                        <p class="go-back-btn__text">Список товаров</p>
-                    </button>
-                    <h2 class="title">Корзина пуста</h2>
-                </div>
-                <div class="page-not-found error">
-                    <button class="go-back-btn">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADHSURBVHgB7ZQxEoJADEV/UKlpdBi1yBE4AtzAK3gyj4JH8AgpKako1pF1EWsgy1Iww6+2yLw3mSQLbFltmDm5cpqP1UXwSAc3tilb25ZnPt2GavfwhLtnBpC0oNdQPWEOnKiopJIgAh/4ZIEvfJJgDnxUMBfeZXBNP2jyHu4Kie5a+KhgB/N0Lf7W0O38gzllKDNhBknytnFp+04kpqiQUDMIIVHcgZ9Eecl6iUrgI1H/piJ1fSBT/LeLDaIMS+XCx+XgW4LlCy0nhAeZKsc6AAAAAElFTkSuQmCC" alt="" />
-                        <p class="go-back-btn__text">Список товаров</p>
-                    </button>
-                    <h2 class="title">Страница не найден</h2>
-                </div>
-                <div class="empty-order error">
-                    <button class="go-back-btn">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADHSURBVHgB7ZQxEoJADEV/UKlpdBi1yBE4AtzAK3gyj4JH8AgpKako1pF1EWsgy1Iww6+2yLw3mSQLbFltmDm5cpqP1UXwSAc3tilb25ZnPt2GavfwhLtnBpC0oNdQPWEOnKiopJIgAh/4ZIEvfJJgDnxUMBfeZXBNP2jyHu4Kie5a+KhgB/N0Lf7W0O38gzllKDNhBknytnFp+04kpqiQUDMIIVHcgZ9Eecl6iUrgI1H/piJ1fSBT/LeLDaIMS+XCx+XgW4LlCy0nhAeZKsc6AAAAAElFTkSuQmCC" alt="" />
-                        <p class="go-back-btn__text">Список товаров</p>
-                    </button>
-                    <h2 class="title">В заказе нет товаров</h2>
-                </div>
+            </div>
+        </div>
+        <div id="errorPage" class="error">
+            <div class="container">
+                <button id="closeErrorPageBtn" class="go-back-btn">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADHSURBVHgB7ZQxEoJADEV/UKlpdBi1yBE4AtzAK3gyj4JH8AgpKako1pF1EWsgy1Iww6+2yLw3mSQLbFltmDm5cpqP1UXwSAc3tilb25ZnPt2GavfwhLtnBpC0oNdQPWEOnKiopJIgAh/4ZIEvfJJgDnxUMBfeZXBNP2jyHu4Kie5a+KhgB/N0Lf7W0O38gzllKDNhBknytnFp+04kpqiQUDMIIVHcgZ9Eecl6iUrgI1H/piJ1fSBT/LeLDaIMS+XCx+XgW4LlCy0nhAeZKsc6AAAAAElFTkSuQmCC" alt="" />
+                    <p class="go-back-btn__text">Список товаров</p>
+                </button>
+                <h2 id="errorTitle" class="title"></h2>
             </div>
         </div>
         <div class="address-popup-wrapper">

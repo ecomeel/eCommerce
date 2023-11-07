@@ -30,7 +30,6 @@ export default class Controller {
     }
 
     // Open new pages
-
     _handleOpenSelectedItem = (e) => {
         const elementClicked = e.target;
         const selectedItemNode = elementClicked.closest("li");
