@@ -7,34 +7,19 @@ import "../styles/scss/style.scss";
 export default class Controller {
     constructor() {
         this.view = new View({
-            userClickedItem: this._handleUserSelectItem,
+            userClickedItem: this._handleOpenSelectedItem,
         });
         this.model = new Model();
         this.api = new Api();
     }
 
     init() {
-        setTimeout(() => {
-            const items = this.api.getItems();
-            this.model.setItemsList(items);
-            this.model.setIDsList();
-            this.view.renderItems(this.model.getItems());
-        }, 1000);
+        const items = this.api.getItems();
+        this.model.setItems(items);
+        this.view.renderItems(this.model.getItems());
     }
 
-    _handleAddItemToBag(item) {
-        this.model.addItemToBag(item);
-        this.view.renderPreviewBag(item);
-    }
-
-    _showItemCard(selectedItemNode, item) {
-        const hidePageNode = selectedItemNode.parentElement;
-        const showPageNode = hidePageNode.nextElementSibling;
-        this.view.renderChangePage(hidePageNode, showPageNode);
-        this.view.renderItemCard(item);
-    }
-
-    _handleUserSelectItem = (e) => {
+    _handleOpenSelectedItem = (e) => {
         const elementClicked = e.target;
         const selectedItemNode = elementClicked.closest("li");
 
@@ -48,19 +33,34 @@ export default class Controller {
             this._handleAddItemToBag(item);
         } else {
             // Клик по продукту
-            this._showItemCard(selectedItemNode, item);
+            this._openNextPage(selectedItemNode, item);
+            this.view.renderItemCard(item)
 
-            const goBackBtn = document.getElementById("goBackToItemsBtn");
-            goBackBtn.addEventListener("click", () => {
-                const hidePageNode = goBackBtn.parentElement;
-                const showPageNode = hidePageNode.previousElementSibling;
-                hidePageNode.classList.remove('activated');
-                showPageNode.classList.remove('deactivated')
-            });
+            this._ListenerGoPreviousPage("goBackToItemsBtn");
+
+
         }
     };
 
-    _handleChangeBag(ids, items) {
-        console.log(ids, items);
+    _handleAddItemToBag(item) {
+        this.model.addItemToBag(item);
+        this.view.renderPreviewBag(item);
+    }
+
+    _openNextPage(itemClickNode) {
+        const prevPageNode = itemClickNode.parentElement;
+        const nextPageNode = prevPageNode.nextElementSibling;
+        this.view.changeVisibilityPages(prevPageNode, nextPageNode);
+    }
+
+    _handlerOpenPreviousPage(itemClickNode) {
+        const prevPageNode = itemClickNode.parentElement;
+        const nextPageNode = prevPageNode.previousElementSibling;
+        this.view.changeVisibilityPages(prevPageNode, nextPageNode)
+    }
+
+    _ListenerGoPreviousPage(goBackBtnID) {
+        const backButton = document.getElementById(goBackBtnID);
+        backButton.addEventListener('click', () => this._handlerOpenPreviousPage(backButton))
     }
 }

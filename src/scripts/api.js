@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export default class Api {
     constructor() {
-        this.items = [
+        this.itemsMock = [
             {
                 id: uuidv4(),
                 name: "Apple watch",
@@ -20,7 +20,7 @@ export default class Api {
             },
             {
                 id: uuidv4(),
-                name: "Apple watch",
+                name: "Apple watch 2",
                 model: "Series 5 SE",
                 price: 529,
                 imgSrc: "./img/products/apple-watch.png",
@@ -34,7 +34,7 @@ export default class Api {
             },
             {
                 id: uuidv4(),
-                name: "Apple watch",
+                name: "Apple watch 3",
                 model: "Series 5 SE",
                 price: 529,
                 imgSrc: "./img/products/apple-watch.png",
@@ -50,6 +50,6 @@ export default class Api {
     }
 
     getItems() {
-        return  this.items
+        return  this.itemsMock
     }
 }

@@ -1,4 +1,6 @@
 .preview-items {
+    visibility: hidden;
+    opacity: 0;
     display: flex;
     column-gap: 16px;
     row-gap: 16px;

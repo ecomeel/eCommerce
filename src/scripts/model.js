@@ -12,15 +12,11 @@ export default class Model {
     }
 
     //Items
-    setIDsList() {
-        this.items.forEach(item => {
-            this.itemsIDs.push(item.id)
-        });
 
-    }
+    setItems(products) {
+        this.items = products;
 
-    setItemsList(arr) {
-        this.items = arr;
+        this._setIDsList()
     }
 
     getItems() {
@@ -45,7 +41,7 @@ export default class Model {
     //Bag
     addItemToBag(item) {
         const id = item.id
-        if (this.bagNumItems[id]) {
+        if (this.bagNumItems[id]) {i
             this.bagNumItems[id] += 1;
         } else {
             this.bagNumItems[id] = 1
@@ -66,7 +62,11 @@ export default class Model {
         return bag;
     }
 
+    _setIDsList() {
+        this.items.forEach(item => {
+            this.itemsIDs.push(item.id)
+        });
 
-
+    }
 
 }

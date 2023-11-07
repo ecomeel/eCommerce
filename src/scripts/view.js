@@ -112,18 +112,12 @@ export default class View {
         this.itemCardNode.innerHTML = itemCardHTML;
     }
 
-    renderChangePage(hidePageNode, showPageNode) {
-        this._hidePage(hidePageNode);
-        this._showPage(showPageNode);
+    changeVisibilityPages(prevPage, nextPage) {
+        prevPage.classList.toggle('activated')
+        nextPage.classList.toggle('activated')
     }
 
-    _hidePage(page) {
-        page.classList.add("deactivated");
-    }
 
-    _showPage(page) {
-        page.classList.add("activated");
-    }
 }
 
 // Сделано добавление товара в корзину и превью

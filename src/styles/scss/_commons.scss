@@ -153,11 +153,15 @@
 }
 
 .activated {
-    display: block !important;
+    // display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .deactivated {
-    display: none !important;
+    // display: none !important;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .fixe-scroll {
