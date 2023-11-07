@@ -16,7 +16,7 @@ export default class Controller {
     init() {
         const items = this.api.getItems();
         this.model.setItems(items);
-        this.view.renderItems(this.model.getItems());
+        this.view.renderItems(items);
     }
 
     _handleOpenSelectedItem = (e) => {

@@ -1,53 +1,47 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
+import normalizedItems from "./utils/normalizedItems.js";
 
 export default class Model {
     constructor() {
         this.items = [];
         this.itemsIDs = [];
+        this.itemById = {};
+
         this.bagNumItems = {};
-        this.bagItems = []
-
-
+        this.bagItems = [];
     }
 
     //Items
 
     setItems(products) {
         this.items = products;
-
-        this._setIDsList()
+        [this.itemsIDs, this.itemById] = normalizedItems(products)
+        // this._setIDsList();
     }
 
     getItems() {
-        return this.items
+        return this.items;
     }
 
     getItemsIDs() {
-        return this.itemsIDs
+        return this.itemsIDs;
     }
 
-    getItemById(itemID) {
-        let itemn
-        this.items.forEach(item => {
-            if (item.id === itemID) {
-                itemn = item;
-            }
-        });
-        return itemn
-
+    getItemById(id) {
+        return this.itemById[id]
     }
 
     //Bag
     addItemToBag(item) {
-        const id = item.id
-        if (this.bagNumItems[id]) {i
+        const id = item.id;
+        if (this.bagNumItems[id]) {
+            i;
             this.bagNumItems[id] += 1;
         } else {
-            this.bagNumItems[id] = 1
+            this.bagNumItems[id] = 1;
             // this.bagItems.push(item)
         }
-
     }
 
     getBagNumItemsId() {
@@ -55,18 +49,16 @@ export default class Model {
     }
 
     getBagItems() {
-        const bag = []
-        for(item in this.bagIds) {
-            bag.push(item)
+        const bag = [];
+        for (item in this.bagIds) {
+            bag.push(item);
         }
         return bag;
     }
 
     _setIDsList() {
-        this.items.forEach(item => {
-            this.itemsIDs.push(item.id)
+        this.items.forEach((item) => {
+            this.itemsIDs.push(item.id);
         });
-
     }
-
 }

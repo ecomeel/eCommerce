@@ -1,3 +1,5 @@
+const CLASSNAME_CHANGE_VISIBILITY = 'visible'
+
 export default class View {
     constructor({ userClickedItem }) {
         this.itemsListNode = document.getElementById("itemsList");
@@ -113,8 +115,8 @@ export default class View {
     }
 
     changeVisibilityPages(prevPage, nextPage) {
-        prevPage.classList.toggle('activated')
-        nextPage.classList.toggle('activated')
+        prevPage.classList.toggle(CLASSNAME_CHANGE_VISIBILITY)
+        nextPage.classList.toggle(CLASSNAME_CHANGE_VISIBILITY)
     }
 
 
