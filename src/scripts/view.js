@@ -131,7 +131,7 @@ export default class View {
 
         const btnClosePage = document.getElementById("closeErrorPageBtn");
         btnClosePage.addEventListener("click", () => {
-            errorPageNode.classList.remove("visible");
+            errorPageNode.classList.remove(CLASSNAME_CHANGE_VISIBILITY);
         });
     }
 

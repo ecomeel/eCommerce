@@ -67,6 +67,18 @@ export default class Controller {
             this._showEror(ERROR_NAME_EMPTY_BAG);
             return;
         }
+
+        //  Отображаем корзину и убираем прошлый экран
+        // Отрефакторить
+        const itemsList = document.getElementById('itemsList');
+        const itemCardNode = document.getElementById('itemCard');
+        const bagNode = document.getElementById('bag');
+        bagNode.classList.add('visible');
+        itemCardNode.classList.remove('visible')
+        itemsList.classList.remove('visible')
+
+
+        // Отображение корзины
     };
 
     // handlers
@@ -87,8 +99,6 @@ export default class Controller {
         const nextPageNode = prevPageNode.previousElementSibling;
         this.view.changeVisibilityPages(prevPageNode, nextPageNode);
     }
-
-    _handlerClosePopup() {}
 
     _listenGoPreviousPage(goBackBtnID) {
         const backButton = document.getElementById(goBackBtnID);
