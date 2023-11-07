@@ -99,6 +99,8 @@ export default class View {
             <div class="item-card__btn-wrapper">
                 <button
                     class="item-card__add-to-bag-btn black-btn"
+                    data-item-id=${item.id}
+                    id="addToBagFromItemcard"
                 >
                     <img
                         src="img/buttons/to-bag-big.png"
@@ -123,6 +125,3 @@ export default class View {
         nextPage.classList.toggle(CLASSNAME_CHANGE_VISIBILITY);
     }
 }
-
-// Сделано добавление товара в корзину и превью
-// Переделать рендер препью корзины

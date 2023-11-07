@@ -49,6 +49,7 @@ export default class Model {
         } else {
             this.bagNumItemsById[id] = this.bagNumItemsById[id] + 1;
         }
+        console.log(this.bagNumItemsById)
     }
 
     getBagItems() {
