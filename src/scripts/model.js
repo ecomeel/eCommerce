@@ -37,8 +37,7 @@ export default class Model {
 
     //Bag
     setBagItems(products) {
-        [this.bagItemsIds, this.bagNumItemsById] = normalizedBag(products)
-        // make
+        [this.bagItemsIds, this.bagNumItemsById] = normalizedBag(products);
     }
 
     addItemToBag(item) {
@@ -59,4 +58,6 @@ export default class Model {
         });
         return bag
     }
+
+    
 }

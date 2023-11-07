@@ -3,7 +3,7 @@ export default function normalizedBag(bag) {
     let amountById = {};
     bag.forEach(item => {
         ids.push(item.id);
-        amountById[id] = item.amount;
+        amountById[item.id] = item.amount;
     });
 
     return [ids, amountById]

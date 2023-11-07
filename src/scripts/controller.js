@@ -14,9 +14,12 @@ export default class Controller {
     }
 
     init() {
-        const items = this.api.getItems();
-        this.model.setItems(items);
-        this.view.renderItems(items);
+        this.model.setItems(this.api.getItems());
+        this.view.renderItems(this.model.getItems());
+
+
+        this.model.setBagItems(this.api.getBagItems());
+        this.view.renderPreviewBag(this.model.getBagItems())
     }
 
     _handleOpenSelectedItem = (e) => {
@@ -44,9 +47,7 @@ export default class Controller {
 
     _handleAddItemToBag(item) {
         this.model.addItemToBag(item);
-        this.view.renderPreviewBag(item);
-
-        
+        this.view.renderPreviewBag(this.model.getBagItems());
     }
 
     _openNextPage(itemClickNode) {

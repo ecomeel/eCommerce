@@ -5,7 +5,7 @@ export default class Api {
     constructor() {
         this.itemsMock = [
             {
-                id: uuidv4(),
+                id: 1,
                 name: "Apple watch",
                 model: "Series 5 SE",
                 price: 529,
@@ -19,7 +19,7 @@ export default class Api {
                 rating: 4,
             },
             {
-                id: uuidv4(),
+                id: 2,
                 name: "Apple watch 2",
                 model: "Series 5 SE",
                 price: 529,
@@ -33,7 +33,7 @@ export default class Api {
                 rating: 4,
             },
             {
-                id: uuidv4(),
+                id: 3,
                 name: "Apple watch 3",
                 model: "Series 5 SE",
                 price: 529,
@@ -45,7 +45,7 @@ export default class Api {
                 fullDesc:
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eius repellendus, omnis dolorum dolor et est natus quae tempora quidem labore sequi possimus quia ex odit cupiditate, excepturi provident reiciendis exercitationem eos. Quidem sunt quibusdam eius, qui autem soluta magni deserunt corrupti fugit velit architecto nam et magnam ut, officia nemo labore voluptatibus est consequatur quaerat tempore placeat, provident veritatis! Debitis aspernatur voluptatibus sapiente sed nisi dolorum eius enim at officia similique ipsa, laboriosam pariatur aliquam eum dolore corporis quas temporibus, deserunt fugit non atque, necessitatibus illo. Cum laborum sed ullam, ab consequatur natus nemo perspiciatis odit porro quisquam consectetur!",
                 rating: 4,
-            },
+            }
         ];
 
         this.bag = [
@@ -56,11 +56,7 @@ export default class Api {
             {
                 id: 2,
                 amount: 1
-            },
-            {
-                id: 3,
-                amount: 5
-            },
+            }
         ];
     }
 

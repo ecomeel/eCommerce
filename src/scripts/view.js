@@ -1,10 +1,10 @@
-const CLASSNAME_CHANGE_VISIBILITY = 'visible'
+const CLASSNAME_CHANGE_VISIBILITY = "visible";
 
 export default class View {
     constructor({ userClickedItem }) {
         this.itemsListNode = document.getElementById("itemsList");
         this.itemCardNode = document.getElementById("itemCard");
-        this.previewBagItemsNode = document.getElementById('previewBagItems');
+        this.previewBagItemsNode = document.getElementById("previewBagItems");
 
         this.itemsListNode.addEventListener("click", userClickedItem);
     }
@@ -33,16 +33,33 @@ export default class View {
         this.itemsListNode.innerHTML = itemsListHTML;
     }
 
-    renderPreviewBag(item) {
-        const previewBagHTML = `
-        <li class="preview-bag__item">
-            <img
-                class="preview-bag__img"
-                src="${item.imgSrc}"
-                alt=""
-            />
-        </li>`
-        this.previewBagItemsNode.innerHTML += previewBagHTML
+    // renderPreviewBag(item) {
+    //     const previewBagHTML = `
+    //     <li class="preview-bag__item">
+    //         <img
+    //             class="preview-bag__img"
+    //             src="${item.imgSrc}"
+    //             alt=""
+    //         />
+    //     </li>`
+    //     this.previewBagItemsNode.innerHTML += previewBagHTML
+    // }
+
+    renderPreviewBag(items) {
+        console.log(items)
+        let previewBagHTML = "";
+        items.forEach((item) => {
+            previewBagHTML =
+                previewBagHTML +
+                `<li class="preview-bag__item">
+                    <img
+                        class="preview-bag__img"
+                        src="${item.imgSrc}"
+                        alt=""
+                    />
+                </li>`;
+        });
+        this.previewBagItemsNode.innerHTML = previewBagHTML;
     }
 
     renderItemCard(item) {
@@ -115,11 +132,9 @@ export default class View {
     }
 
     changeVisibilityPages(prevPage, nextPage) {
-        prevPage.classList.toggle(CLASSNAME_CHANGE_VISIBILITY)
-        nextPage.classList.toggle(CLASSNAME_CHANGE_VISIBILITY)
+        prevPage.classList.toggle(CLASSNAME_CHANGE_VISIBILITY);
+        nextPage.classList.toggle(CLASSNAME_CHANGE_VISIBILITY);
     }
-
-
 }
 
 // Сделано добавление товара в корзину и превью
