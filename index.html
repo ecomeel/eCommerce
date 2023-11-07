@@ -671,36 +671,8 @@
                         <div class="preview-bag">
                             <h2 class="preview-title">Корзина</h2>
                             <ul class="preview-bag__items" id="previewBagItems">
-                                <!-- <li class="preview-bag__item">
-                                    <img
-                                        class="preview-bag__img"
-                                        src="img/products/apple-watch.png"
-                                        alt=""
-                                    />
-                                </li>
-                                <li class="preview-bag__item">
-                                    <img
-                                        class="preview-bag__img"
-                                        src="img/products/apple-watch.png"
-                                        alt=""
-                                    />
-                                </li>
-                                <li class="preview-bag__item">
-                                    <img
-                                        class="preview-bag__img"
-                                        src="img/products/apple-watch.png"
-                                        alt=""
-                                    />
-                                </li>
-                                <li class="preview-bag__item">
-                                    <img
-                                        class="preview-bag__img"
-                                        src="img/products/apple-watch.png"
-                                        alt=""
-                                    />
-                                </li> -->
                             </ul>
-                            <button class="preview-bag__bag-btn black-btn">
+                            <button id="goToBagBtn" class="preview-bag__bag-btn black-btn">
                                 <img src="img/buttons/bag.png" alt="bag icon" />
                                 <p>Корзина</p>
                             </button>
@@ -757,28 +729,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="no-product error">
+                <!-- <div id="NoProductErrorPage" class="no-product error">
                     <button class="go-back-btn">
                         <img src="img/buttons/back.png" alt="" />
                         <p class="go-back-btn__text">Список товаров</p>
                     </button>
                     <h2 class="title">Упс, ошибка. Такого товара нет.</h2>
-                </div>
-                <div class="empty-bag error">
+                </div> -->
+                <div id="EmptyBagErrorPage" class="empty-bag error">
                     <button class="go-back-btn">
                         <img src="img/buttons/back.png" alt="" />
                         <p class="go-back-btn__text">Список товаров</p>
                     </button>
                     <h2 class="title">Корзина пуста</h2>
                 </div>
-                <div class="page-not-found error">
+                <div id="NotFoundOrderErrorPage" class="page-not-found error">
                     <button class="go-back-btn">
                         <img src="img/buttons/back.png" alt="" />
                         <p class="go-back-btn__text">Список товаров</p>
                     </button>
                     <h2 class="title">Страница не найден</h2>
                 </div>
-                <div class="empty-order error">
+                <div id="EmptyOrderErrorPage" class="empty-order error">
                     <button class="go-back-btn">
                         <img src="img/buttons/back.png" alt="" />
                         <p class="go-back-btn__text">Список товаров</p>
@@ -787,6 +759,15 @@
                 </div>
             </div>
         </div>
+        <div id="NoProductErrorPage" class="no-product error">
+            <div class="container">
+                <button id="closeErrorPageBtn" class="go-back-btn">
+                    <img src="img/buttons/back.png" alt="" />
+                    <p class="go-back-btn__text">Список товаров</p>
+                </button>
+                <h2 class="title">Упс, ошибка. Такого товара нет.</h2>
+                        </div>
+            </div>
         <div class="address-popup-wrapper">
             <div class="address-popup popup">
                 <div class="address-popup__form">

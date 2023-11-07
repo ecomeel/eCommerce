@@ -49,14 +49,14 @@ export default class Api {
         ];
 
         this.bag = [
-            {
-                id: 1,
-                amount: 2
-            },
-            {
-                id: 2,
-                amount: 1
-            }
+            // {
+            //     id: 1,
+            //     amount: 2
+            // },
+            // {
+            //     id: 2,
+            //     amount: 1
+            // }
         ];
     }
 

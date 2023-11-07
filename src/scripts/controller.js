@@ -10,6 +10,7 @@ export default class Controller {
     constructor() {
         this.view = new View({
             userClickedItem: this._handleOpenSelectedItem,
+            userGoToBag: this._handleOpenBag,
         });
         this.model = new Model();
         this.api = new Api();
@@ -22,6 +23,8 @@ export default class Controller {
         this.model.setBagItems(this.api.getBagItems());
         this.view.renderPreviewBag(this.model.getBagItems());
     }
+
+    // Open new pages
 
     _handleOpenSelectedItem = (e) => {
         const elementClicked = e.target;
@@ -44,9 +47,32 @@ export default class Controller {
 
             this._listenerGoPreviousPage("goBackToItemsBtn");
 
-            this._listenerAddToBag('addToBagFromItemcard')
+            this._listenerAddToBag("addToBagFromItemcard");
         }
     };
+
+    _handleOpenBag = () => {
+        console.log(this.model.getBagItems())
+        if (this.model.getBagItems().length == 0) {
+            console.log('bag is empty')
+            const emptyErrorPage = document.getElementById('NoProductErrorPage')
+            emptyErrorPage.classList.add('visible');
+
+            // Получаем с модели сообщение ошибки
+
+            // Отрисовываем техт ошибки на странице
+
+            // Делаем листенер закрытия страницы
+            const btnClosePage = document.getElementById('closeErrorPageBtn');
+            btnClosePage.addEventListener('click', () => {
+                emptyErrorPage.classList.remove('visible')
+            })
+
+
+        }
+    }
+
+    // handlers
 
     _handleAddItemToBag(item) {
         this.model.addItemToBag(item);
@@ -63,6 +89,10 @@ export default class Controller {
         const prevPageNode = itemClickNode.parentElement;
         const nextPageNode = prevPageNode.previousElementSibling;
         this.view.changeVisibilityPages(prevPageNode, nextPageNode);
+    }
+
+    _handlerClosePopup() {
+
     }
 
     _listenerGoPreviousPage(goBackBtnID) {
