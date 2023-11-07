@@ -11,6 +11,12 @@ export default class Model {
         this.bagItemsIds = [];
         this.bagNumItemsById = {};
 
+        this.errors = {
+            noProduct: 'Упс, ошибка. Такого товара нет.',
+            emptyBag: 'Корзина пуста',
+            emptyOrder: 'В заказе не товаров',
+            notFoundOrder: 'Страница не найдена'
+        }
     }
 
     //Items
@@ -60,5 +66,9 @@ export default class Model {
         return bag
     }
 
+    // Errors
 
+    getTextByError(error) {
+        return this.errors[error]
+    }
 }

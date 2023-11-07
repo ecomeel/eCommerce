@@ -122,6 +122,19 @@ export default class View {
         this.itemCardNode.innerHTML = itemCardHTML;
     }
 
+    renderError(error) {
+        const errorPageNode = document.getElementById("errorPage");
+        errorPageNode.classList.add(CLASSNAME_CHANGE_VISIBILITY);
+
+        const errorTitleNode = document.getElementById("errorTitle");
+        errorTitleNode.innerText = error;
+
+        const btnClosePage = document.getElementById("closeErrorPageBtn");
+        btnClosePage.addEventListener("click", () => {
+            errorPageNode.classList.remove("visible");
+        });
+    }
+
     changeVisibilityPages(prevPage, nextPage) {
         prevPage.classList.toggle(CLASSNAME_CHANGE_VISIBILITY);
         nextPage.classList.toggle(CLASSNAME_CHANGE_VISIBILITY);
