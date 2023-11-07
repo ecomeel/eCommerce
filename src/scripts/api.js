@@ -47,9 +47,28 @@ export default class Api {
                 rating: 4,
             },
         ];
+
+        this.bag = [
+            {
+                id: 1,
+                amount: 2
+            },
+            {
+                id: 2,
+                amount: 1
+            },
+            {
+                id: 3,
+                amount: 5
+            },
+        ];
     }
 
     getItems() {
-        return  this.itemsMock
+        return  this.itemsMock;
+    }
+
+    getBagItems() {
+        return this.bag;
     }
 }

@@ -45,6 +45,8 @@ export default class Controller {
     _handleAddItemToBag(item) {
         this.model.addItemToBag(item);
         this.view.renderPreviewBag(item);
+
+        
     }
 
     _openNextPage(itemClickNode) {

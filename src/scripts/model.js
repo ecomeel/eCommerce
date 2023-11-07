@@ -1,27 +1,30 @@
 import { v4 as uuidv4 } from "uuid";
 
 import normalizedItems from "./utils/normalizedItems.js";
+import normalizedBag from "./utils/normalizedBag.js";
 
 export default class Model {
     constructor() {
-        this.items = [];
         this.itemsIDs = [];
         this.itemById = {};
 
-        this.bagNumItems = {};
-        this.bagItems = [];
+        this.bagItemsIds = [];
+        this.bagNumItemsById = {};
+
     }
 
     //Items
 
     setItems(products) {
-        this.items = products;
-        [this.itemsIDs, this.itemById] = normalizedItems(products)
-        // this._setIDsList();
+        [this.itemsIDs, this.itemById] = normalizedItems(products);
     }
 
     getItems() {
-        return this.items;
+        const items = [];
+        this.itemsIDs.forEach((id) => {
+            items.push(this.getItemById(id));
+        });
+        return items;
     }
 
     getItemsIDs() {
@@ -29,36 +32,31 @@ export default class Model {
     }
 
     getItemById(id) {
-        return this.itemById[id]
+        return this.itemById[id];
     }
 
     //Bag
-    addItemToBag(item) {
-        const id = item.id;
-        if (this.bagNumItems[id]) {
-            i;
-            this.bagNumItems[id] += 1;
-        } else {
-            this.bagNumItems[id] = 1;
-            // this.bagItems.push(item)
-        }
+    setBagItems(products) {
+        [this.bagItemsIds, this.bagNumItemsById] = normalizedBag(products)
+        // make
     }
 
-    getBagNumItemsId() {
-        return this.bagIds;
+    addItemToBag(item) {
+        const id = item.id;
+
+        if (!this.bagItemsIds.includes(id)) {
+            this.bagItemsIds.push(id);
+            this.bagNumItemsById[id] = 1;
+        } else {
+            this.bagNumItemsById[id] = this.bagNumItemsById[id] + 1;
+        }
     }
 
     getBagItems() {
         const bag = [];
-        for (item in this.bagIds) {
-            bag.push(item);
-        }
-        return bag;
-    }
-
-    _setIDsList() {
-        this.items.forEach((item) => {
-            this.itemsIDs.push(item.id);
+        this.bagItemsIds.forEach((id) => {
+            bag.push(this.getItemById(id))
         });
+        return bag
     }
 }
