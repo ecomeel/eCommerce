@@ -33,20 +33,7 @@ export default class View {
         this.itemsListNode.innerHTML = itemsListHTML;
     }
 
-    // renderPreviewBag(item) {
-    //     const previewBagHTML = `
-    //     <li class="preview-bag__item">
-    //         <img
-    //             class="preview-bag__img"
-    //             src="${item.imgSrc}"
-    //             alt=""
-    //         />
-    //     </li>`
-    //     this.previewBagItemsNode.innerHTML += previewBagHTML
-    // }
-
     renderPreviewBag(items) {
-        console.log(items)
         let previewBagHTML = "";
         items.forEach((item) => {
             previewBagHTML =

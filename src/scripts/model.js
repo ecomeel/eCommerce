@@ -59,5 +59,5 @@ export default class Model {
         return bag
     }
 
-    
+
 }

@@ -39,7 +39,7 @@ export default class Controller {
             this._openNextPage(selectedItemNode, item);
             this.view.renderItemCard(item)
 
-            this._ListenerGoPreviousPage("goBackToItemsBtn");
+            this._listenerGoPreviousPage("goBackToItemsBtn");
 
 
         }
@@ -48,6 +48,8 @@ export default class Controller {
     _handleAddItemToBag(item) {
         this.model.addItemToBag(item);
         this.view.renderPreviewBag(this.model.getBagItems());
+
+
     }
 
     _openNextPage(itemClickNode) {
@@ -62,8 +64,13 @@ export default class Controller {
         this.view.changeVisibilityPages(prevPageNode, nextPageNode)
     }
 
-    _ListenerGoPreviousPage(goBackBtnID) {
+    _listenerGoPreviousPage(goBackBtnID) {
         const backButton = document.getElementById(goBackBtnID);
         backButton.addEventListener('click', () => this._handlerOpenPreviousPage(backButton))
+    }
+
+    _listenerAddToBag(addBtnId) {
+        const addBtnNode = document.getElementById(addBtnId);
+        addBtnNode.addEventListener('click', )
     }
 }
