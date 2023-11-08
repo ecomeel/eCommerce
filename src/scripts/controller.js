@@ -77,6 +77,7 @@ export default class Controller {
         itemsList.classList.remove('visible')
 
 
+        
         // Отображение корзины
     };
 
