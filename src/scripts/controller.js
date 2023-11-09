@@ -4,12 +4,11 @@ import Api from "./api";
 
 import "../styles/scss/style.scss";
 
-const ATTRIBUTE_ID_SELECTED_ITEM = "data-item-id";
 const ERROR_NAME_NO_PRODUCT = "noProduct";
 const ERROR_NAME_EMPTY_BAG = "emptyBag";
 const CLASSNAME_ITEMS_ADD_TO_BAG_BTN = "js-items-add-to-bag";
 const ID_GO_BACK_TO_ITEMS_BTN = 'goBackToItemsBtn';
-const ID_ADD_TO_BAG_FROM_ITEMCARD_BTN = '"addToBagFromItemcard"'
+const ID_ADD_TO_BAG_FROM_ITEMCARD_BTN = "addToBagFromItemcard";
 
 export default class Controller {
     constructor() {
@@ -36,9 +35,7 @@ export default class Controller {
 
         if (selectedItemNode == null) return;
 
-        const itemId = selectedItemNode.getAttribute(
-            ATTRIBUTE_ID_SELECTED_ITEM
-        );
+        const itemId = selectedItemNode.getAttribute("data-item-id");
         const item = this.model.getItemById(itemId);
 
         if (!item) {
@@ -61,27 +58,28 @@ export default class Controller {
         }
     };
 
-    // _handleOpenBag = () => {
-    //     if (this.model.getBagItems().length == 0) {
-    //         this._showEror(ERROR_NAME_EMPTY_BAG);
-    //         return;
-    //     }
+    _handleOpenBag = () => {
+        if (this.model.getBag().length == 0) {
+            this._showEror(ERROR_NAME_EMPTY_BAG);
+            return;
+        }
 
-    //     console.log(this.model.getBagItems())
+        console.log('Bag :', this.model.getBag())
 
-    //     //  Отображаем корзину и убираем прошлый экран
-    //     // Отрефакторить
-    //     const itemsList = document.getElementById('itemsList');
-    //     const itemCardNode = document.getElementById('itemCard');
-    //     const bagNode = document.getElementById('bag');
-    //     bagNode.classList.add('visible');
-    //     itemCardNode.classList.remove('visible')
-    //     itemsList.classList.remove('visible')
+        //  Отображаем корзину и убираем прошлый экран
+        // Отрефакторить
+        const itemsList = document.getElementById('itemsList');
+        const itemCardNode = document.getElementById('itemCard');
+        const bagNode = document.getElementById('bag');
+        bagNode.classList.add('visible');
+        itemCardNode.classList.remove('visible')
+        itemsList.classList.remove('visible')
 
 
         
-    //     // Отображение корзины
-    // };
+        // Отображение корзины
+        this.view.renderBag(this.model.getBag())
+    };
 
     // handlers
 
@@ -112,7 +110,7 @@ export default class Controller {
 
     _listenAddToBag(addBtnId) {
         const addBtnNode = document.getElementById(addBtnId);
-        const idItem = addBtnNode.getAttribute(ATTRIBUTE_ID_SELECTED_ITEM);
+        const idItem = addBtnNode.getAttribute("data-item-id");
         addBtnNode.addEventListener("click", () => {
             this._handleAddItemToBag(this.model.getItemById(idItem));
         });

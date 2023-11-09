@@ -123,10 +123,85 @@ export default class View {
     }
 
     renderBag(bag) {
-        const bagHTML = '';
+        const bagItemsListNode = document.getElementById('bagItemsList')
+        let bagHTML = '';
         bag.forEach(item => {
-            
+            bagHTML = `
+                <li class="bag__item bag-item">
+                <img
+                    class="bag-item__img"
+                    src=${item.imgSrc}
+                    alt=${item.name}
+                />
+                <div class="bag-item__text">
+                    <h3 class="bag-item__name">
+                        ${item.name}
+                    </h3>
+                    <p class="bag-item__model">
+                        ${item.model}
+                    </p>
+                    <p class="bag-item__description">
+                        ${item.shortDesc}
+                    </p>
+                    <div class="rating">
+                        <img
+                            class="rating__star"
+                            src="img/buttons/star.png"
+                            alt="star"
+                        />
+                        <img
+                            class="rating__star"
+                            src="img/buttons/star.png"
+                            alt="star"
+                        />
+                        <img
+                            class="rating__star"
+                            src="img/buttons/star.png"
+                            alt="star"
+                        />
+                        <img
+                            class="rating__star"
+                            src="img/buttons/star.png"
+                            alt="star"
+                        />
+                        <img
+                            class="rating__star"
+                            src="img/buttons/half-star.png"
+                            alt="half-star"
+                        />
+                        <p class="rating__value">${item.rating} / 5</p>
+                    </div>
+                    <div class="bag__cost">
+                        <p class="bag__price">
+                            $ ${item.price} x ${item.amount}
+                        </p>
+                        <div class="bag__amount">
+                            <button
+                                class="bag__change-amount-btn"
+                            >
+                                <img
+                                    src="img/buttons/minus-btn.png"
+                                    alt="minus"
+                                />
+                            </button>
+                            <p class="bag__num-products">
+                                ${item.amount}
+                            </p>
+                            <button
+                                class="bag__change-amount-btn"
+                            >
+                                <img
+                                    src="img/buttons/plus-btn.png"
+                                    alt="plus"
+                                />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </li>` + bagHTML;
+
         });
+        bagItemsListNode.innerHTML = bagHTML;
     }
 
     renderError(error) {
