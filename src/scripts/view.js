@@ -122,6 +122,13 @@ export default class View {
         this.itemCardNode.innerHTML = itemCardHTML;
     }
 
+    renderBag(bag) {
+        const bagHTML = '';
+        bag.forEach(item => {
+            
+        });
+    }
+
     renderError(error) {
         const errorPageNode = document.getElementById("errorPage");
         errorPageNode.classList.add(CLASSNAME_CHANGE_VISIBILITY);

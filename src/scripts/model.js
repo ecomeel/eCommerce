@@ -12,11 +12,11 @@ export default class Model {
         this.bagNumItemsById = {};
 
         this.errors = {
-            noProduct: 'Упс, ошибка. Такого товара нет.',
-            emptyBag: 'Корзина пуста',
-            emptyOrder: 'В заказе не товаров',
-            notFoundOrder: 'Страница не найдена'
-        }
+            noProduct: "Упс, ошибка. Такого товара нет.",
+            emptyBag: "Корзина пуста",
+            emptyOrder: "В заказе не товаров",
+            notFoundOrder: "Страница не найдена",
+        };
     }
 
     //Items
@@ -55,20 +55,22 @@ export default class Model {
         } else {
             this.bagNumItemsById[id] = this.bagNumItemsById[id] + 1;
         }
-        console.log(this.bagNumItemsById)
+        console.log(this.bagNumItemsById);
     }
 
     getBagItems() {
         const bag = [];
         this.bagItemsIds.forEach((id) => {
-            bag.push(this.getItemById(id))
+            const item = this.getItemById(id);
+            item.amount = this.bagNumItemsById[id];
+            bag.push(item);
         });
-        return bag
+        return bag;
     }
 
     // Errors
 
     getTextByError(error) {
-        return this.errors[error]
+        return this.errors[error];
     }
 }

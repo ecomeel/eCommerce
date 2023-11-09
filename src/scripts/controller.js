@@ -67,6 +67,8 @@ export default class Controller {
             return;
         }
 
+        console.log(this.model.getBagItems())
+
         //  Отображаем корзину и убираем прошлый экран
         // Отрефакторить
         const itemsList = document.getElementById('itemsList');
