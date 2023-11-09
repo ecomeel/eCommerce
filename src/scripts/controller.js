@@ -7,7 +7,7 @@ import "../styles/scss/style.scss";
 const ERROR_NAME_NO_PRODUCT = "noProduct";
 const ERROR_NAME_EMPTY_BAG = "emptyBag";
 const CLASSNAME_ITEMS_ADD_TO_BAG_BTN = "js-items-add-to-bag";
-const ID_GO_BACK_TO_ITEMS_BTN = 'goBackToItemsBtn';
+const ID_GO_BACK_TO_ITEMS_BTN = "goBackToItemsBtn";
 const ID_ADD_TO_BAG_FROM_ITEMCARD_BTN = "addToBagFromItemcard";
 
 export default class Controller {
@@ -26,7 +26,7 @@ export default class Controller {
 
         this.model.setBag(this.api.getBagItems());
         this.view.renderPreviewBag(this.model.getBag());
-        console.log(this.model.getOrderCost())
+        // console.log(this.model.getOrderCost());
     }
 
     // Open new pages
@@ -65,37 +65,76 @@ export default class Controller {
             return;
         }
 
-        console.log('Bag :', this.model.getBag())
+        console.log("Bag :", this.model.getBag());
 
         //  Отображаем корзину и убираем прошлый экран
         // Отрефакторить
-        const itemsList = document.getElementById('itemsList');
-        const itemCardNode = document.getElementById('itemCard');
-        const bagNode = document.getElementById('bag');
-        bagNode.classList.add('visible');
-        itemCardNode.classList.remove('visible')
-        itemsList.classList.remove('visible')
+        const itemsList = document.getElementById("itemsList");
+        const itemCardNode = document.getElementById("itemCard");
+        const bagNode = document.getElementById("bag");
+        bagNode.classList.add("visible");
+        itemCardNode.classList.remove("visible");
+        itemsList.classList.remove("visible");
 
         //Закрытие корзины
-        const goBackFromBagBtnNode = document.getElementById('goBackFromBagBtn');
-        goBackFromBagBtnNode.addEventListener('click', () => {
-            bagNode.classList.remove('visible');
-            itemsList.classList.add('visible')
-        })
-        
+        const goBackFromBagBtnNode =
+            document.getElementById("goBackFromBagBtn");
+        goBackFromBagBtnNode.addEventListener("click", () => {
+            bagNode.classList.remove("visible");
+            itemsList.classList.add("visible");
+        });
+
         // Отображение корзины
-        this.view.renderBag(this.model.getBag())
+        this.view.renderBag(this.model.getBag());
+
+        //Отслеживание изменения количества товаров
+        const bagItemsListNode = document.getElementById("bagItemsList");
+        bagItemsListNode.addEventListener("click", (e) => {
+            const product = e.target.closest("li");
+            if (!product) return;
+    
+            const clickedButton = e.target.closest("button");
+            if (!clickedButton) return;
+    
+            const idProduct = product.getAttribute("data-item-id");
+    
+            if (clickedButton.classList.contains("bag__change-amount_plus")) {
+                this.model.incrementItemToBag(idProduct);
+                this.view.renderBag(this.model.getBag())
+                // this.model.incrementItemToBag()
+                // this.view.renderBag(this.model.getBag())
+            } else {
+                console.log("minus");
+            }
+        });
 
         // Отображение preview price
         // this.view.renderPreviewPrice()
-
     };
 
     // handlers
 
+    // _handleChangeAmountItems(e) {
+    //     const product = e.target.closest("li");
+    //     if (!product) return;
+
+    //     const clickedButton = e.target.closest("button");
+    //     if (!clickedButton) return;
+
+    //     const idProduct = product.getAttribute("data-item-id");
+
+    //     if (clickedButton.classList.contains("bag__change-amount_plus")) {
+    //         // this.model.incrementItemToBag()
+    //         // this.view.renderBag(this.model.getBag())
+    //         this.view.checkoutFail()
+    //     } else {
+    //         console.log("minus");
+    //     }
+    // }
+
     _handleAddItemToBag(item) {
         this.model.addItemToBag(item);
-        console.log(this.model.getBag())
+        console.log(this.model.getBag());
         this.view.renderPreviewBag(this.model.getBag());
     }
 

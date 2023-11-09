@@ -1,7 +1,7 @@
 const CLASSNAME_CHANGE_VISIBILITY = "visible";
 
 export default class View {
-    constructor({ userClickedItem, userGoToBag }) {
+    constructor({ userClickedItem, userGoToBag, changeAmountItems }) {
         this.itemsListNode = document.getElementById("itemsList");
         this.itemCardNode = document.getElementById("itemCard");
         this.previewBagItemsNode = document.getElementById("previewBagItems");
@@ -127,7 +127,7 @@ export default class View {
         let bagHTML = '';
         bag.forEach(item => {
             bagHTML = `
-                <li class="bag__item bag-item">
+                <li data-item-id=${item.id} class="bag__item bag-item">
                 <img
                     class="bag-item__img"
                     src=${item.imgSrc}
@@ -177,7 +177,7 @@ export default class View {
                         </p>
                         <div class="bag__amount">
                             <button
-                                class="bag__change-amount-btn"
+                                class="bag__change-amount-btn bag__change-amount_minus"
                             >
                                 <img
                                     src="img/buttons/minus-btn.png"
@@ -188,7 +188,7 @@ export default class View {
                                 ${item.amount}
                             </p>
                             <button
-                                class="bag__change-amount-btn"
+                                class="bag__change-amount-btn bag__change-amount_plus"
                             >
                                 <img
                                     src="img/buttons/plus-btn.png"
@@ -204,9 +204,9 @@ export default class View {
         bagItemsListNode.innerHTML = bagHTML;
     }
 
-    renderPreviewPrice() {
-        
-    }
+    // renderPreviewPrice() {
+
+    // }
 
     renderError(error) {
         const errorPageNode = document.getElementById("errorPage");
