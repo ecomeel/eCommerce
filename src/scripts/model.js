@@ -10,6 +10,8 @@ export default class Model {
 
         this.bagItemsIds = [];
         this.bag = [];
+        this.orderCost = 0;
+        this.deliveryCost = 10;
 
         this.errors = {
             noProduct: "Упс, ошибка. Такого товара нет.",
@@ -44,29 +46,44 @@ export default class Model {
     //Bag
     setBag(products) {
         this.bag = products;
-        this.bag.forEach(item => {
-            this.bagItemsIds.push(item.id)
-        })
+        this.bag.forEach((item) => {
+            this.bagItemsIds.push(item.id);
+        });
+        this._onBagChanges();
     }
 
     addItemToBag(item) {
-        const id = item.id
+        const id = item.id;
 
         //refactoring
         if (!this.bagItemsIds.includes(id)) {
             this.bagItemsIds.push(id);
-            this.bag.push({...item, amount: 1})
+            this.bag.push({ ...item, amount: 1 });
         } else {
-            this.bag.forEach(product => {
+            this.bag.forEach((product) => {
                 if (product.id == id) {
-                    product.amount = product.amount + 1
+                    product.amount = product.amount + 1;
                 }
-            })
+            });
         }
     }
 
     getBag() {
-        return this.bag
+        return this.bag;
+    }
+
+    //Price
+    getOrderCost() {
+        return this.orderCost;
+    }
+
+    _onBagChanges() {
+        let total = 0;
+        this.bag.forEach((product) => {
+            const price = Number(product.price) * Number(product.amount);
+            total += price;
+        });
+        this.orderCost = total;
     }
 
     // Errors

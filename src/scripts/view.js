@@ -204,6 +204,10 @@ export default class View {
         bagItemsListNode.innerHTML = bagHTML;
     }
 
+    renderPreviewPrice() {
+        
+    }
+
     renderError(error) {
         const errorPageNode = document.getElementById("errorPage");
         errorPageNode.classList.add(CLASSNAME_CHANGE_VISIBILITY);

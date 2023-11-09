@@ -26,6 +26,7 @@ export default class Controller {
 
         this.model.setBag(this.api.getBagItems());
         this.view.renderPreviewBag(this.model.getBag());
+        console.log(this.model.getOrderCost())
     }
 
     // Open new pages
@@ -85,6 +86,8 @@ export default class Controller {
         // Отображение корзины
         this.view.renderBag(this.model.getBag())
 
+        // Отображение preview price
+        // this.view.renderPreviewPrice()
 
     };
 
