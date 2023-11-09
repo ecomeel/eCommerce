@@ -75,10 +75,17 @@ export default class Controller {
         itemCardNode.classList.remove('visible')
         itemsList.classList.remove('visible')
 
-
+        //Закрытие корзины
+        const goBackFromBagBtnNode = document.getElementById('goBackFromBagBtn');
+        goBackFromBagBtnNode.addEventListener('click', () => {
+            bagNode.classList.remove('visible');
+            itemsList.classList.add('visible')
+        })
         
         // Отображение корзины
         this.view.renderBag(this.model.getBag())
+
+
     };
 
     // handlers
