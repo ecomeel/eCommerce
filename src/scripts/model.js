@@ -9,7 +9,7 @@ export default class Model {
         this.itemById = {};
 
         this.bagItemsIds = [];
-        this.bagNumItemsById = {};
+        this.bag = [];
 
         this.errors = {
             noProduct: "Упс, ошибка. Такого товара нет.",
@@ -42,30 +42,31 @@ export default class Model {
     }
 
     //Bag
-    setBagItems(products) {
-        [this.bagItemsIds, this.bagNumItemsById] = normalizedBag(products);
+    setBag(products) {
+        this.bag = products;
+        this.bag.forEach(item => {
+            this.bagItemsIds.push(item.id)
+        })
     }
 
     addItemToBag(item) {
-        const id = item.id;
+        const id = item.id
 
+        //refactoring
         if (!this.bagItemsIds.includes(id)) {
             this.bagItemsIds.push(id);
-            this.bagNumItemsById[id] = 1;
+            this.bag.push({...item, amount: 1})
         } else {
-            this.bagNumItemsById[id] = this.bagNumItemsById[id] + 1;
+            this.bag.forEach(product => {
+                if (product.id == id) {
+                    product.amount = product.amount + 1
+                }
+            })
         }
-        console.log(this.bagNumItemsById);
     }
 
-    getBagItems() {
-        const bag = [];
-        this.bagItemsIds.forEach((id) => {
-            const item = this.getItemById(id);
-            item.amount = this.bagNumItemsById[id];
-            bag.push(item);
-        });
-        return bag;
+    getBag() {
+        return this.bag
     }
 
     // Errors

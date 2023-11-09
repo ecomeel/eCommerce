@@ -25,8 +25,8 @@ export default class Controller {
         this.model.setItems(this.api.getItems());
         this.view.renderItems(this.model.getItems());
 
-        this.model.setBagItems(this.api.getBagItems());
-        this.view.renderPreviewBag(this.model.getBagItems());
+        this.model.setBag(this.api.getBagItems());
+        this.view.renderPreviewBag(this.model.getBag());
     }
 
     // Open new pages
@@ -61,33 +61,34 @@ export default class Controller {
         }
     };
 
-    _handleOpenBag = () => {
-        if (this.model.getBagItems().length == 0) {
-            this._showEror(ERROR_NAME_EMPTY_BAG);
-            return;
-        }
+    // _handleOpenBag = () => {
+    //     if (this.model.getBagItems().length == 0) {
+    //         this._showEror(ERROR_NAME_EMPTY_BAG);
+    //         return;
+    //     }
 
-        console.log(this.model.getBagItems())
+    //     console.log(this.model.getBagItems())
 
-        //  Отображаем корзину и убираем прошлый экран
-        // Отрефакторить
-        const itemsList = document.getElementById('itemsList');
-        const itemCardNode = document.getElementById('itemCard');
-        const bagNode = document.getElementById('bag');
-        bagNode.classList.add('visible');
-        itemCardNode.classList.remove('visible')
-        itemsList.classList.remove('visible')
+    //     //  Отображаем корзину и убираем прошлый экран
+    //     // Отрефакторить
+    //     const itemsList = document.getElementById('itemsList');
+    //     const itemCardNode = document.getElementById('itemCard');
+    //     const bagNode = document.getElementById('bag');
+    //     bagNode.classList.add('visible');
+    //     itemCardNode.classList.remove('visible')
+    //     itemsList.classList.remove('visible')
 
 
         
-        // Отображение корзины
-    };
+    //     // Отображение корзины
+    // };
 
     // handlers
 
     _handleAddItemToBag(item) {
         this.model.addItemToBag(item);
-        this.view.renderPreviewBag(this.model.getBagItems());
+        console.log(this.model.getBag())
+        this.view.renderPreviewBag(this.model.getBag());
     }
 
     _openNextPage(itemClickNode) {
