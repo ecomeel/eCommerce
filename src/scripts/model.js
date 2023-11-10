@@ -49,6 +49,8 @@ export default class Model {
         this.bag.forEach((item) => {
             this.bagItemsIds.push(item.id);
         });
+
+        this._onBagChanges()
     }
 
     getBag() {
@@ -65,7 +67,7 @@ export default class Model {
             this.bag.push({ ...item, amount: 1 });
         }
 
-        console.log("bag: ", this.bag);
+        this._onBagChanges()
     }
 
     incrementItemToBag(id) {
@@ -96,6 +98,21 @@ export default class Model {
 
             this.bag = this.bag.filter((item) => item.id != id);
         }
+        this._onBagChanges()
+    }
+
+    // Price
+    _onBagChanges() {
+        this.orderCost = 0;
+        this.bag.forEach(item => {
+            this.orderCost += item.price * item.amount;
+        })
+        console.log("bag: ", this.bag);
+        console.log(('order cost: ', this.orderCost))
+    }
+
+    getOrderCost() {
+        return this.orderCost
     }
 
     // Errors

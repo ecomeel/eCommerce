@@ -451,13 +451,24 @@
                                 class="preview-bag__items"
                                 id="previewBagItems"
                             ></ul>
-                            <button
-                                id="goToBagBtn"
-                                class="preview-bag__bag-btn black-btn visible"
-                            >
-                                <img src="img/buttons/bag.png" alt="bag icon" />
-                                <p>Корзина</p>
-                            </button>
+                            <div id="previewGoBagBtn" class="preview-bag__bag-btn-wrapper visible">
+                                <button
+                                    id="goToBagBtn"
+                                    class="preview-bag__bag-btn black-btn"
+                                >
+                                    <img src="img/buttons/bag.png" alt="bag icon" />
+                                    <p>Корзина</p>
+                                </button>
+                            </div>
+                            <div id="previewBagPrice" class="preview-price">
+                                <p class="preview-price__total">
+                                    Сумма: $ 5,849,93
+                                </p>
+                                <button id="previewGoTakeOrderBtn" class="black-btn preview-price__black-btn">
+                                    <img src="img/buttons/bag.png" alt="" />
+                                    <p>Оформление</p>
+                                </button>
+                            </div>
                         </div>
                         <div id="previewOrders" class="preview-orders">
                             <h2 class="preview-title">Заказы</h2>
@@ -466,15 +477,6 @@
                                 <li class="preview-orders__order">#sdjfksdf</li>
                                 <li class="preview-orders__order">#sdjfksdf</li>
                             </ul>
-                        </div>
-                        <div class="preview-price">
-                            <p class="preview-price__total">
-                                Сумма: $ 5,849,93
-                            </p>
-                            <button class="black-btn preview-price__black-btn">
-                                <img src="img/buttons/bag.png" alt="" />
-                                <p>Оформление</p>
-                            </button>
                         </div>
                         <div class="preview-make-order">
                             <h3 class="preview-make-order__title">Сумма</h3>

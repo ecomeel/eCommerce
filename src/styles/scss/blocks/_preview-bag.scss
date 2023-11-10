@@ -1,5 +1,4 @@
 .preview-bag {
-    // display: none
     &__items {
         margin-top: 10px;
         display: flex;
@@ -22,4 +21,8 @@
         margin: 0 auto;
         margin-top: 34px;
     }
+}
+
+.preview-bag__bag-btn-wrapper {
+    display: none;
 }

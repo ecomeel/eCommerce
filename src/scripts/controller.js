@@ -80,6 +80,11 @@ export default class Controller {
         const bagNode = document.getElementById("bag");
         itemCardNode.classList.remove("visible");
         this.view.changeVisibilityPages(itemsListNode, bagNode);
+
+        const previewGoBagBtnNode = document.getElementById('previewGoBagBtn');
+        const previewBagPriceNode = document.getElementById('previewBagPrice');
+        this.view.changeVisibilityPages(previewGoBagBtnNode, previewBagPriceNode)
+
         this.view.renderBag(this.model.getBag());
 
         // Кнопка возврата к списку товаров

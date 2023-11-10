@@ -2,11 +2,8 @@
     margin-top: 20px;
     padding: 16px;
 
-    opacity: 0;
-    visibility: hidden;
-
-    // position: absolute;
-    // top: 0;
+    display: none;
+    
     &__total {
         text-align: center;
     }
