@@ -216,8 +216,8 @@ export default class View {
         });
     }
 
-    changeVisibilityPages(prevPage, nextPage) {
-        prevPage.classList.remove(CLASSNAME_CHANGE_VISIBILITY);
-        nextPage.classList.add(CLASSNAME_CHANGE_VISIBILITY);
+    changeVisibilityPages(closePage, openPage) {
+        closePage.classList.remove(CLASSNAME_CHANGE_VISIBILITY);
+        openPage.classList.add(CLASSNAME_CHANGE_VISIBILITY);
     }
 }

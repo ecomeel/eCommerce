@@ -49,66 +49,54 @@ export default class Model {
         this.bag.forEach((item) => {
             this.bagItemsIds.push(item.id);
         });
-        // this._onBagChanges();
-    }
-
-    addItemToBag(item) {
-        const id = item.id;
-
-        //refactoring
-        if (!this.bagItemsIds.includes(id)) {
-            this.bagItemsIds.push(id);
-            this.bag.push({ ...item, amount: 1 });
-        } else {
-            this.incrementItemToBag(id)
-        }
     }
 
     getBag() {
         return this.bag;
     }
 
+    addItemToBag(id) {
+        const item = this.getItemById(id);
+
+        if (this.bagItemsIds.includes(id)) {
+            this.incrementItemToBag(id);
+        } else {
+            this.bagItemsIds.push(id);
+            this.bag.push({ ...item, amount: 1 });
+        }
+
+        console.log("bag: ", this.bag);
+    }
+
     incrementItemToBag(id) {
         this.bag.forEach((item) => {
             if (item.id == id) {
-                item.amount = item.amount + 1
-            }})
+                item.amount = item.amount + 1;
+            }
+        });
     }
 
     decrementItemToBag(id) {
-        let isDeleteItem = false
-        this.bag.forEach(item => {
+        let isDeleteItem = false;
+        this.bag.forEach((item) => {
             if (item.id == id) {
                 item.amount -= 1;
 
                 if (item.amount < 1) {
-                    isDeleteItem = true
+                    isDeleteItem = true;
                 }
             }
-        })
+        });
         if (isDeleteItem) {
             isDeleteItem = false;
 
-            this.bagItemsIds = this.bagItemsIds.filter(itemId => itemId !== id)
+            this.bagItemsIds = this.bagItemsIds.filter(
+                (itemId) => itemId !== id
+            );
 
-            this.bag = this.bag.filter(item => item.id != id)
-
+            this.bag = this.bag.filter((item) => item.id != id);
         }
     }
-
-    //Price
-    // getOrderCost() {
-    //     return this.orderCost;
-    // }
-
-    // _onBagChanges() {
-    //     let total = 0;
-    //     this.bag.forEach((product) => {
-    //         const price = Number(product.price) * Number(product.amount);
-    //         total += price;
-    //     });
-    //     this.orderCost = total;
-    // }
 
     // Errors
 

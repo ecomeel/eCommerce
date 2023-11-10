@@ -42,30 +42,28 @@ export default class Controller {
         );
 
         if (onAddToBagBtnClick) {
-            this._handleAddItemToBag(item);
+            this._handleAddItemToBag(itemId);
         } else {
             // Change visible pages
-            const prevPageNode = selectedItemNode.parentElement.parentElement;
-            const nextPageNode = prevPageNode.nextElementSibling;
-            prevPageNode.classList.remove("visible");
-            nextPageNode.classList.add("visible");
+            const itemsListNode = document.getElementById(
+                "previewItemsWrapper"
+            );
+            const itemCardNode = document.getElementById("itemCard");
+            this.view.changeVisibilityPages(itemsListNode, itemCardNode);
 
             this.view.renderItemCard(item);
 
             // Вернуться на прошлую страницу
             const backButton = document.getElementById("goBackToItemsBtn");
             backButton.addEventListener("click", () => {
-                const prevPageNode = backButton.parentElement;
-                const nextPageNode = prevPageNode.previousElementSibling;
-                prevPageNode.classList.remove("visible");
-                nextPageNode.classList.add("visible");
+                this.view.changeVisibilityPages(itemCardNode, itemsListNode);
             });
 
             // Добавить товар в корзину
             const addBtnNode = document.getElementById("addToBagFromItemcard");
             const idItem = addBtnNode.getAttribute("data-item-id");
             addBtnNode.addEventListener("click", () => {
-                this._handleAddItemToBag(this.model.getItemById(idItem));
+                this._handleAddItemToBag(idItem);
             });
         }
     };
@@ -80,28 +78,22 @@ export default class Controller {
         const itemsListNode = document.getElementById("previewItemsWrapper");
         const itemCardNode = document.getElementById("itemCard");
         const bagNode = document.getElementById("bag");
-        itemsListNode.classList.remove("visible");
         itemCardNode.classList.remove("visible");
-        bagNode.classList.add("visible");
-
-        // Отрисовываем корзину
+        this.view.changeVisibilityPages(itemsListNode, bagNode);
         this.view.renderBag(this.model.getBag());
-
-        // Обработка добавление или уменьшения товаров
-        // Здесь ошибка // Возможно навешиваются 2 обработчика на 1 кнопку
-        const bagListNode = document.getElementById("bagItemsList");
-        bagListNode.addEventListener("click", this._handlerChangeAmountItem);
 
         // Кнопка возврата к списку товаров
         const goBackBtn = document.getElementById("goBackFromBagBtn");
         goBackBtn.addEventListener("click", () => {
-            itemsListNode.classList.add("visible");
-            bagNode.classList.remove("visible");
+            this.view.changeVisibilityPages(bagNode, itemsListNode);
         });
+
+        // Обработка добавление или уменьшения товаров
+        const bagListNode = document.getElementById("bagItemsList");
+        bagListNode.addEventListener("click", this._handlerChangeAmountItem);
     };
 
     // handlers
-
     _handlerChangeAmountItem = (e) => {
         const onElementClicked = e.target;
         const clickedItem = e.target.closest("li");
@@ -110,32 +102,20 @@ export default class Controller {
 
         if (!onElementClicked) return;
 
-        if (!clickedItem) return;
-
         if (!clickedBtn) return;
 
         if (clickedBtn.classList.contains("bag__change-amount_minus")) {
             this.model.decrementItemToBag(clickedItemId);
-            this.view.renderBag(this.model.getBag());
             this.view.renderPreviewBag(this.model.getBag());
+        } else {
+            this._handleAddItemToBag(clickedItemId);
         }
-
-        if (clickedBtn.classList.contains("bag__change-amount_plus")) {
-            this.model.incrementItemToBag(clickedItemId);
-            this.view.renderBag(this.model.getBag());
-            this.view.renderPreviewBag(this.model.getBag());
-        }
+        this.view.renderBag(this.model.getBag());
     };
 
-    _handleAddItemToBag(item) {
-        this.model.addItemToBag(item);
+    _handleAddItemToBag(id) {
+        this.model.addItemToBag(Number(id));
         this.view.renderPreviewBag(this.model.getBag());
-    }
-
-    _handlerOpenPreviousPage(itemClickNode) {
-        const prevPageNode = itemClickNode.parentElement;
-        const nextPageNode = prevPageNode.previousElementSibling;
-        this.view.changeVisibilityPages(prevPageNode, nextPageNode);
     }
 
     _showEror(error) {
