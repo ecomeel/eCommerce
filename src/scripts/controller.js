@@ -81,16 +81,24 @@ export default class Controller {
         itemCardNode.classList.remove("visible");
         this.view.changeVisibilityPages(itemsListNode, bagNode);
 
-        const previewGoBagBtnNode = document.getElementById('previewGoBagBtn');
-        const previewBagPriceNode = document.getElementById('previewBagPrice');
-        this.view.changeVisibilityPages(previewGoBagBtnNode, previewBagPriceNode)
-
+        // Change visibility preview
+        const previewGoBagBtnNode = document.getElementById("previewGoBagBtn");
+        const previewBagPriceNode = document.getElementById("previewBagPrice");
+        this.view.changeVisibilityPages(
+            previewGoBagBtnNode,
+            previewBagPriceNode
+        );
+        this.view.renderPreviewPrice(this.model.getOrderCost());
         this.view.renderBag(this.model.getBag());
 
         // Кнопка возврата к списку товаров
         const goBackBtn = document.getElementById("goBackFromBagBtn");
         goBackBtn.addEventListener("click", () => {
             this.view.changeVisibilityPages(bagNode, itemsListNode);
+            this.view.changeVisibilityPages(
+                previewBagPriceNode,
+                previewGoBagBtnNode
+            );
         });
 
         // Обработка добавление или уменьшения товаров
@@ -112,10 +120,27 @@ export default class Controller {
         if (clickedBtn.classList.contains("bag__change-amount_minus")) {
             this.model.decrementItemToBag(clickedItemId);
             this.view.renderPreviewBag(this.model.getBag());
+
+            if (this.model.getBag().length == 0) {
+                document.getElementById("bag").classList.remove("visible");
+                document
+                    .getElementById("previewItemsWrapper")
+                    .classList.add("visible");
+                this._showEror("emptyBag");
+                const previewGoBagBtnNode =
+                    document.getElementById("previewGoBagBtn");
+                const previewBagPriceNode =
+                    document.getElementById("previewBagPrice");
+                this.view.changeVisibilityPages(
+                    previewBagPriceNode,
+                    previewGoBagBtnNode
+                );
+            }
         } else {
             this._handleAddItemToBag(clickedItemId);
         }
         this.view.renderBag(this.model.getBag());
+        this.view.renderPreviewPrice(this.model.getOrderCost());
     };
 
     _handleAddItemToBag(id) {
@@ -125,6 +150,7 @@ export default class Controller {
 
     _showEror(error) {
         const errorTitle = this.model.getTextByError(error);
+
         this.view.renderError(errorTitle);
     }
 }

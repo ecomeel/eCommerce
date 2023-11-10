@@ -51,6 +51,18 @@ export default class View {
         this.previewBagItemsNode.innerHTML = previewBagHTML;
     }
 
+    renderPreviewPrice(price) {
+        document.getElementById("previewBagPrice").innerHTML = `
+            <p class="preview-price__total">
+                Сумма: $ ${price}
+            </p>
+            <button id="previewGoTakeOrderBtn" class="black-btn preview-price__black-btn">
+                <img src="img/buttons/bag.png" alt="" />
+                <p>Оформление</p>
+            </button>
+        `;
+    }
+
     renderItemCard(item) {
         let itemCardHTML = `
         <button id='goBackToItemsBtn' class="go-back-btn">
@@ -201,6 +213,7 @@ export default class View {
             </li>`;
         });
         bagItemsListNode.innerHTML = bagHTML;
+        
     }
 
     renderError(error) {
