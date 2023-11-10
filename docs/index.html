@@ -11,246 +11,25 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>eCommerce</title>
-      <script type="module" crossorigin src="./assets/index-a9d4a6b2.js"></script>
-      <link rel="stylesheet" href="./assets/index-a0b2fcf5.css">
+      <script type="module" crossorigin src="./assets/index-9464e28f.js"></script>
+      <link rel="stylesheet" href="./assets/index-5688037b.css">
     </head>
     <body>
         <div id="app">
             <div class="container">
                 <div class="main-content">
                     <div class="left-col">
-                        <ul class="preview-items visible" id="itemsList"></ul>
+                        <div id="previewItemsWrapper" class="preview-items-wrapper visible">
+                            <ul class="preview-items" id="itemsList"></ul>
+                        </div>
                         <div class="item-card" id="itemCard"></div>
                         <div class="bag" id="bag">
-                            <button class="go-back-btn">
+                            <button id="goBackFromBagBtn" class="go-back-btn">
                                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADHSURBVHgB7ZQxEoJADEV/UKlpdBi1yBE4AtzAK3gyj4JH8AgpKako1pF1EWsgy1Iww6+2yLw3mSQLbFltmDm5cpqP1UXwSAc3tilb25ZnPt2GavfwhLtnBpC0oNdQPWEOnKiopJIgAh/4ZIEvfJJgDnxUMBfeZXBNP2jyHu4Kie5a+KhgB/N0Lf7W0O38gzllKDNhBknytnFp+04kpqiQUDMIIVHcgZ9Eecl6iUrgI1H/piJ1fSBT/LeLDaIMS+XCx+XgW4LlCy0nhAeZKsc6AAAAAElFTkSuQmCC" alt="" />
                                 <p class="go-back-btn__text">Список товаров</p>
                             </button>
                             <h2 class="bag__title">Проверьте корзину</h2>
-                            <ul class="bag__items">
-                                <li class="bag__item bag-item">
-                                    <img
-                                        class="bag-item__img"
-                                        src="./assets/apple-watch-8263d023.png"
-                                        alt="apple watch"
-                                    />
-                                    <div class="bag-item__text">
-                                        <h3 class="bag-item__name">
-                                            Apple Watch
-                                        </h3>
-                                        <p class="bag-item__model">
-                                            Series 5 SE
-                                        </p>
-                                        <p class="bag-item__description">
-                                            Lorem ipsum dolor sit amet
-                                            consectetur adipisicing elit.
-                                            Voluptatibus, fugit!
-                                        </p>
-                                        <div class="rating">
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGKSURBVHgB5VVRUsIwEH1J9ZfpwPhfbgA3gBPAAWCAE4AncG8gnEDGwXPIDeQI/VewM/hJGzdSpJakkyp+OL6Pzjab3c1u3m6Af4UqDW5r1H8sYyNcN/o09CXiVxajCrx6SPPIxU7CER7i7iHW9iifLwCjk5EHcIRTiTLlOcC5TE4ZeNi18jG3p2vfD8CJdvIryrBmtNSfKvUnLPr2bWrMn7yeyyNmKEAFciquaNiIET/hF5DwPclnmq+0wKcJcTYI7bMZ0Tz8wqIq9YiVN/gBBNRsTYvJ8T8HpmQgkfA4UAHKuQ7ZbvRCi2V29YRFOq0EsskBZnCEPrW2yTvf6wrA7NLN5aMYhU1n7YMa9boOzjX8N+waNmVBo7k1kkYCMSgdQAGGiSlWFjp3A55XcA1gKk96ke0N3dcNBLCWyZJBNmURSai25naUXuSGZWbHKJuNsvSPqQ8+RzMrlzG8kaauyVj3DD9Ed1zOFixsusgbXQJB/CEl12t6mKIAaeD2fgLIcbQvq9NT+nfwDjDEjBw7mFDxAAAAAElFTkSuQmCC"
-                                                alt="star"
-                                            />
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGKSURBVHgB5VVRUsIwEH1J9ZfpwPhfbgA3gBPAAWCAE4AncG8gnEDGwXPIDeQI/VewM/hJGzdSpJakkyp+OL6Pzjab3c1u3m6Af4UqDW5r1H8sYyNcN/o09CXiVxajCrx6SPPIxU7CER7i7iHW9iifLwCjk5EHcIRTiTLlOcC5TE4ZeNi18jG3p2vfD8CJdvIryrBmtNSfKvUnLPr2bWrMn7yeyyNmKEAFciquaNiIET/hF5DwPclnmq+0wKcJcTYI7bMZ0Tz8wqIq9YiVN/gBBNRsTYvJ8T8HpmQgkfA4UAHKuQ7ZbvRCi2V29YRFOq0EsskBZnCEPrW2yTvf6wrA7NLN5aMYhU1n7YMa9boOzjX8N+waNmVBo7k1kkYCMSgdQAGGiSlWFjp3A55XcA1gKk96ke0N3dcNBLCWyZJBNmURSai25naUXuSGZWbHKJuNsvSPqQ8+RzMrlzG8kaauyVj3DD9Ed1zOFixsusgbXQJB/CEl12t6mKIAaeD2fgLIcbQvq9NT+nfwDjDEjBw7mFDxAAAAAElFTkSuQmCC"
-                                                alt="star"
-                                            />
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGKSURBVHgB5VVRUsIwEH1J9ZfpwPhfbgA3gBPAAWCAE4AncG8gnEDGwXPIDeQI/VewM/hJGzdSpJakkyp+OL6Pzjab3c1u3m6Af4UqDW5r1H8sYyNcN/o09CXiVxajCrx6SPPIxU7CER7i7iHW9iifLwCjk5EHcIRTiTLlOcC5TE4ZeNi18jG3p2vfD8CJdvIryrBmtNSfKvUnLPr2bWrMn7yeyyNmKEAFciquaNiIET/hF5DwPclnmq+0wKcJcTYI7bMZ0Tz8wqIq9YiVN/gBBNRsTYvJ8T8HpmQgkfA4UAHKuQ7ZbvRCi2V29YRFOq0EsskBZnCEPrW2yTvf6wrA7NLN5aMYhU1n7YMa9boOzjX8N+waNmVBo7k1kkYCMSgdQAGGiSlWFjp3A55XcA1gKk96ke0N3dcNBLCWyZJBNmURSai25naUXuSGZWbHKJuNsvSPqQ8+RzMrlzG8kaauyVj3DD9Ed1zOFixsusgbXQJB/CEl12t6mKIAaeD2fgLIcbQvq9NT+nfwDjDEjBw7mFDxAAAAAElFTkSuQmCC"
-                                                alt="star"
-                                            />
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGKSURBVHgB5VVRUsIwEH1J9ZfpwPhfbgA3gBPAAWCAE4AncG8gnEDGwXPIDeQI/VewM/hJGzdSpJakkyp+OL6Pzjab3c1u3m6Af4UqDW5r1H8sYyNcN/o09CXiVxajCrx6SPPIxU7CER7i7iHW9iifLwCjk5EHcIRTiTLlOcC5TE4ZeNi18jG3p2vfD8CJdvIryrBmtNSfKvUnLPr2bWrMn7yeyyNmKEAFciquaNiIET/hF5DwPclnmq+0wKcJcTYI7bMZ0Tz8wqIq9YiVN/gBBNRsTYvJ8T8HpmQgkfA4UAHKuQ7ZbvRCi2V29YRFOq0EsskBZnCEPrW2yTvf6wrA7NLN5aMYhU1n7YMa9boOzjX8N+waNmVBo7k1kkYCMSgdQAGGiSlWFjp3A55XcA1gKk96ke0N3dcNBLCWyZJBNmURSai25naUXuSGZWbHKJuNsvSPqQ8+RzMrlzG8kaauyVj3DD9Ed1zOFixsusgbXQJB/CEl12t6mKIAaeD2fgLIcbQvq9NT+nfwDjDEjBw7mFDxAAAAAElFTkSuQmCC"
-                                                alt="star"
-                                            />
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAH2SURBVHgBzVVRTsJAEJ1djN8NYOJnvQHeAE4g3wa0nEA4AeMJkBMIAb/VE8AN5AZwACGE+IW06wxboNAtXaIfTtJ2u5mZN/P6Zgvwn8xFz7lEzz0lRp7ivAD/Y0kXA9nGWAPksFKmh0uX8wWrgm3cCR2Im81KgSzbRlkDKIDibq3ubeOsAPLoFUHTQyZGdHPyWCnaxFoBKPCjFb/rPTuaLAF29EgIhnrPjibBuv4Gv0Vrx5xc0L7aqmaGPZHFuzHtuQJgeCy5BL9xRrrmVstH649bl65mtDOTBZApCF5ksYLUTBMsjDvg5+FHDkDSu3qANRNiDuA/zvDlSWwcHKKK+B1w6zYAG+OpXoCi4oK63hEjAqvNsTNavx0mSOsmCnCBXsGH1TP5F3Qy1Z5ivx71l/EEfSTursh9Ainmgz/QycVEgiodJjcCsFF7FCBrkGrMNVceND6xPzR5JM7BwXBtLYdeVHHdME0xIc0xALMECfg1j9WWDk4fOmHa5LMnWPMbcydK1GYgJ+eQKS1D5fE3MNEkE6o0VCQmJL9SRAAuDel4F2M+mxIA9ulh+VHya9Y2C4DX5NUOvV0dY6YpRtE+PWJOCqmR/N5MwTmsemo9MxrERFOsA0oeDg0MudKk5GxT7HWYtvAfwQejCzbm4K31P/c3MX9iP+zpyIzMP2ieAAAAAElFTkSuQmCC"
-                                                alt="half-star"
-                                            />
-                                            <p class="rating__value">4.5 / 5</p>
-                                        </div>
-                                        <div class="bag__cost">
-                                            <p class="bag__price">
-                                                $ 1799.99 x 1
-                                            </p>
-                                            <div class="bag__amount">
-                                                <button
-                                                    class="bag__change-amount-btn"
-                                                >
-                                                    <img
-                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABPSURBVHgB7c0rDsAgEATQ2dYgOULrKsv9DwFHwGFXEgifIPCbYPep3UkmAyh1jvaRvv/prXlgWGE1lnq7NwZe37XjnMFEYMhZYyAcVUpmAo4LEAbxh6XpAAAAAElFTkSuQmCC"
-                                                        alt="minus"
-                                                    />
-                                                </button>
-                                                <p class="bag__num-products">
-                                                    1
-                                                </p>
-                                                <button
-                                                    class="bag__change-amount-btn"
-                                                >
-                                                    <img
-                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACKSURBVHgB1ZKxCYAwEEW/YqHduYGO4GjOYmHpSHZa6ggiiEFDYlJYWOXEFPFB4Ag//8L9A34HTR2lY1u4dIlLsO5bD2gyZf7JyJgUYBDDE+EZRXdhkzm0NIMFMZ/OKjsrlPXy+JEQwlzoBWwUQXCb2k5Do+1x6uCJ8IwYmw1WCE4jFckKKV6kGQoXnZcl9JPvFS8AAAAASUVORK5CYII="
-                                                        alt="plus"
-                                                    />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="bag__item bag-item">
-                                    <img
-                                        class="bag-item__img"
-                                        src="./assets/apple-watch-8263d023.png"
-                                        alt="apple watch"
-                                    />
-                                    <div class="bag-item__text">
-                                        <h3 class="bag-item__name">
-                                            Apple Watch
-                                        </h3>
-                                        <p class="bag-item__model">
-                                            Series 5 SE
-                                        </p>
-                                        <p class="bag-item__description">
-                                            Lorem ipsum dolor sit amet
-                                            consectetur adipisicing elit.
-                                            Voluptatibus, fugit!
-                                        </p>
-                                        <div class="rating">
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGKSURBVHgB5VVRUsIwEH1J9ZfpwPhfbgA3gBPAAWCAE4AncG8gnEDGwXPIDeQI/VewM/hJGzdSpJakkyp+OL6Pzjab3c1u3m6Af4UqDW5r1H8sYyNcN/o09CXiVxajCrx6SPPIxU7CER7i7iHW9iifLwCjk5EHcIRTiTLlOcC5TE4ZeNi18jG3p2vfD8CJdvIryrBmtNSfKvUnLPr2bWrMn7yeyyNmKEAFciquaNiIET/hF5DwPclnmq+0wKcJcTYI7bMZ0Tz8wqIq9YiVN/gBBNRsTYvJ8T8HpmQgkfA4UAHKuQ7ZbvRCi2V29YRFOq0EsskBZnCEPrW2yTvf6wrA7NLN5aMYhU1n7YMa9boOzjX8N+waNmVBo7k1kkYCMSgdQAGGiSlWFjp3A55XcA1gKk96ke0N3dcNBLCWyZJBNmURSai25naUXuSGZWbHKJuNsvSPqQ8+RzMrlzG8kaauyVj3DD9Ed1zOFixsusgbXQJB/CEl12t6mKIAaeD2fgLIcbQvq9NT+nfwDjDEjBw7mFDxAAAAAElFTkSuQmCC"
-                                                alt="star"
-                                            />
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGKSURBVHgB5VVRUsIwEH1J9ZfpwPhfbgA3gBPAAWCAE4AncG8gnEDGwXPIDeQI/VewM/hJGzdSpJakkyp+OL6Pzjab3c1u3m6Af4UqDW5r1H8sYyNcN/o09CXiVxajCrx6SPPIxU7CER7i7iHW9iifLwCjk5EHcIRTiTLlOcC5TE4ZeNi18jG3p2vfD8CJdvIryrBmtNSfKvUnLPr2bWrMn7yeyyNmKEAFciquaNiIET/hF5DwPclnmq+0wKcJcTYI7bMZ0Tz8wqIq9YiVN/gBBNRsTYvJ8T8HpmQgkfA4UAHKuQ7ZbvRCi2V29YRFOq0EsskBZnCEPrW2yTvf6wrA7NLN5aMYhU1n7YMa9boOzjX8N+waNmVBo7k1kkYCMSgdQAGGiSlWFjp3A55XcA1gKk96ke0N3dcNBLCWyZJBNmURSai25naUXuSGZWbHKJuNsvSPqQ8+RzMrlzG8kaauyVj3DD9Ed1zOFixsusgbXQJB/CEl12t6mKIAaeD2fgLIcbQvq9NT+nfwDjDEjBw7mFDxAAAAAElFTkSuQmCC"
-                                                alt="star"
-                                            />
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGKSURBVHgB5VVRUsIwEH1J9ZfpwPhfbgA3gBPAAWCAE4AncG8gnEDGwXPIDeQI/VewM/hJGzdSpJakkyp+OL6Pzjab3c1u3m6Af4UqDW5r1H8sYyNcN/o09CXiVxajCrx6SPPIxU7CER7i7iHW9iifLwCjk5EHcIRTiTLlOcC5TE4ZeNi18jG3p2vfD8CJdvIryrBmtNSfKvUnLPr2bWrMn7yeyyNmKEAFciquaNiIET/hF5DwPclnmq+0wKcJcTYI7bMZ0Tz8wqIq9YiVN/gBBNRsTYvJ8T8HpmQgkfA4UAHKuQ7ZbvRCi2V29YRFOq0EsskBZnCEPrW2yTvf6wrA7NLN5aMYhU1n7YMa9boOzjX8N+waNmVBo7k1kkYCMSgdQAGGiSlWFjp3A55XcA1gKk96ke0N3dcNBLCWyZJBNmURSai25naUXuSGZWbHKJuNsvSPqQ8+RzMrlzG8kaauyVj3DD9Ed1zOFixsusgbXQJB/CEl12t6mKIAaeD2fgLIcbQvq9NT+nfwDjDEjBw7mFDxAAAAAElFTkSuQmCC"
-                                                alt="star"
-                                            />
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGKSURBVHgB5VVRUsIwEH1J9ZfpwPhfbgA3gBPAAWCAE4AncG8gnEDGwXPIDeQI/VewM/hJGzdSpJakkyp+OL6Pzjab3c1u3m6Af4UqDW5r1H8sYyNcN/o09CXiVxajCrx6SPPIxU7CER7i7iHW9iifLwCjk5EHcIRTiTLlOcC5TE4ZeNi18jG3p2vfD8CJdvIryrBmtNSfKvUnLPr2bWrMn7yeyyNmKEAFciquaNiIET/hF5DwPclnmq+0wKcJcTYI7bMZ0Tz8wqIq9YiVN/gBBNRsTYvJ8T8HpmQgkfA4UAHKuQ7ZbvRCi2V29YRFOq0EsskBZnCEPrW2yTvf6wrA7NLN5aMYhU1n7YMa9boOzjX8N+waNmVBo7k1kkYCMSgdQAGGiSlWFjp3A55XcA1gKk96ke0N3dcNBLCWyZJBNmURSai25naUXuSGZWbHKJuNsvSPqQ8+RzMrlzG8kaauyVj3DD9Ed1zOFixsusgbXQJB/CEl12t6mKIAaeD2fgLIcbQvq9NT+nfwDjDEjBw7mFDxAAAAAElFTkSuQmCC"
-                                                alt="star"
-                                            />
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAH2SURBVHgBzVVRTsJAEJ1djN8NYOJnvQHeAE4g3wa0nEA4AeMJkBMIAb/VE8AN5AZwACGE+IW06wxboNAtXaIfTtJ2u5mZN/P6Zgvwn8xFz7lEzz0lRp7ivAD/Y0kXA9nGWAPksFKmh0uX8wWrgm3cCR2Im81KgSzbRlkDKIDibq3ubeOsAPLoFUHTQyZGdHPyWCnaxFoBKPCjFb/rPTuaLAF29EgIhnrPjibBuv4Gv0Vrx5xc0L7aqmaGPZHFuzHtuQJgeCy5BL9xRrrmVstH649bl65mtDOTBZApCF5ksYLUTBMsjDvg5+FHDkDSu3qANRNiDuA/zvDlSWwcHKKK+B1w6zYAG+OpXoCi4oK63hEjAqvNsTNavx0mSOsmCnCBXsGH1TP5F3Qy1Z5ivx71l/EEfSTursh9Ainmgz/QycVEgiodJjcCsFF7FCBrkGrMNVceND6xPzR5JM7BwXBtLYdeVHHdME0xIc0xALMECfg1j9WWDk4fOmHa5LMnWPMbcydK1GYgJ+eQKS1D5fE3MNEkE6o0VCQmJL9SRAAuDel4F2M+mxIA9ulh+VHya9Y2C4DX5NUOvV0dY6YpRtE+PWJOCqmR/N5MwTmsemo9MxrERFOsA0oeDg0MudKk5GxT7HWYtvAfwQejCzbm4K31P/c3MX9iP+zpyIzMP2ieAAAAAElFTkSuQmCC"
-                                                alt="half-star"
-                                            />
-                                            <p class="rating__value">4.5 / 5</p>
-                                        </div>
-                                        <div class="bag__cost">
-                                            <p class="bag__price">
-                                                $ 1799.99 x 1
-                                            </p>
-                                            <div class="bag__amount">
-                                                <button
-                                                    class="bag__change-amount-btn"
-                                                >
-                                                    <img
-                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABPSURBVHgB7c0rDsAgEATQ2dYgOULrKsv9DwFHwGFXEgifIPCbYPep3UkmAyh1jvaRvv/prXlgWGE1lnq7NwZe37XjnMFEYMhZYyAcVUpmAo4LEAbxh6XpAAAAAElFTkSuQmCC"
-                                                        alt="minus"
-                                                    />
-                                                </button>
-                                                <p class="bag__num-products">
-                                                    1
-                                                </p>
-                                                <button
-                                                    class="bag__change-amount-btn"
-                                                >
-                                                    <img
-                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACKSURBVHgB1ZKxCYAwEEW/YqHduYGO4GjOYmHpSHZa6ggiiEFDYlJYWOXEFPFB4Ag//8L9A34HTR2lY1u4dIlLsO5bD2gyZf7JyJgUYBDDE+EZRXdhkzm0NIMFMZ/OKjsrlPXy+JEQwlzoBWwUQXCb2k5Do+1x6uCJ8IwYmw1WCE4jFckKKV6kGQoXnZcl9JPvFS8AAAAASUVORK5CYII="
-                                                        alt="plus"
-                                                    />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="bag__item bag-item">
-                                    <img
-                                        class="bag-item__img"
-                                        src="./assets/apple-watch-8263d023.png"
-                                        alt="apple watch"
-                                    />
-                                    <div class="bag-item__text">
-                                        <h3 class="bag-item__name">
-                                            Apple Watch
-                                        </h3>
-                                        <p class="bag-item__model">
-                                            Series 5 SE
-                                        </p>
-                                        <p class="bag-item__description">
-                                            Lorem ipsum dolor sit amet
-                                            consectetur adipisicing elit.
-                                            Voluptatibus, fugit!
-                                        </p>
-                                        <div class="rating">
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGKSURBVHgB5VVRUsIwEH1J9ZfpwPhfbgA3gBPAAWCAE4AncG8gnEDGwXPIDeQI/VewM/hJGzdSpJakkyp+OL6Pzjab3c1u3m6Af4UqDW5r1H8sYyNcN/o09CXiVxajCrx6SPPIxU7CER7i7iHW9iifLwCjk5EHcIRTiTLlOcC5TE4ZeNi18jG3p2vfD8CJdvIryrBmtNSfKvUnLPr2bWrMn7yeyyNmKEAFciquaNiIET/hF5DwPclnmq+0wKcJcTYI7bMZ0Tz8wqIq9YiVN/gBBNRsTYvJ8T8HpmQgkfA4UAHKuQ7ZbvRCi2V29YRFOq0EsskBZnCEPrW2yTvf6wrA7NLN5aMYhU1n7YMa9boOzjX8N+waNmVBo7k1kkYCMSgdQAGGiSlWFjp3A55XcA1gKk96ke0N3dcNBLCWyZJBNmURSai25naUXuSGZWbHKJuNsvSPqQ8+RzMrlzG8kaauyVj3DD9Ed1zOFixsusgbXQJB/CEl12t6mKIAaeD2fgLIcbQvq9NT+nfwDjDEjBw7mFDxAAAAAElFTkSuQmCC"
-                                                alt="star"
-                                            />
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGKSURBVHgB5VVRUsIwEH1J9ZfpwPhfbgA3gBPAAWCAE4AncG8gnEDGwXPIDeQI/VewM/hJGzdSpJakkyp+OL6Pzjab3c1u3m6Af4UqDW5r1H8sYyNcN/o09CXiVxajCrx6SPPIxU7CER7i7iHW9iifLwCjk5EHcIRTiTLlOcC5TE4ZeNi18jG3p2vfD8CJdvIryrBmtNSfKvUnLPr2bWrMn7yeyyNmKEAFciquaNiIET/hF5DwPclnmq+0wKcJcTYI7bMZ0Tz8wqIq9YiVN/gBBNRsTYvJ8T8HpmQgkfA4UAHKuQ7ZbvRCi2V29YRFOq0EsskBZnCEPrW2yTvf6wrA7NLN5aMYhU1n7YMa9boOzjX8N+waNmVBo7k1kkYCMSgdQAGGiSlWFjp3A55XcA1gKk96ke0N3dcNBLCWyZJBNmURSai25naUXuSGZWbHKJuNsvSPqQ8+RzMrlzG8kaauyVj3DD9Ed1zOFixsusgbXQJB/CEl12t6mKIAaeD2fgLIcbQvq9NT+nfwDjDEjBw7mFDxAAAAAElFTkSuQmCC"
-                                                alt="star"
-                                            />
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGKSURBVHgB5VVRUsIwEH1J9ZfpwPhfbgA3gBPAAWCAE4AncG8gnEDGwXPIDeQI/VewM/hJGzdSpJakkyp+OL6Pzjab3c1u3m6Af4UqDW5r1H8sYyNcN/o09CXiVxajCrx6SPPIxU7CER7i7iHW9iifLwCjk5EHcIRTiTLlOcC5TE4ZeNi18jG3p2vfD8CJdvIryrBmtNSfKvUnLPr2bWrMn7yeyyNmKEAFciquaNiIET/hF5DwPclnmq+0wKcJcTYI7bMZ0Tz8wqIq9YiVN/gBBNRsTYvJ8T8HpmQgkfA4UAHKuQ7ZbvRCi2V29YRFOq0EsskBZnCEPrW2yTvf6wrA7NLN5aMYhU1n7YMa9boOzjX8N+waNmVBo7k1kkYCMSgdQAGGiSlWFjp3A55XcA1gKk96ke0N3dcNBLCWyZJBNmURSai25naUXuSGZWbHKJuNsvSPqQ8+RzMrlzG8kaauyVj3DD9Ed1zOFixsusgbXQJB/CEl12t6mKIAaeD2fgLIcbQvq9NT+nfwDjDEjBw7mFDxAAAAAElFTkSuQmCC"
-                                                alt="star"
-                                            />
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAGKSURBVHgB5VVRUsIwEH1J9ZfpwPhfbgA3gBPAAWCAE4AncG8gnEDGwXPIDeQI/VewM/hJGzdSpJakkyp+OL6Pzjab3c1u3m6Af4UqDW5r1H8sYyNcN/o09CXiVxajCrx6SPPIxU7CER7i7iHW9iifLwCjk5EHcIRTiTLlOcC5TE4ZeNi18jG3p2vfD8CJdvIryrBmtNSfKvUnLPr2bWrMn7yeyyNmKEAFciquaNiIET/hF5DwPclnmq+0wKcJcTYI7bMZ0Tz8wqIq9YiVN/gBBNRsTYvJ8T8HpmQgkfA4UAHKuQ7ZbvRCi2V29YRFOq0EsskBZnCEPrW2yTvf6wrA7NLN5aMYhU1n7YMa9boOzjX8N+waNmVBo7k1kkYCMSgdQAGGiSlWFjp3A55XcA1gKk96ke0N3dcNBLCWyZJBNmURSai25naUXuSGZWbHKJuNsvSPqQ8+RzMrlzG8kaauyVj3DD9Ed1zOFixsusgbXQJB/CEl12t6mKIAaeD2fgLIcbQvq9NT+nfwDjDEjBw7mFDxAAAAAElFTkSuQmCC"
-                                                alt="star"
-                                            />
-                                            <img
-                                                class="rating__star"
-                                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAH2SURBVHgBzVVRTsJAEJ1djN8NYOJnvQHeAE4g3wa0nEA4AeMJkBMIAb/VE8AN5AZwACGE+IW06wxboNAtXaIfTtJ2u5mZN/P6Zgvwn8xFz7lEzz0lRp7ivAD/Y0kXA9nGWAPksFKmh0uX8wWrgm3cCR2Im81KgSzbRlkDKIDibq3ubeOsAPLoFUHTQyZGdHPyWCnaxFoBKPCjFb/rPTuaLAF29EgIhnrPjibBuv4Gv0Vrx5xc0L7aqmaGPZHFuzHtuQJgeCy5BL9xRrrmVstH649bl65mtDOTBZApCF5ksYLUTBMsjDvg5+FHDkDSu3qANRNiDuA/zvDlSWwcHKKK+B1w6zYAG+OpXoCi4oK63hEjAqvNsTNavx0mSOsmCnCBXsGH1TP5F3Qy1Z5ivx71l/EEfSTursh9Ainmgz/QycVEgiodJjcCsFF7FCBrkGrMNVceND6xPzR5JM7BwXBtLYdeVHHdME0xIc0xALMECfg1j9WWDk4fOmHa5LMnWPMbcydK1GYgJ+eQKS1D5fE3MNEkE6o0VCQmJL9SRAAuDel4F2M+mxIA9ulh+VHya9Y2C4DX5NUOvV0dY6YpRtE+PWJOCqmR/N5MwTmsemo9MxrERFOsA0oeDg0MudKk5GxT7HWYtvAfwQejCzbm4K31P/c3MX9iP+zpyIzMP2ieAAAAAElFTkSuQmCC"
-                                                alt="half-star"
-                                            />
-                                            <p class="rating__value">4.5 / 5</p>
-                                        </div>
-                                        <div class="bag__cost">
-                                            <p class="bag__price">
-                                                $ 1799.99 x 1
-                                            </p>
-                                            <div class="bag__amount">
-                                                <button
-                                                    class="bag__change-amount-btn"
-                                                >
-                                                    <img
-                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABPSURBVHgB7c0rDsAgEATQ2dYgOULrKsv9DwFHwGFXEgifIPCbYPep3UkmAyh1jvaRvv/prXlgWGE1lnq7NwZe37XjnMFEYMhZYyAcVUpmAo4LEAbxh6XpAAAAAElFTkSuQmCC"
-                                                        alt="minus"
-                                                    />
-                                                </button>
-                                                <p class="bag__num-products">
-                                                    1
-                                                </p>
-                                                <button
-                                                    class="bag__change-amount-btn"
-                                                >
-                                                    <img
-                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACKSURBVHgB1ZKxCYAwEEW/YqHduYGO4GjOYmHpSHZa6ggiiEFDYlJYWOXEFPFB4Ag//8L9A34HTR2lY1u4dIlLsO5bD2gyZf7JyJgUYBDDE+EZRXdhkzm0NIMFMZ/OKjsrlPXy+JEQwlzoBWwUQXCb2k5Do+1x6uCJ8IwYmw1WCE4jFckKKV6kGQoXnZcl9JPvFS8AAAAASUVORK5CYII="
-                                                        alt="plus"
-                                                    />
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                            <ul id="bagItemsList" class="bag__items"></ul>
                         </div>
                         <div class="pre-order">
                             <button class="go-back-btn">
@@ -668,36 +447,31 @@
                         </div>
                     </div>
                     <div class="right-col">
-                        <div class="preview-bag">
+                        <div id="previewBag" class="preview-bag visible">
                             <h2 class="preview-title">Корзина</h2>
                             <ul
                                 class="preview-bag__items"
                                 id="previewBagItems"
                             ></ul>
-                            <button
-                                id="goToBagBtn"
-                                class="preview-bag__bag-btn black-btn"
-                            >
-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEISURBVHgB5ZTRDYIwEIYP47uOwAiM4Ag6AYzABsAEugGMwAa4gW4gTKBOcN7JJRIstbSND/ollza9v/c37aUAfwEiJhQNxRV7eJ6AD6hQOSh6kLjI2h5coAKZFMoVuVxyKdgiJy01+ee1gWXxSE641WgS0URTmgVMs5bxptG0I+00fNJBl7jANWKVQYP+qE2uqKXYGVyRSrMyMgiCgE9ydtGYPHKn0dxH2lkG3Ka8sdJoatKErLUxYDK6giONhSJXUK6iMQYTNF2USj7kucRG1uKJPc0cA6YcFF3zHF+foNZgCWYkHLQR5vLpDZz5qkEH/mjfVrD/nn18dkyotBWTE9rToHTb7/AAp+9IEQ+t0G4AAAAASUVORK5CYII=" alt="bag icon" />
-                                <p>Корзина</p>
-                            </button>
+                            <div id="previewGoBagBtn" class="preview-bag__bag-btn-wrapper visible">
+                                <button
+                                    id="goToBagBtn"
+                                    class="preview-bag__bag-btn black-btn"
+                                >
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEISURBVHgB5ZTRDYIwEIYP47uOwAiM4Ag6AYzABsAEugGMwAa4gW4gTKBOcN7JJRIstbSND/ollza9v/c37aUAfwEiJhQNxRV7eJ6AD6hQOSh6kLjI2h5coAKZFMoVuVxyKdgiJy01+ee1gWXxSE641WgS0URTmgVMs5bxptG0I+00fNJBl7jANWKVQYP+qE2uqKXYGVyRSrMyMgiCgE9ydtGYPHKn0dxH2lkG3Ka8sdJoatKErLUxYDK6giONhSJXUK6iMQYTNF2USj7kucRG1uKJPc0cA6YcFF3zHF+foNZgCWYkHLQR5vLpDZz5qkEH/mjfVrD/nn18dkyotBWTE9rToHTb7/AAp+9IEQ+t0G4AAAAASUVORK5CYII=" alt="bag icon" />
+                                    <p>Корзина</p>
+                                </button>
+                            </div>
+                            <div id="previewBagPrice" class="preview-price">
+                            </div>
                         </div>
-                        <div class="preview-orders">
+                        <div id="previewOrders" class="preview-orders">
                             <h2 class="preview-title">Заказы</h2>
                             <ul class="preview-orders__order-list">
                                 <li class="preview-orders__order">#sdjfksdf</li>
                                 <li class="preview-orders__order">#sdjfksdf</li>
                                 <li class="preview-orders__order">#sdjfksdf</li>
                             </ul>
-                        </div>
-                        <div class="preview-price">
-                            <p class="preview-price__total">
-                                Сумма: $ 5,849,93
-                            </p>
-                            <button class="black-btn preview-price__black-btn">
-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAZCAYAAAArK+5dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEISURBVHgB5ZTRDYIwEIYP47uOwAiM4Ag6AYzABsAEugGMwAa4gW4gTKBOcN7JJRIstbSND/ollza9v/c37aUAfwEiJhQNxRV7eJ6AD6hQOSh6kLjI2h5coAKZFMoVuVxyKdgiJy01+ee1gWXxSE641WgS0URTmgVMs5bxptG0I+00fNJBl7jANWKVQYP+qE2uqKXYGVyRSrMyMgiCgE9ydtGYPHKn0dxH2lkG3Ka8sdJoatKErLUxYDK6giONhSJXUK6iMQYTNF2USj7kucRG1uKJPc0cA6YcFF3zHF+foNZgCWYkHLQR5vLpDZz5qkEH/mjfVrD/nn18dkyotBWTE9rToHTb7/AAp+9IEQ+t0G4AAAAASUVORK5CYII=" alt="" />
-                                <p>Оформление</p>
-                            </button>
                         </div>
                         <div class="preview-make-order">
                             <h3 class="preview-make-order__title">Сумма</h3>
