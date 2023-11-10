@@ -35,9 +35,9 @@ export default class View {
         this.itemsListNode.innerHTML = itemsListHTML;
     }
 
-    renderPreviewBag(items) {
+    renderPreviewBag(bag) {
         let previewBagHTML = "";
-        items.forEach((item) => {
+        bag.forEach((item) => {
             previewBagHTML =
                 previewBagHTML +
                 `<li class="preview-bag__item">
@@ -123,10 +123,10 @@ export default class View {
     }
 
     renderBag(bag) {
-        const bagItemsListNode = document.getElementById('bagItemsList')
-        let bagHTML = '';
-        bag.forEach(item => {
-            bagHTML = `
+        const bagItemsListNode = document.getElementById("bagItemsList");
+        let bagHTML = "";
+        bag.forEach((item) => {
+            bagHTML += `
                 <li data-item-id=${item.id} class="bag__item bag-item">
                 <img
                     class="bag-item__img"
@@ -198,8 +198,7 @@ export default class View {
                         </div>
                     </div>
                 </div>
-            </li>` + bagHTML;
-
+            </li>`;
         });
         bagItemsListNode.innerHTML = bagHTML;
     }

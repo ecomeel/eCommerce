@@ -77,61 +77,55 @@ export default class Controller {
         }
 
         // Отображаем корзину и убираем прошлый экран
+        const itemsListNode = document.getElementById("previewItemsWrapper");
+        const itemCardNode = document.getElementById("itemCard");
+        const bagNode = document.getElementById("bag");
+        itemsListNode.classList.remove("visible");
+        itemCardNode.classList.remove("visible");
+        bagNode.classList.add("visible");
 
-        // //  Отображаем корзину и убираем прошлый экран
-        // // Отрефакторить
-        // const itemsList = document.getElementById("itemsList");
-        // const itemCardNode = document.getElementById("itemCard");
-        // const bagNode = document.getElementById("bag");
-        // bagNode.classList.add("visible");
-        // itemCardNode.classList.remove("visible");
-        // itemsList.classList.remove("visible");
-        // // Отображение корзины
-        // this.view.renderBag(this.model.getBag());
-        // //Отслеживание изменения количества товаров
-        // const bagItemsListNode = document.getElementById("bagItemsList");
-        // bagItemsListNode.addEventListener("click", (e) =>
-        //     this._handleChangeAmountItem(e)
-        // );
-        // // Отображение preview price
-        // // this.view.renderPreviewPrice()
-        // //Закрытие корзины
-        // const goBackFromBagBtnNode =
-        //     document.getElementById("goBackFromBagBtn");
-        // goBackFromBagBtnNode.addEventListener("click", () => {
-        //     bagNode.classList.remove("visible");
-        //     itemsList.classList.add("visible");
-        // });
-        // // Смена preview
-        // const goToBagBtnNode = document.getElementById('goToBagBtn');
-        // const previewPriceNode = document.getElementById('previewPrice');
-        // goToBagBtnNode.classList.remove('visible')
-        // previewPriceNode.classList.add('visisble')
+        // Отрисовываем корзину
+        this.view.renderBag(this.model.getBag());
+
+        // Обработка добавление или уменьшения товаров
+        // Здесь ошибка // Возможно навешиваются 2 обработчика на 1 кнопку
+        const bagListNode = document.getElementById("bagItemsList");
+        bagListNode.addEventListener("click", this._handlerChangeAmountItem);
+
+        // Кнопка возврата к списку товаров
+        const goBackBtn = document.getElementById("goBackFromBagBtn");
+        goBackBtn.addEventListener("click", () => {
+            itemsListNode.classList.add("visible");
+            bagNode.classList.remove("visible");
+        });
     };
 
     // handlers
 
-    // _handleChangeAmountItem(e) {
-    //     const productNode = e.target.closest("li");
-    //     if (!productNode) return;
+    _handlerChangeAmountItem = (e) => {
+        const onElementClicked = e.target;
+        const clickedItem = e.target.closest("li");
+        const clickedBtn = e.target.closest("button");
+        const clickedItemId = clickedItem.getAttribute("data-item-id");
 
-    //     const clickedButton = e.target.closest("button");
-    //     if (!clickedButton) return;
+        if (!onElementClicked) return;
 
-    //     const idProduct = productNode.getAttribute("data-item-id");
+        if (!clickedItem) return;
 
-    //     console.log(productNode);
+        if (!clickedBtn) return;
 
-    //     if (clickedButton.classList.contains("bag__change-amount_plus")) {
-    //         this.model.incrementItemToBag(idProduct);
-    //     } else {
-    //         this.model.decrementItemToBag(idProduct);
-    //     }
-    //     this.view.renderBag(this.model.getBag());
+        if (clickedBtn.classList.contains("bag__change-amount_minus")) {
+            this.model.decrementItemToBag(clickedItemId);
+            this.view.renderBag(this.model.getBag());
+            this.view.renderPreviewBag(this.model.getBag());
+        }
 
-    //     // this.view.renderPreviewBag(this.model.getBag());
-    //     console.log("Bag changed :", this.model.getBag());
-    // }
+        if (clickedBtn.classList.contains("bag__change-amount_plus")) {
+            this.model.incrementItemToBag(clickedItemId);
+            this.view.renderBag(this.model.getBag());
+            this.view.renderPreviewBag(this.model.getBag());
+        }
+    };
 
     _handleAddItemToBag(item) {
         this.model.addItemToBag(item);
