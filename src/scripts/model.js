@@ -71,8 +71,29 @@ export default class Model {
     incrementItemToBag(id) {
         this.bag.forEach((item) => {
             if (item.id == id) {
-                item.amount += 1
+                item.amount = item.amount + 1
             }})
+    }
+
+    decrementItemToBag(id) {
+        let isDeleteItem = false
+        this.bag.forEach(item => {
+            if (item.id == id) {
+                item.amount -= 1;
+
+                if (item.amount < 1) {
+                    isDeleteItem = true
+                }
+            }
+        })
+        if (isDeleteItem) {
+            isDeleteItem = false;
+
+            this.bagItemsIds = this.bagItemsIds.filter(itemId => itemId !== id)
+
+            this.bag = this.bag.filter(item => item.id != id)
+
+        }
     }
 
     //Price

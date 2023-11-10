@@ -168,8 +168,9 @@
 }
 
 .visible {
-    visibility: visible !important;
-    opacity: 1 !important;
+    // visibility: visible !important;
+    // opacity: 1 !important;
+    display: block !important;
 }
 
 .fixe-scroll {

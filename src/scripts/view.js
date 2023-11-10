@@ -184,7 +184,7 @@ export default class View {
                                     alt="minus"
                                 />
                             </button>
-                            <p class="bag__num-products">
+                            <p class="js-bag__num-products bag__num-products">
                                 ${item.amount}
                             </p>
                             <button
@@ -222,7 +222,7 @@ export default class View {
     }
 
     changeVisibilityPages(prevPage, nextPage) {
-        prevPage.classList.toggle(CLASSNAME_CHANGE_VISIBILITY);
-        nextPage.classList.toggle(CLASSNAME_CHANGE_VISIBILITY);
+        prevPage.classList.remove(CLASSNAME_CHANGE_VISIBILITY);
+        nextPage.classList.add(CLASSNAME_CHANGE_VISIBILITY);
     }
 }

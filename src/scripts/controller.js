@@ -7,8 +7,6 @@ import "../styles/scss/style.scss";
 const ERROR_NAME_NO_PRODUCT = "noProduct";
 const ERROR_NAME_EMPTY_BAG = "emptyBag";
 const CLASSNAME_ITEMS_ADD_TO_BAG_BTN = "js-items-add-to-bag";
-const ID_GO_BACK_TO_ITEMS_BTN = "goBackToItemsBtn";
-const ID_ADD_TO_BAG_FROM_ITEMCARD_BTN = "addToBagFromItemcard";
 
 export default class Controller {
     constructor() {
@@ -51,118 +49,103 @@ export default class Controller {
         if (onAddToBagBtnClick) {
             this._handleAddItemToBag(item);
         } else {
-            this._openNextPage(selectedItemNode);
+            // Change visible pages
+            const prevPageNode = selectedItemNode.parentElement.parentElement;
+            const nextPageNode = prevPageNode.nextElementSibling;
+            prevPageNode.classList.remove("visible");
+            nextPageNode.classList.add("visible");
+
             this.view.renderItemCard(item);
 
-            this._listenGoPreviousPage(ID_GO_BACK_TO_ITEMS_BTN);
-            this._listenAddToBag(ID_ADD_TO_BAG_FROM_ITEMCARD_BTN);
+            // Вернуться на прошлую страницу
+            const backButton = document.getElementById("goBackToItemsBtn");
+            backButton.addEventListener("click", () => {
+                // this._handlerOpenPreviousPage(backButton)
+
+                const prevPageNode = backButton.parentElement;
+                const nextPageNode = prevPageNode.previousElementSibling;
+                prevPageNode.classList.remove("visible");
+                nextPageNode.classList.add("visible");
+            });
+
+            // Добавить товар в корзину
+            const addBtnNode = document.getElementById("addToBagFromItemcard");
+            const idItem = addBtnNode.getAttribute("data-item-id");
+            addBtnNode.addEventListener("click", () => {
+                this._handleAddItemToBag(this.model.getItemById(idItem));
+            });
         }
     };
 
     _handleOpenBag = () => {
-        if (this.model.getBag().length == 0) {
-            this._showEror(ERROR_NAME_EMPTY_BAG);
-            return;
-        }
-
-        console.log("Bag :", this.model.getBag());
-
-        //  Отображаем корзину и убираем прошлый экран
-        // Отрефакторить
-        const itemsList = document.getElementById("itemsList");
-        const itemCardNode = document.getElementById("itemCard");
-        const bagNode = document.getElementById("bag");
-        bagNode.classList.add("visible");
-        itemCardNode.classList.remove("visible");
-        itemsList.classList.remove("visible");
-
-        //Закрытие корзины
-        const goBackFromBagBtnNode =
-            document.getElementById("goBackFromBagBtn");
-        goBackFromBagBtnNode.addEventListener("click", () => {
-            bagNode.classList.remove("visible");
-            itemsList.classList.add("visible");
-        });
-
-        // Отображение корзины
-        this.view.renderBag(this.model.getBag());
-
-        //Отслеживание изменения количества товаров
-        const bagItemsListNode = document.getElementById("bagItemsList");
-        bagItemsListNode.addEventListener("click", (e) => {
-            const product = e.target.closest("li");
-            if (!product) return;
-    
-            const clickedButton = e.target.closest("button");
-            if (!clickedButton) return;
-    
-            const idProduct = product.getAttribute("data-item-id");
-    
-            if (clickedButton.classList.contains("bag__change-amount_plus")) {
-                this.model.incrementItemToBag(idProduct);
-                this.view.renderBag(this.model.getBag())
-                // this.model.incrementItemToBag()
-                // this.view.renderBag(this.model.getBag())
-            } else {
-                console.log("minus");
-            }
-        });
-
-        // Отображение preview price
-        // this.view.renderPreviewPrice()
+        // if (this.model.getBag().length == 0) {
+        //     this._showEror(ERROR_NAME_EMPTY_BAG);
+        //     return;
+        // }
+        // //  Отображаем корзину и убираем прошлый экран
+        // // Отрефакторить
+        // const itemsList = document.getElementById("itemsList");
+        // const itemCardNode = document.getElementById("itemCard");
+        // const bagNode = document.getElementById("bag");
+        // bagNode.classList.add("visible");
+        // itemCardNode.classList.remove("visible");
+        // itemsList.classList.remove("visible");
+        // // Отображение корзины
+        // this.view.renderBag(this.model.getBag());
+        // //Отслеживание изменения количества товаров
+        // const bagItemsListNode = document.getElementById("bagItemsList");
+        // bagItemsListNode.addEventListener("click", (e) =>
+        //     this._handleChangeAmountItem(e)
+        // );
+        // // Отображение preview price
+        // // this.view.renderPreviewPrice()
+        // //Закрытие корзины
+        // const goBackFromBagBtnNode =
+        //     document.getElementById("goBackFromBagBtn");
+        // goBackFromBagBtnNode.addEventListener("click", () => {
+        //     bagNode.classList.remove("visible");
+        //     itemsList.classList.add("visible");
+        // });
+        // // Смена preview
+        // const goToBagBtnNode = document.getElementById('goToBagBtn');
+        // const previewPriceNode = document.getElementById('previewPrice');
+        // goToBagBtnNode.classList.remove('visible')
+        // previewPriceNode.classList.add('visisble')
     };
 
     // handlers
 
-    // _handleChangeAmountItems(e) {
-    //     const product = e.target.closest("li");
-    //     if (!product) return;
+    // _handleChangeAmountItem(e) {
+    //     const productNode = e.target.closest("li");
+    //     if (!productNode) return;
 
     //     const clickedButton = e.target.closest("button");
     //     if (!clickedButton) return;
 
-    //     const idProduct = product.getAttribute("data-item-id");
+    //     const idProduct = productNode.getAttribute("data-item-id");
+
+    //     console.log(productNode);
 
     //     if (clickedButton.classList.contains("bag__change-amount_plus")) {
-    //         // this.model.incrementItemToBag()
-    //         // this.view.renderBag(this.model.getBag())
-    //         this.view.checkoutFail()
+    //         this.model.incrementItemToBag(idProduct);
     //     } else {
-    //         console.log("minus");
+    //         this.model.decrementItemToBag(idProduct);
     //     }
+    //     this.view.renderBag(this.model.getBag());
+
+    //     // this.view.renderPreviewBag(this.model.getBag());
+    //     console.log("Bag changed :", this.model.getBag());
     // }
 
     _handleAddItemToBag(item) {
         this.model.addItemToBag(item);
-        console.log(this.model.getBag());
         this.view.renderPreviewBag(this.model.getBag());
-    }
-
-    _openNextPage(itemClickNode) {
-        const prevPageNode = itemClickNode.parentElement;
-        const nextPageNode = prevPageNode.nextElementSibling;
-        this.view.changeVisibilityPages(prevPageNode, nextPageNode);
     }
 
     _handlerOpenPreviousPage(itemClickNode) {
         const prevPageNode = itemClickNode.parentElement;
         const nextPageNode = prevPageNode.previousElementSibling;
         this.view.changeVisibilityPages(prevPageNode, nextPageNode);
-    }
-
-    _listenGoPreviousPage(goBackBtnID) {
-        const backButton = document.getElementById(goBackBtnID);
-        backButton.addEventListener("click", () =>
-            this._handlerOpenPreviousPage(backButton)
-        );
-    }
-
-    _listenAddToBag(addBtnId) {
-        const addBtnNode = document.getElementById(addBtnId);
-        const idItem = addBtnNode.getAttribute("data-item-id");
-        addBtnNode.addEventListener("click", () => {
-            this._handleAddItemToBag(this.model.getItemById(idItem));
-        });
     }
 
     _showEror(error) {

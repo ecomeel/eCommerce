@@ -1,7 +1,10 @@
+.preview-items-wrapper {
+    display: none;
+}
+
 .preview-items {
     padding-top: 40px;
-    visibility: hidden;
-    opacity: 0;
+    display: none;
     display: flex;
     column-gap: 16px;
     row-gap: 16px;

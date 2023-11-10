@@ -17,7 +17,9 @@
             <div class="container">
                 <div class="main-content">
                     <div class="left-col">
-                        <ul class="preview-items visible" id="itemsList"></ul>
+                        <div class="preview-items-wrapper visible">
+                            <ul class="preview-items" id="itemsList"></ul>
+                        </div>
                         <div class="item-card" id="itemCard"></div>
                         <div class="bag" id="bag">
                             <button id="goBackFromBagBtn" class="go-back-btn">
@@ -443,7 +445,7 @@
                         </div>
                     </div>
                     <div class="right-col">
-                        <div id="previewBag" class="preview-bag">
+                        <div id="previewBag" class="preview-bag visible">
                             <h2 class="preview-title">Корзина</h2>
                             <ul
                                 class="preview-bag__items"
@@ -451,7 +453,7 @@
                             ></ul>
                             <button
                                 id="goToBagBtn"
-                                class="preview-bag__bag-btn black-btn"
+                                class="preview-bag__bag-btn black-btn visible"
                             >
                                 <img src="img/buttons/bag.png" alt="bag icon" />
                                 <p>Корзина</p>
