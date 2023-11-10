@@ -4,10 +4,6 @@ import Api from "./api";
 
 import "../styles/scss/style.scss";
 
-const ERROR_NAME_NO_PRODUCT = "noProduct";
-const ERROR_NAME_EMPTY_BAG = "emptyBag";
-const CLASSNAME_ITEMS_ADD_TO_BAG_BTN = "js-items-add-to-bag";
-
 export default class Controller {
     constructor() {
         this.view = new View({
@@ -24,7 +20,6 @@ export default class Controller {
 
         this.model.setBag(this.api.getBagItems());
         this.view.renderPreviewBag(this.model.getBag());
-        // console.log(this.model.getOrderCost());
     }
 
     // Open new pages
@@ -38,12 +33,12 @@ export default class Controller {
         const item = this.model.getItemById(itemId);
 
         if (!item) {
-            this._showEror(ERROR_NAME_NO_PRODUCT);
+            this._showEror("noProduct");
             return;
         }
 
         const onAddToBagBtnClick = elementClicked.classList.contains(
-            CLASSNAME_ITEMS_ADD_TO_BAG_BTN
+            "js-items-add-to-bag"
         );
 
         if (onAddToBagBtnClick) {
@@ -60,8 +55,6 @@ export default class Controller {
             // Вернуться на прошлую страницу
             const backButton = document.getElementById("goBackToItemsBtn");
             backButton.addEventListener("click", () => {
-                // this._handlerOpenPreviousPage(backButton)
-
                 const prevPageNode = backButton.parentElement;
                 const nextPageNode = prevPageNode.previousElementSibling;
                 prevPageNode.classList.remove("visible");
@@ -78,10 +71,13 @@ export default class Controller {
     };
 
     _handleOpenBag = () => {
-        // if (this.model.getBag().length == 0) {
-        //     this._showEror(ERROR_NAME_EMPTY_BAG);
-        //     return;
-        // }
+        if (this.model.getBag().length == 0) {
+            this._showEror("emptyBag");
+            return;
+        }
+
+        // Отображаем корзину и убираем прошлый экран
+
         // //  Отображаем корзину и убираем прошлый экран
         // // Отрефакторить
         // const itemsList = document.getElementById("itemsList");
