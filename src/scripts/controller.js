@@ -127,6 +127,18 @@ export default class Controller {
         this.view.changeVisibilityPages(previewBagNode, previewTakeOrder);
         previewBagPriceNode.classList.remove("visible");
 
+        // render Preview
+        const orderCost = this.model.getOrderCost();
+        const deliveryCost = this.model.getDeliveryCost();
+        const finalCost = this.model.getFinalCost();
+        this.view.renderPreviewTakeOrder(orderCost, deliveryCost, finalCost)
+
+
+        // Render itemList
+        this.view.renderTakeOrderItemsList(this.model.getBag())
+
+
+
         // Go back btn handler
         const goBackBtnNode = document.getElementById("goBackFromTakeOrder");
         goBackBtnNode.addEventListener("click", () => {

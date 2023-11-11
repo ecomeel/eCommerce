@@ -55,6 +55,25 @@ export default class View {
         document.getElementById('previewOrderCost').innerText = `Сумма: $ ${price}`
     }
 
+    renderPreviewTakeOrder(orderCost, deliveryCost, finalCost) {
+        document.getElementById('previewTakeOrder').innerHTML = `
+            <h3 class="preview-make-order__title">Сумма</h3>
+            <div class="preview-make-order__price">
+                <p>Товары</p>
+                <p id="previewTakeOrderCost">$ ${orderCost}</p>
+            </div>
+            <div class="preview-make-order__price">
+                <p>Доставка</p>
+                <p id="previewTakeOrderDeliveryCost">$ ${deliveryCost}</p>
+            </div>
+            <div class="preview-make-order__total">
+                <p>Стоимость</p>
+                <p id="previewTakeOrderFinalCost">$ ${finalCost}</p>
+            </div>
+            <button id="previewTakeOrderBtn" class="black-btn">Разместить заказ</button>
+        `
+    }
+
     renderItemCard(item) {
         let itemCardHTML = `
         <button id='goBackToItemsBtn' class="go-back-btn">
@@ -206,6 +225,72 @@ export default class View {
         });
         bagItemsListNode.innerHTML = bagHTML;
         
+    }
+
+    renderTakeOrderItemsList(bag) {
+        const takeOrderItemsListNode = document.getElementById('takeOrderItemsList');
+
+        let takeOrderListHTML = '';
+
+        bag.forEach(item => {
+            takeOrderListHTML += `
+            <li class="bag__item bag-item">
+                <img
+                    class="bag-item__img"
+                    src=${item.imgSrc}
+                    alt=${item.name}
+                />
+                <div class="bag-item__text">
+                    <h3 class="bag-item__name">
+                        ${item.name}
+                    </h3>
+                    <p class="bag-item__model">
+                        ${item.shortDesc}
+                    </p>
+                    <p class="bag-item__description">
+                        ${item.shortDesc}
+                    </p>
+                    <div class="rating">
+                        <img
+                            class="rating__star"
+                            src="img/buttons/star.png"
+                            alt="star"
+                        />
+                        <img
+                            class="rating__star"
+                            src="img/buttons/star.png"
+                            alt="star"
+                        />
+                        <img
+                            class="rating__star"
+                            src="img/buttons/star.png"
+                            alt="star"
+                        />
+                        <img
+                            class="rating__star"
+                            src="img/buttons/star.png"
+                            alt="star"
+                        />
+                        <img
+                            class="rating__star"
+                            src="img/buttons/half-star.png"
+                            alt="half-star"
+                        />
+                        <p class="rating__value">
+                            ${item.rating} / 5
+                        </p>
+                    </div>
+                    <div class="bag__cost">
+                        <p class="bag__price">
+                            $ ${item.price} x ${item.amount}
+                        </p>
+                    </div>
+                </div>
+            </li>
+            `
+        })
+
+        takeOrderItemsListNode.innerHTML = takeOrderListHTML
     }
 
     renderError(error) {

@@ -105,14 +105,22 @@ export default class Model {
         this.orderCost = 0;
         this.bag.forEach((item) => {
             this.orderCost += item.price * item.amount;
+
         });
         console.log("bag: ", this.bag);
-        console.log(this.bagItemsIds);
         console.log(("order cost: ", this.orderCost));
     }
 
     getOrderCost() {
         return this.orderCost;
+    }
+
+    getDeliveryCost() {
+        return this.deliveryCost;
+    }
+
+    getFinalCost() {
+        return this.deliveryCost + this.orderCost;
     }
 
     // Errors
