@@ -418,17 +418,20 @@
                 </button>
             </div>
         </div>
-        <div class="pay-type-popup-wrapper">
+        <div id="paytypePopup" class="pay-type-popup-wrapper">
             <div class="pay-type-popup popup">
-                <div class="pay-type-popup__selector">
+                <!-- <div class="pay-type-popup__selector">
                     <img src="img/buttons/checkbox-selected.png" alt="" />
                     <p>Оплата картой при получении</p>
                 </div>
                 <div class="pay-type-popup__selector">
                     <img src="img/buttons/checkbox.png" alt="" />
                     <p>Оплата наличными при получении</p>
-                </div>
-                <button class="popup__btn black-btn">Сохранить</button>
+                </div> -->
+                <select name="paytype">
+                    <option value="Оплата картой при получении"></option>
+                </select>
+                <button id="saveNewPaytype" class="popup__btn black-btn">Сохранить</button>
             </div>
         </div>
 

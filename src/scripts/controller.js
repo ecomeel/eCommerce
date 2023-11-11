@@ -152,11 +152,24 @@ export default class Controller {
         );
 
         // Handler Change paytype
+        const changePaytypeBtnNode =
+            document.getElementById("changePaytypeBtn");
+        changePaytypeBtnNode.addEventListener(
+            "click",
+            this._handlerChangePaytype
+        );
 
         // Handler take order
     };
 
     // handlers
+    _handlerChangePaytype = () => {
+        const paytypePopupNode = document.getElementById('paytypePopup');
+        this.view.changeVisibilityPopup(paytypePopupNode);
+
+        const saveNewPaytypeBtnNode = document.getElementById('saveNewPaytype')
+    };
+
     _handlerChangeAddress = () => {
         const addressPopupNode = document.getElementById("addressPopup");
         this.view.changeVisibilityPopup(addressPopupNode);
@@ -164,7 +177,7 @@ export default class Controller {
         const saveNewAddressBtnNode =
             document.getElementById("saveNewAddressBtn");
         saveNewAddressBtnNode.addEventListener("click", () => {
-            this._handlerSaveAddress(addressPopupNode)
+            this._handlerSaveAddress(addressPopupNode);
         });
     };
 
@@ -175,15 +188,14 @@ export default class Controller {
         const phone = document.getElementById("newAddressPhone").value;
 
         if (!name && !street && !city && !phone) {
-            alert('Заполните все поля')
-            return
+            alert("Заполните все поля");
+            return;
         }
 
-        this.model.setAddress({name, street, city, phone});
+        this.model.setAddress({ name, street, city, phone });
         this.view.changeVisibilityPopup(addressPopupNode);
-        this.view.renderAddress(this.model.getAddress())
-
-    }
+        this.view.renderAddress(this.model.getAddress());
+    };
 
     _handlerChangeAmountItem = (e) => {
         const onElementClicked = e.target;
