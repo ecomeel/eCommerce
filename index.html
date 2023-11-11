@@ -29,8 +29,8 @@
                             <h2 class="bag__title">Проверьте корзину</h2>
                             <ul id="bagItemsList" class="bag__items"></ul>
                         </div>
-                        <div class="pre-order">
-                            <button class="go-back-btn">
+                        <div id="takeOrder" class="pre-order">
+                            <button id="goBackFromTakeOrder" class="go-back-btn">
                                 <img src="img/buttons/back.png" alt="" />
                                 <p class="go-back-btn__text">Назад в корзину</p>
                             </button>
@@ -461,7 +461,14 @@
                                 </button>
                             </div>
                             <div id="previewBagPrice" class="preview-price">
+                                <p id='previewOrderCost' class="preview-price__total">
+                                </p>
+                                <button id="previewGoTakeOrderBtn" class="black-btn preview-price__black-btn">
+                                    <img src="img/buttons/bag.png" alt="" />
+                                    <p>Оформление</p>
+                                </button>
                             </div>
+
                         </div>
                         <div id="previewOrders" class="preview-orders">
                             <h2 class="preview-title">Заказы</h2>
@@ -471,7 +478,7 @@
                                 <li class="preview-orders__order">#sdjfksdf</li>
                             </ul>
                         </div>
-                        <div class="preview-make-order">
+                        <div id="previewTakeOrder" class="preview-make-order">
                             <h3 class="preview-make-order__title">Сумма</h3>
                             <div class="preview-make-order__price">
                                 <p>Товары</p>

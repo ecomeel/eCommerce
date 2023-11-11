@@ -88,7 +88,8 @@ export default class Controller {
             previewGoBagBtnNode,
             previewBagPriceNode
         );
-        this.view.renderPreviewPrice(this.model.getOrderCost());
+        // this.view.renderPreviewPrice(this.model.getOrderCost());
+        this.view.renderPricePreview(this.model.getOrderCost())
         this.view.renderBag(this.model.getBag());
 
         // Кнопка возврата к списку товаров
@@ -104,9 +105,37 @@ export default class Controller {
         // Обработка добавление или уменьшения товаров
         const bagListNode = document.getElementById("bagItemsList");
         bagListNode.addEventListener("click", this._handlerChangeAmountItem);
+
+        // Go to take order
+        const goToTakeOrderBtn = document.getElementById(
+            "previewGoTakeOrderBtn"
+        );
+        goToTakeOrderBtn.addEventListener("click", this._handerOpenTakeOrder);
     };
 
     // handlers
+    _handerOpenTakeOrder = () => {
+        // Open new page
+        const bagNode = document.getElementById("bag");
+        const takeOrderNode = document.getElementById("takeOrder");
+        this.view.changeVisibilityPages(bagNode, takeOrderNode);
+
+        // Change preview
+        const previewBagNode = document.getElementById("previewBag");
+        const previewTakeOrder = document.getElementById("previewTakeOrder");
+        const previewBagPriceNode = document.getElementById("previewBagPrice");
+        this.view.changeVisibilityPages(previewBagNode, previewTakeOrder);
+        previewBagPriceNode.classList.remove("visible");
+
+        // Go back btn handler
+        const goBackBtnNode = document.getElementById("goBackFromTakeOrder");
+        goBackBtnNode.addEventListener("click", () => {
+            this.view.changeVisibilityPages(takeOrderNode, bagNode);
+            this.view.changeVisibilityPages(previewTakeOrder, previewBagNode);
+            previewBagPriceNode.classList.add("visible");
+        });
+    };
+
     _handlerChangeAmountItem = (e) => {
         const onElementClicked = e.target;
         const clickedItem = e.target.closest("li");
@@ -140,7 +169,7 @@ export default class Controller {
             this._handleAddItemToBag(clickedItemId);
         }
         this.view.renderBag(this.model.getBag());
-        this.view.renderPreviewPrice(this.model.getOrderCost());
+        this.view.renderPricePreview(this.model.getOrderCost())
     };
 
     _handleAddItemToBag(id) {
