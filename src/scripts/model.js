@@ -13,6 +13,8 @@ export default class Model {
         this.orderCost = 0;
         this.deliveryCost = 10;
 
+        this.address = {}
+
         this.errors = {
             noProduct: "Упс, ошибка. Такого товара нет.",
             emptyBag: "Корзина пуста",
@@ -121,6 +123,15 @@ export default class Model {
 
     getFinalCost() {
         return this.deliveryCost + this.orderCost;
+    }
+
+    // Address
+    setAddress(address) {
+        this.address = address
+    }
+
+    getAddress() {
+        return this.address
     }
 
     // Errors

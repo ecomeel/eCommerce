@@ -60,15 +60,15 @@ export default class View {
             <h3 class="preview-make-order__title">Сумма</h3>
             <div class="preview-make-order__price">
                 <p>Товары</p>
-                <p id="previewTakeOrderCost">$ ${orderCost}</p>
+                <p>$ ${orderCost}</p>
             </div>
             <div class="preview-make-order__price">
                 <p>Доставка</p>
-                <p id="previewTakeOrderDeliveryCost">$ ${deliveryCost}</p>
+                <p>$ ${deliveryCost}</p>
             </div>
             <div class="preview-make-order__total">
                 <p>Стоимость</p>
-                <p id="previewTakeOrderFinalCost">$ ${finalCost}</p>
+                <p>$ ${finalCost}</p>
             </div>
             <button id="previewTakeOrderBtn" class="black-btn">Разместить заказ</button>
         `
@@ -309,5 +309,10 @@ export default class View {
     changeVisibilityPages(closePage, openPage) {
         closePage.classList.remove(CLASSNAME_CHANGE_VISIBILITY);
         openPage.classList.add(CLASSNAME_CHANGE_VISIBILITY);
+    }
+
+    changeVisibilityPopup(popup) {
+        popup.classList.toggle('visible');
+        document.body.classList.toggle('fixe-scroll')
     }
 }

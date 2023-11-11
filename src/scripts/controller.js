@@ -89,7 +89,7 @@ export default class Controller {
             previewBagPriceNode
         );
         // this.view.renderPreviewPrice(this.model.getOrderCost());
-        this.view.renderPricePreview(this.model.getOrderCost())
+        this.view.renderPricePreview(this.model.getOrderCost());
         this.view.renderBag(this.model.getBag());
 
         // Кнопка возврата к списку товаров
@@ -113,7 +113,6 @@ export default class Controller {
         goToTakeOrderBtn.addEventListener("click", this._handerOpenTakeOrder);
     };
 
-    // handlers
     _handerOpenTakeOrder = () => {
         // Open new page
         const bagNode = document.getElementById("bag");
@@ -131,13 +130,10 @@ export default class Controller {
         const orderCost = this.model.getOrderCost();
         const deliveryCost = this.model.getDeliveryCost();
         const finalCost = this.model.getFinalCost();
-        this.view.renderPreviewTakeOrder(orderCost, deliveryCost, finalCost)
-
+        this.view.renderPreviewTakeOrder(orderCost, deliveryCost, finalCost);
 
         // Render itemList
-        this.view.renderTakeOrderItemsList(this.model.getBag())
-
-
+        this.view.renderTakeOrderItemsList(this.model.getBag());
 
         // Go back btn handler
         const goBackBtnNode = document.getElementById("goBackFromTakeOrder");
@@ -146,7 +142,45 @@ export default class Controller {
             this.view.changeVisibilityPages(previewTakeOrder, previewBagNode);
             previewBagPriceNode.classList.add("visible");
         });
+
+        // Handler Change Address
+        const changeAddressBtnNode =
+            document.getElementById("changeAddressBtn");
+        changeAddressBtnNode.addEventListener(
+            "click",
+            this._handlerChangeAddress
+        );
+
+        // Handler Change paytype
+
+        // Handler take order
     };
+
+    // handlers
+    _handlerChangeAddress = () => {
+        const addressPopupNode = document.getElementById("addressPopup");
+        this.view.changeVisibilityPopup(addressPopupNode);
+
+        const saveNewAddressBtnNode =
+            document.getElementById("saveNewAddressBtn");
+        saveNewAddressBtnNode.addEventListener("click", () => {
+            this._handlerSaveAddress()
+        });
+    };
+
+    _handlerSaveAddress = () => {
+        const name = document.getElementById("newAddressName").value;
+        const street = document.getElementById("newAddressStreet").value;
+        const city = document.getElementById("newAddressCity").value;
+        const phone = document.getElementById("newAddressPhone").value;
+
+        if (!name && !street && !city && !phone) {
+            alert('Заполните все поля')
+            return
+        }
+
+        this.model.setAddress({name, street, city, phone})
+    }
 
     _handlerChangeAmountItem = (e) => {
         const onElementClicked = e.target;
@@ -181,7 +215,7 @@ export default class Controller {
             this._handleAddItemToBag(clickedItemId);
         }
         this.view.renderBag(this.model.getBag());
-        this.view.renderPricePreview(this.model.getOrderCost())
+        this.view.renderPricePreview(this.model.getOrderCost());
     };
 
     _handleAddItemToBag(id) {
