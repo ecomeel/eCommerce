@@ -164,11 +164,11 @@ export default class Controller {
         const saveNewAddressBtnNode =
             document.getElementById("saveNewAddressBtn");
         saveNewAddressBtnNode.addEventListener("click", () => {
-            this._handlerSaveAddress()
+            this._handlerSaveAddress(addressPopupNode)
         });
     };
 
-    _handlerSaveAddress = () => {
+    _handlerSaveAddress = (addressPopupNode) => {
         const name = document.getElementById("newAddressName").value;
         const street = document.getElementById("newAddressStreet").value;
         const city = document.getElementById("newAddressCity").value;
@@ -179,7 +179,10 @@ export default class Controller {
             return
         }
 
-        this.model.setAddress({name, street, city, phone})
+        this.model.setAddress({name, street, city, phone});
+        this.view.changeVisibilityPopup(addressPopupNode);
+        this.view.renderAddress(this.model.getAddress())
+
     }
 
     _handlerChangeAmountItem = (e) => {

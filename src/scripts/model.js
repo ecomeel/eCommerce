@@ -127,7 +127,7 @@ export default class Model {
 
     // Address
     setAddress(address) {
-        this.address = address
+        this.address = {...address}
     }
 
     getAddress() {

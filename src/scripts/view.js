@@ -227,6 +227,7 @@ export default class View {
         
     }
 
+    //Take a order
     renderTakeOrderItemsList(bag) {
         const takeOrderItemsListNode = document.getElementById('takeOrderItemsList');
 
@@ -291,6 +292,14 @@ export default class View {
         })
 
         takeOrderItemsListNode.innerHTML = takeOrderListHTML
+    }
+
+    renderAddress(address) {
+        console.log(address)
+        document.getElementById('addressName').innerText = address.name;
+        document.getElementById('addressStreet').innerText = address.street;
+        document.getElementById('addressCity').innerText = address.city;
+        document.getElementById('addressPhone').innerText = address.phone;
     }
 
     renderError(error) {
