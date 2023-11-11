@@ -91,12 +91,14 @@ export default class Model {
         });
         if (isDeleteItem) {
             isDeleteItem = false;
+            const index = this.bagItemsIds.indexOf(id)
 
-            this.bagItemsIds = this.bagItemsIds.filter(
-                (itemId) => itemId !== id
-            );
+            // this.bagItemsIds = this.bagItemsIds.filter(
+            //     (itemId) => itemId !== id
+            // );
 
             this.bag = this.bag.filter((item) => item.id != id);
+            this.bagItemsIds.splice(index)
         }
         this._onBagChanges()
     }
@@ -108,6 +110,7 @@ export default class Model {
             this.orderCost += item.price * item.amount;
         })
         console.log("bag: ", this.bag);
+        console.log(this.bagItemsIds)
         console.log(('order cost: ', this.orderCost))
     }
 
