@@ -52,11 +52,13 @@ export default class View {
     }
 
     renderPricePreview(price) {
-        document.getElementById('previewOrderCost').innerText = `Сумма: $ ${price}`
+        document.getElementById(
+            "previewOrderCost"
+        ).innerText = `Сумма: $ ${price}`;
     }
 
     renderPreviewTakeOrder(orderCost, deliveryCost, finalCost) {
-        document.getElementById('previewTakeOrder').innerHTML = `
+        document.getElementById("previewTakeOrder").innerHTML = `
             <h3 class="preview-make-order__title">Сумма</h3>
             <div class="preview-make-order__price">
                 <p>Товары</p>
@@ -71,7 +73,7 @@ export default class View {
                 <p>$ ${finalCost}</p>
             </div>
             <button id="previewTakeOrderBtn" class="black-btn">Разместить заказ</button>
-        `
+        `;
     }
 
     renderItemCard(item) {
@@ -224,16 +226,16 @@ export default class View {
             </li>`;
         });
         bagItemsListNode.innerHTML = bagHTML;
-        
     }
 
     //Take a order
     renderTakeOrderItemsList(bag) {
-        const takeOrderItemsListNode = document.getElementById('takeOrderItemsList');
+        const takeOrderItemsListNode =
+            document.getElementById("takeOrderItemsList");
 
-        let takeOrderListHTML = '';
+        let takeOrderListHTML = "";
 
-        bag.forEach(item => {
+        bag.forEach((item) => {
             takeOrderListHTML += `
             <li class="bag__item bag-item">
                 <img
@@ -288,18 +290,30 @@ export default class View {
                     </div>
                 </div>
             </li>
-            `
-        })
+            `;
+        });
 
-        takeOrderItemsListNode.innerHTML = takeOrderListHTML
+        takeOrderItemsListNode.innerHTML = takeOrderListHTML;
     }
 
     renderAddress(address) {
-        console.log(address)
-        document.getElementById('addressName').innerText = address.name;
-        document.getElementById('addressStreet').innerText = address.street;
-        document.getElementById('addressCity').innerText = address.city;
-        document.getElementById('addressPhone').innerText = address.phone;
+        console.log(address);
+        document.getElementById("addressName").innerText = address.name;
+        document.getElementById("addressStreet").innerText = address.street;
+        document.getElementById("addressCity").innerText = address.city;
+        document.getElementById("addressPhone").innerText = address.phone;
+    }
+
+    renderPaytype(paytypeMessage, selectedPaytype) {
+        document.getElementById('selectedPaytype').innerHTML = 
+        `
+        <img
+            class="pay-type__result-img"
+            src="img/buttons/${selectedPaytype}-pay.png"
+            alt="card"
+        />
+        <p>${paytypeMessage}</p>
+        `
     }
 
     renderError(error) {
@@ -321,7 +335,7 @@ export default class View {
     }
 
     changeVisibilityPopup(popup) {
-        popup.classList.toggle('visible');
-        document.body.classList.toggle('fixe-scroll')
+        popup.classList.toggle("visible");
+        document.body.classList.toggle("fixe-scroll");
     }
 }

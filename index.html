@@ -73,14 +73,14 @@
                                     Способ оплаты
                                 </h2>
                                 <div class="pay-type__selector">
-                                    <p class="pay-type__result">
+                                    <div id="selectedPaytype" class="pay-type__result">
                                         <img
                                             class="pay-type__result-img"
                                             src="img/buttons/card-pay.png"
                                             alt="card"
                                         />
-                                        Оплата картой при получении
-                                    </p>
+                                        <p>Оплата картой при получении</p>
+                                    </div>
                                     <button
                                         id="changePaytypeBtn"
                                         class="pre-order__change-btn pay-type__change-btn"
@@ -433,7 +433,7 @@
                     <label for="paytypeCard">
                         <input
                             type="radio"
-                            value="Оплата картой при получении"
+                            value="card"
                             name="paytype"
                             id="paytypeCard"
                             class="pay-type-popup__real-radio"
@@ -447,7 +447,7 @@
                     <label for="paytypeCash">
                         <input
                             type="radio"
-                            value="Оплата наличными при получении"
+                            value="cash"
                             name="paytype"
                             id="paytypeCash"
                             class="pay-type-popup__real-radio"

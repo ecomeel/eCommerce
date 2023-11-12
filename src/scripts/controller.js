@@ -165,21 +165,43 @@ export default class Controller {
     // handlers
     _handlerChangePaytype = () => {
         const paytypePopupNode = document.getElementById('paytypePopup');
-        this.view.changeVisibilityPopup(paytypePopupNode);
+        paytypePopupNode.classList.add('visible');
+        document.body.classList.add("fixe-scroll");
 
-        const saveNewPaytypeBtnNode = document.getElementById('saveNewPaytype')
+        const saveNewPaytypeBtnNode = document.getElementById('saveNewPaytype');
+        saveNewPaytypeBtnNode.addEventListener('click', () => {
+            this._handlerSavePaytype(paytypePopupNode)
+        })
     };
 
     _handlerChangeAddress = () => {
         const addressPopupNode = document.getElementById("addressPopup");
-        this.view.changeVisibilityPopup(addressPopupNode);
+        // this.view.changeVisibilityPopup(addressPopupNode);
+        addressPopupNode.classList.add('visible');
+        document.body.classList.add("fixe-scroll");
 
         const saveNewAddressBtnNode =
             document.getElementById("saveNewAddressBtn");
         saveNewAddressBtnNode.addEventListener("click", () => {
             this._handlerSaveAddress(addressPopupNode);
         });
+
     };
+
+
+    _handlerSavePaytype = (paytypePopupNode) => {
+        const radioBtns = paytypePopupNode.querySelectorAll('.pay-type-popup__real-radio');
+        radioBtns.forEach(element => {
+            if (element.checked) {
+                this.model.setPaytype(element.value)
+            }
+        });
+
+        // this.view.changeVisibilityPopup(paytypePopupNode);
+        paytypePopupNode.classList.remove('visible');
+        document.body.classList.remove("fixe-scroll");
+        this.view.renderPaytype(this.model.getPayTypeMessage(), this.model.selectedPaytype);
+    }
 
     _handlerSaveAddress = (addressPopupNode) => {
         const name = document.getElementById("newAddressName").value;
@@ -193,7 +215,8 @@ export default class Controller {
         }
 
         this.model.setAddress({ name, street, city, phone });
-        this.view.changeVisibilityPopup(addressPopupNode);
+        addressPopupNode.classList.remove('visible');
+        document.body.classList.remove("fixe-scroll");
         this.view.renderAddress(this.model.getAddress());
     };
 

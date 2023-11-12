@@ -15,6 +15,12 @@ export default class Model {
 
         this.address = {}
 
+        this.paytypes = {
+            card: 'Оплата картой при получении',
+            cash: 'Оплата наличными при получении'
+        }
+        this.selectedPaytype = 'card';
+
         this.errors = {
             noProduct: "Упс, ошибка. Такого товара нет.",
             emptyBag: "Корзина пуста",
@@ -132,6 +138,15 @@ export default class Model {
 
     getAddress() {
         return this.address
+    }
+
+    // Paytype
+    setPaytype(paytype) {
+        this.selectedPaytype = paytype
+    }
+
+    getPayTypeMessage() {
+        return this.paytypes[this.selectedPaytype];
     }
 
     // Errors
