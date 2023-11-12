@@ -58,22 +58,9 @@ export default class View {
     }
 
     renderPreviewTakeOrder(orderCost, deliveryCost, finalCost) {
-        document.getElementById("previewTakeOrder").innerHTML = `
-            <h3 class="preview-make-order__title">Сумма</h3>
-            <div class="preview-make-order__price">
-                <p>Товары</p>
-                <p>$ ${orderCost}</p>
-            </div>
-            <div class="preview-make-order__price">
-                <p>Доставка</p>
-                <p>$ ${deliveryCost}</p>
-            </div>
-            <div class="preview-make-order__total">
-                <p>Стоимость</p>
-                <p>$ ${finalCost}</p>
-            </div>
-            <button id="previewTakeOrderBtn" class="black-btn">Разместить заказ</button>
-        `;
+        document.getElementById('previewTakeOrderCost').innerText = `$ ${orderCost}`;
+        document.getElementById('previewTakeOrderDeliveryCost').innerText = `$ ${deliveryCost}`;
+        document.getElementById('previewTakeOrderFinalCost').innerText = `$ ${finalCost}`;
     }
 
     renderItemCard(item) {

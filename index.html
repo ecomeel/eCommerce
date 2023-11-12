@@ -103,7 +103,10 @@
                             </div>
                         </div>
                         <div id="createdOrder" class="order">
-                            <button id="goItemsFromCreatedOrderBtn" class="go-back-btn">
+                            <button
+                                id="goItemsFromCreatedOrderBtn"
+                                class="go-back-btn"
+                            >
                                 <img src="img/buttons/back.png" alt="" />
                                 <p class="go-back-btn__text">Список товаров</p>
                             </button>
@@ -346,8 +349,27 @@
                             </ul>
                         </div>
                         <div id="previewTakeOrder" class="preview-make-order">
+                            <h3 class="preview-make-order__title">Сумма</h3>
+                            <div class="preview-make-order__price">
+                                <p>Товары</p>
+                                <p id="previewTakeOrderCost"></p>
+                            </div>
+                            <div class="preview-make-order__price">
+                                <p>Доставка</p>
+                                <p id="previewTakeOrderDeliveryCost"></p>
+                            </div>
+                            <div class="preview-make-order__total">
+                                <p>Стоимость</p>
+                                <p id="previewTakeOrderFinalCost"></p>
+                            </div>
+                            <button id="previewTakeOrderBtn" class="black-btn">
+                                Разместить заказ
+                            </button>
                         </div>
-                        <div id="previewCreatedOrder" class="preview-make-order preview-order-done">
+                        <div
+                            id="previewCreatedOrder"
+                            class="preview-make-order preview-order-done"
+                        >
                             <h3 class="preview-make-order__title">Сумма</h3>
                             <div class="preview-make-order__price">
                                 <p>Товары</p>

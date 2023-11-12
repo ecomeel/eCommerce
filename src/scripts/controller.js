@@ -22,7 +22,7 @@ export default class Controller {
         this.view.renderPreviewBag(this.model.getBag());
 
         this.model.setOrders(this.api.getOrders());
-        // render prev orders
+        // render ids prev orders on stare page
     }
 
     // Open new pages
