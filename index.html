@@ -45,11 +45,18 @@
                                     Адрес доставки
                                 </h2>
                                 <div class="address__content">
-                                    <p id="addressName" class="address__name">Витя Иванов</p>
-                                    <p id="addressStreet" class="address__street">
+                                    <p id="addressName" class="address__name">
+                                        Витя Иванов
+                                    </p>
+                                    <p
+                                        id="addressStreet"
+                                        class="address__street"
+                                    >
                                         Ленинградское шоссе, 27
                                     </p>
-                                    <p id="addressCity" class="address__city">Москва</p>
+                                    <p id="addressCity" class="address__city">
+                                        Москва
+                                    </p>
                                     <p id="addressPhone" class="address__phone">
                                         +7 931 700 71 02
                                     </p>
@@ -405,7 +412,9 @@
                     />
                 </div>
                 <div class="address-popup__form">
-                    <label class="address-popup__label" for="newAddressPhone">Телефон</label>
+                    <label class="address-popup__label" for="newAddressPhone"
+                        >Телефон</label
+                    >
                     <input
                         id="newAddressPhone"
                         class="address-popup__input"
@@ -420,18 +429,36 @@
         </div>
         <div id="paytypePopup" class="pay-type-popup-wrapper">
             <div class="pay-type-popup popup">
-                <!-- <div class="pay-type-popup__selector">
-                    <img src="img/buttons/checkbox-selected.png" alt="" />
-                    <p>Оплата картой при получении</p>
+                <div class="pay-type-popup__selector">
+                    <label for="paytypeCard">
+                        <input
+                            type="radio"
+                            value="Оплата картой при получении"
+                            name="paytype"
+                            id="paytypeCard"
+                            class="pay-type-popup__real-radio"
+                            checked
+                        />
+                        <span class="pay-type-popup__custom-radio"></span>
+                        Оплата картой при получении
+                    </label>
                 </div>
                 <div class="pay-type-popup__selector">
-                    <img src="img/buttons/checkbox.png" alt="" />
-                    <p>Оплата наличными при получении</p>
-                </div> -->
-                <select name="paytype">
-                    <option value="Оплата картой при получении"></option>
-                </select>
-                <button id="saveNewPaytype" class="popup__btn black-btn">Сохранить</button>
+                    <label for="paytypeCash">
+                        <input
+                            type="radio"
+                            value="Оплата наличными при получении"
+                            name="paytype"
+                            id="paytypeCash"
+                            class="pay-type-popup__real-radio"
+                        />
+                        <span class="pay-type-popup__custom-radio"></span>
+                        Оплата наличными при получении
+                    </label>
+                </div>
+                <button id="saveNewPaytype" class="popup__btn black-btn">
+                    Сохранить
+                </button>
             </div>
         </div>
 
