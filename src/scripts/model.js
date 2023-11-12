@@ -21,6 +21,8 @@ export default class Model {
         }
         this.selectedPaytype = 'card';
 
+        this.newOrderId = 1;
+
         this.errors = {
             noProduct: "Упс, ошибка. Такого товара нет.",
             emptyBag: "Корзина пуста",

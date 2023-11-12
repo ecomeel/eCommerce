@@ -114,6 +114,11 @@ export default class Controller {
     };
 
     _handerOpenTakeOrder = () => {
+        if (this.model.getBag().length == 0) {
+            this._showEror("emptyOrder");
+            return;
+        }
+
         // Open new page
         const bagNode = document.getElementById("bag");
         const takeOrderNode = document.getElementById("takeOrder");
@@ -162,7 +167,38 @@ export default class Controller {
         );
 
         // Handler take order
+        const takeOrderBtnNode = document.getElementById('previewTakeOrderBtn');
+        takeOrderBtnNode.addEventListener('click', this._handlerTakeOrder)
     };
+
+    _handlerTakeOrder = () => {
+
+        // open new page
+        const takeOrderNode = document.getElementById('takeOrder');
+        const createdOrderNode = document.getElementById('createdOrder');
+        this.view.changeVisibilityPages(takeOrderNode, createdOrderNode);
+
+        //render created order
+        // this.view.renderCreatedOrder() 
+
+        // change preview
+        const previewTakeOrderNode = document.getElementById('previewTakeOrder');
+        const previewCreatedOrderNode = document.getElementById('previewCreatedOrder');
+        this.view.changeVisibilityPages(previewTakeOrderNode, previewCreatedOrderNode);
+
+        // render preview
+        // this.view.renderPreviewCreatedOrder()
+
+
+        // // hadnle go back
+        // const goItemsBtnNode = document.getElementById('goItemsFromCreatedOrderBtn');
+        // goItemsBtnNode.addEventListener('click', () => {
+        //     const createdOrderNode = document.getElementById('createdOrder');
+        //     const itemsNode = document.getElementById('previewItemsWrapper');
+        //     this.view.changeVisibilityPages(createdOrderNode, itemsNode);
+
+        // })
+    }
 
     // handlers
     _handlerChangePaytype = () => {

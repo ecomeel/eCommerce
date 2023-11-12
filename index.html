@@ -73,7 +73,10 @@
                                     Способ оплаты
                                 </h2>
                                 <div class="pay-type__selector">
-                                    <div id="selectedPaytype" class="pay-type__result">
+                                    <div
+                                        id="selectedPaytype"
+                                        class="pay-type__result"
+                                    >
                                         <img
                                             class="pay-type__result-img"
                                             src="img/buttons/card-pay.png"
@@ -99,8 +102,8 @@
                                 ></ul>
                             </div>
                         </div>
-                        <div class="order">
-                            <button class="go-back-btn">
+                        <div id="createdOrder" class="order">
+                            <button id="goItemsFromCreatedOrderBtn" class="go-back-btn">
                                 <img src="img/buttons/back.png" alt="" />
                                 <p class="go-back-btn__text">Список товаров</p>
                             </button>
@@ -342,11 +345,9 @@
                                 <li class="preview-orders__order">#sdjfksdf</li>
                             </ul>
                         </div>
-                        <div
-                            id="previewTakeOrder"
-                            class="preview-make-order"
-                        ></div>
-                        <div class="preview-make-order preview-order-done">
+                        <div id="previewTakeOrder" class="preview-make-order">
+                        </div>
+                        <div id="previewCreatedOrder" class="preview-make-order preview-order-done">
                             <h3 class="preview-make-order__title">Сумма</h3>
                             <div class="preview-make-order__price">
                                 <p>Товары</p>
