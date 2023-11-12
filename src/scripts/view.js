@@ -307,12 +307,12 @@ export default class View {
     renderPaytype(paytypeMessage, selectedPaytype) {
         document.getElementById('selectedPaytype').innerHTML = 
         `
-        <img
-            class="pay-type__result-img"
-            src="img/buttons/${selectedPaytype}-pay.png"
-            alt="card"
-        />
-        <p>${paytypeMessage}</p>
+            <img
+                class="pay-type__result-img"
+                src="img/buttons/${selectedPaytype}-pay.png"
+                alt="card"
+            />
+            <p>${paytypeMessage}</p>
         `
     }
 

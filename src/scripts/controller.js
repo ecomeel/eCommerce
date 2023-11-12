@@ -151,6 +151,8 @@ export default class Controller {
             this._handlerChangeAddress
         );
 
+
+        this.view.renderPaytype(this.model.getPayTypeMessage(), this.model.selectedPaytype);
         // Handler Change paytype
         const changePaytypeBtnNode =
             document.getElementById("changePaytypeBtn");
@@ -197,7 +199,6 @@ export default class Controller {
             }
         });
 
-        // this.view.changeVisibilityPopup(paytypePopupNode);
         paytypePopupNode.classList.remove('visible');
         document.body.classList.remove("fixe-scroll");
         this.view.renderPaytype(this.model.getPayTypeMessage(), this.model.selectedPaytype);
