@@ -20,6 +20,9 @@ export default class Controller {
 
         this.model.setBag(this.api.getBagItems());
         this.view.renderPreviewBag(this.model.getBag());
+
+        this.model.setOrders(this.api.getOrders());
+        // render prev orders
     }
 
     // Open new pages
@@ -172,6 +175,8 @@ export default class Controller {
     };
 
     _handlerTakeOrder = () => {
+        // Create new order && addd it to orders list
+        this.model.takeOrder()
 
         // open new page
         const takeOrderNode = document.getElementById('takeOrder');

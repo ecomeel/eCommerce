@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
 import normalizedItems from "./utils/normalizedItems.js";
-import normalizedBag from "./utils/normalizedBag.js";
 
 export default class Model {
     constructor() {
@@ -22,6 +21,7 @@ export default class Model {
         this.selectedPaytype = 'card';
 
         this.newOrderId = 1;
+        this.orders = [];
 
         this.errors = {
             noProduct: "Упс, ошибка. Такого товара нет.",
@@ -131,6 +131,27 @@ export default class Model {
 
     getFinalCost() {
         return this.deliveryCost + this.orderCost;
+    }
+
+    // new order
+    takeOrder() {
+        const newOrder = {
+            id: this.newOrderId,
+            order: this.bag,
+            cost: this.getFinalCost(),
+            paytype: this.selectedPaytype,
+            address: this.address
+        }
+        this.orders.push(this.newOrder);
+        this.newOrderId += 1;
+    }
+
+    setOrders(orders) {
+        this.orders = orders
+    }
+
+    getOrders() {
+        return this.orders
     }
 
     // Address
