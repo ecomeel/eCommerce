@@ -34,6 +34,7 @@ export default class View {
         });
         this.itemsListNode.innerHTML = itemsListHTML;
     }
+    
 
     renderPreviewBag(bag) {
         let previewBagHTML = "";
