@@ -22,9 +22,7 @@ export default class Controller {
         this.view.renderPreviewBag(this.model.getBag());
 
         this.model.setOrders(this.api.getOrders());
-        // console.log(this.model.getCompletedOrders())
         this.view.renderPreviewCompletedOrders(this.model.getCompletedOrders())
-        // this.view.renderPreviewCompletedOrders(this.model.getCompletedOrders())
     }
 
     // Open new pages
@@ -178,7 +176,7 @@ export default class Controller {
 
     _handlerTakeOrder = () => {
         // Create new order && addd it to orders list
-        this.model.takeOrder()
+        this.model.addNewOrder()
 
         // open new page
         const takeOrderNode = document.getElementById('takeOrder');
@@ -186,7 +184,7 @@ export default class Controller {
         this.view.changeVisibilityPages(takeOrderNode, createdOrderNode);
 
         //render created order
-        // this.view.renderCreatedOrder() 
+        this.view.renderNewOrder(this.model.getNewOrder())
 
         // change preview
         const previewTakeOrderNode = document.getElementById('previewTakeOrder');

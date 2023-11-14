@@ -304,6 +304,113 @@ export default class View {
         takeOrderItemsListNode.innerHTML = takeOrderListHTML;
     }
 
+    //new Order
+    renderNewOrder(newOrder) {
+        const createdOrderNode = document.getElementById("createdOrder");
+
+        const newOrderTitleHTML = `
+            <h2 class="order__title">Заказ №${newOrder.id}</h2>
+        `;
+
+        const newOrderAddressHTML = `
+        <div class="address">
+            <h2 class="order__title subtitle">
+                Адрес доставки
+            </h2>
+            <div class="address__content">
+                <p class="address__name">${newOrder.address.name}</p>
+                <p class="address__street">
+                    ${newOrder.address.street}
+                </p>
+                <p class="address__city">${newOrder.address.city}</p>
+                <p class="address__phone">
+                    ${newOrder.address.phone}
+                </p>
+            </div>
+        </div>
+        `;
+        const newOrderPaytypeHTML = `
+        <div class="pay-type">
+            <h2 class="order__title subtitle">
+                Способ оплаты
+            </h2>
+            <div class="pay-type__selector">
+                <p class="pay-type__result">
+                    <img
+                        class="pay-type__result-img"
+                        src="img/buttons/${newOrder.paytype.selectedPaytype}-pay.png"
+                        alt="card"
+                    />
+                    ${newOrder.paytype.paytypeMessage}
+                </p>
+            </div>
+        </div>
+        `;
+        let ordersListHTML = "";
+        newOrder.order.forEach((item) => {
+            ordersListHTML += `
+            <li class="bag__item bag-item">
+                <img
+                    class="bag-item__img"
+                    src=${item.imgSrc}
+                    alt=${item.name}
+                />
+                <div class="bag-item__text">
+                    <h3 class="bag-item__name">
+                        ${item.name}
+                    </h3>
+                    <p class="bag-item__model">
+                        ${item.model}
+                    </p>
+                    <p class="bag-item__description">
+                        ${item.shortDesc}
+                    </p>
+                    <div class="rating">
+                        <img
+                            class="rating__star"
+                            src="img/buttons/star.png"
+                            alt="star"
+                        />
+                        <img
+                            class="rating__star"
+                            src="img/buttons/star.png"
+                            alt="star"
+                        />
+                        <img
+                            class="rating__star"
+                            src="img/buttons/star.png"
+                            alt="star"
+                        />
+                        <img
+                            class="rating__star"
+                            src="img/buttons/star.png"
+                            alt="star"
+                        />
+                        <img
+                            class="rating__star"
+                            src="img/buttons/half-star.png"
+                            alt="half-star"
+                        />
+                        <p class="rating__value">${item.rating} / 5</p>
+                    </div>
+                    <div class="bag__cost">
+                        <p class="bag__price">
+                            $ ${item.price} x ${item.amount}
+                        </p>
+                    </div>
+                </div>
+            </li>
+            `;
+        });
+        const newOrderBagListHTML = `
+        <ul class="order__bag-list">
+            ${ordersListHTML}
+        </ul>
+        `;
+
+        createdOrderNode.innerHTML += newOrderTitleHTML + newOrderAddressHTML + newOrderPaytypeHTML + newOrderBagListHTML;
+    }
+
     renderAddress(address) {
         console.log(address);
         document.getElementById("addressName").innerText = address.name;

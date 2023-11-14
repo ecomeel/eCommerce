@@ -12,15 +12,16 @@ export default class Model {
         this.orderCost = 0;
         this.deliveryCost = 10;
 
-        this.address = {}
+        this.address = {};
 
         this.paytypes = {
-            card: 'Оплата картой при получении',
-            cash: 'Оплата наличными при получении'
-        }
-        this.selectedPaytype = 'card';
+            card: "Оплата картой при получении",
+            cash: "Оплата наличными при получении",
+        };
+        this.selectedPaytype = "card";
 
         this.newOrderId = 1;
+        this.newOrder = {};
         this.orders = [];
 
         this.errors = {
@@ -115,7 +116,6 @@ export default class Model {
         this.orderCost = 0;
         this.bag.forEach((item) => {
             this.orderCost += item.price * item.amount;
-
         });
         console.log("bag: ", this.bag);
         console.log(("order cost: ", this.orderCost));
@@ -134,38 +134,45 @@ export default class Model {
     }
 
     // new order
-    takeOrder() {
-        const newOrder = {
+    addNewOrder() {
+        this.newOrder = {
             id: this.newOrderId,
             order: this.bag,
             cost: this.getFinalCost(),
-            paytype: this.selectedPaytype,
-            address: this.address
-        }
+            paytype: {
+                selectedPaytype: this.selectedPaytype,
+                paytypeMessage: this.getPayTypeMessage(),
+            },
+            address: this.address,
+        };
         this.orders.push(this.newOrder);
         this.newOrderId += 1;
     }
 
     setOrders(orders) {
-        this.orders = orders
+        this.orders = orders;
+    }
+
+    getNewOrder() {
+        return this.newOrder;
     }
 
     getCompletedOrders() {
-        return this.orders
+        return this.orders;
     }
 
     // Address
     setAddress(address) {
-        this.address = {...address}
+        this.address = { ...address };
     }
 
     getAddress() {
-        return this.address
+        return this.address;
     }
 
     // Paytype
     setPaytype(paytype) {
-        this.selectedPaytype = paytype
+        this.selectedPaytype = paytype;
     }
 
     getPayTypeMessage() {
