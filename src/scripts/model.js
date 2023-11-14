@@ -158,6 +158,10 @@ export default class Model {
         this.orders = orders;
     }
 
+    getOrders() {
+        return this.orders
+    }
+
     getNewOrder() {
         return this.newOrder;
     }

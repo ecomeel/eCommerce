@@ -210,13 +210,32 @@ export default class Controller {
         this.model.clearOldDatas();
 
         // handler go to items btn
-        const 
-
-
+        const goStartPage = document.getElementById("goStartPage");
+        goStartPage.addEventListener("click", this._handlerGoStartPage);
         // })
     };
 
     // handlers
+    _handlerGoStartPage = () => {
+        // render go to start page
+        const createdOrderNode = document.getElementById("createdOrder");
+        const startPageNode = document.getElementById('previewItemsWrapper')
+        createdOrderNode.classList.remove('visible');
+        startPageNode.classList.add('visible');
+
+        //render preview start page
+        const previewCreatedOrderNode = document.getElementById('previewCreatedOrder');
+        const previewStartPageNode = document.getElementById('previewBag');
+        const previewGoBagBtnNode = document.getElementById('previewGoBagBtn');
+        previewCreatedOrderNode.classList.remove('visible');
+        previewStartPageNode.classList.add('visible');
+        previewGoBagBtnNode.classList.add('visible');
+
+        this.view.renderPreviewBag(this.model.getBag())
+        this.view.renderPreviewCompletedOrders(this.model.getOrders())
+
+    }
+
     _handlerChangePaytype = () => {
         const paytypePopupNode = document.getElementById("paytypePopup");
         paytypePopupNode.classList.add("visible");
