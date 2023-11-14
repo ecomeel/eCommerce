@@ -206,12 +206,12 @@ export default class Controller {
             this.model.getFinalCost()
         );
 
-        // // hadnle go back
-        // const goItemsBtnNode = document.getElementById('goItemsFromCreatedOrderBtn');
-        // goItemsBtnNode.addEventListener('click', () => {
-        //     const createdOrderNode = document.getElementById('createdOrder');
-        //     const itemsNode = document.getElementById('previewItemsWrapper');
-        //     this.view.changeVisibilityPages(createdOrderNode, itemsNode);
+        // Clear old datas
+        this.model.clearOldDatas();
+
+        // handler go to items btn
+        const 
+
 
         // })
     };

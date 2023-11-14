@@ -13,10 +13,10 @@ export default class Model {
         this.deliveryCost = 10;
 
         this.address = {
-            name: 'name',
-            street: 'street',
-            city: 'City',
-            phone: 'phone'
+            name: "name",
+            street: "street",
+            city: "City",
+            phone: "phone",
         };
 
         this.paytypes = {
@@ -188,5 +188,22 @@ export default class Model {
 
     getTextByError(error) {
         return this.errors[error];
+    }
+
+    // clear old data
+    clearOldDatas() {
+        this.bagItemsIds = [];
+        this.bag = [];
+        this.orderCost = 0;
+
+        this.address = {
+            name: "name",
+            street: "street",
+            city: "City",
+            phone: "phone",
+        };
+
+        this.selectedPaytype = "card";
+        this.newOrder = {};
     }
 }
