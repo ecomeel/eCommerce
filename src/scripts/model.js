@@ -12,7 +12,12 @@ export default class Model {
         this.orderCost = 0;
         this.deliveryCost = 10;
 
-        this.address = {};
+        this.address = {
+            name: 'name',
+            street: 'street',
+            city: 'City',
+            phone: 'phone'
+        };
 
         this.paytypes = {
             card: "Оплата картой при получении",
@@ -143,7 +148,7 @@ export default class Model {
                 selectedPaytype: this.selectedPaytype,
                 paytypeMessage: this.getPayTypeMessage(),
             },
-            address: this.address,
+            address: this.getAddress(),
         };
         this.orders.push(this.newOrder);
         this.newOrderId += 1;

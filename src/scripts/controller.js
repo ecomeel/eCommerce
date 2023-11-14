@@ -22,7 +22,7 @@ export default class Controller {
         this.view.renderPreviewBag(this.model.getBag());
 
         this.model.setOrders(this.api.getOrders());
-        this.view.renderPreviewCompletedOrders(this.model.getCompletedOrders())
+        this.view.renderPreviewCompletedOrders(this.model.getCompletedOrders());
     }
 
     // Open new pages
@@ -159,8 +159,10 @@ export default class Controller {
             this._handlerChangeAddress
         );
 
-
-        this.view.renderPaytype(this.model.getPayTypeMessage(), this.model.selectedPaytype);
+        this.view.renderPaytype(
+            this.model.getPayTypeMessage(),
+            this.model.selectedPaytype
+        );
         // Handler Change paytype
         const changePaytypeBtnNode =
             document.getElementById("changePaytypeBtn");
@@ -170,30 +172,39 @@ export default class Controller {
         );
 
         // Handler take order
-        const takeOrderBtnNode = document.getElementById('previewTakeOrderBtn');
-        takeOrderBtnNode.addEventListener('click', this._handlerTakeOrder)
+        const takeOrderBtnNode = document.getElementById("previewTakeOrderBtn");
+        takeOrderBtnNode.addEventListener("click", this._handlerTakeOrder);
     };
 
     _handlerTakeOrder = () => {
         // Create new order && addd it to orders list
-        this.model.addNewOrder()
+        this.model.addNewOrder();
 
         // open new page
-        const takeOrderNode = document.getElementById('takeOrder');
-        const createdOrderNode = document.getElementById('createdOrder');
+        const takeOrderNode = document.getElementById("takeOrder");
+        const createdOrderNode = document.getElementById("createdOrder");
         this.view.changeVisibilityPages(takeOrderNode, createdOrderNode);
 
         //render created order
-        this.view.renderNewOrder(this.model.getNewOrder())
+        this.view.renderNewOrder(this.model.getNewOrder());
 
         // change preview
-        const previewTakeOrderNode = document.getElementById('previewTakeOrder');
-        const previewCreatedOrderNode = document.getElementById('previewCreatedOrder');
-        this.view.changeVisibilityPages(previewTakeOrderNode, previewCreatedOrderNode);
+        const previewTakeOrderNode =
+            document.getElementById("previewTakeOrder");
+        const previewCreatedOrderNode = document.getElementById(
+            "previewCreatedOrder"
+        );
+        this.view.changeVisibilityPages(
+            previewTakeOrderNode,
+            previewCreatedOrderNode
+        );
 
         // render preview
-        // this.view.renderPreviewCreatedOrder()
-
+        this.view.renderNewOrderPreview(
+            this.model.getOrderCost(),
+            this.model.getDeliveryCost(),
+            this.model.getFinalCost()
+        );
 
         // // hadnle go back
         // const goItemsBtnNode = document.getElementById('goItemsFromCreatedOrderBtn');
@@ -203,24 +214,23 @@ export default class Controller {
         //     this.view.changeVisibilityPages(createdOrderNode, itemsNode);
 
         // })
-    }
+    };
 
     // handlers
     _handlerChangePaytype = () => {
-        const paytypePopupNode = document.getElementById('paytypePopup');
-        paytypePopupNode.classList.add('visible');
+        const paytypePopupNode = document.getElementById("paytypePopup");
+        paytypePopupNode.classList.add("visible");
         document.body.classList.add("fixe-scroll");
 
-        const saveNewPaytypeBtnNode = document.getElementById('saveNewPaytype');
-        saveNewPaytypeBtnNode.addEventListener('click', () => {
-            this._handlerSavePaytype(paytypePopupNode)
-        })
+        const saveNewPaytypeBtnNode = document.getElementById("saveNewPaytype");
+        saveNewPaytypeBtnNode.addEventListener("click", () => {
+            this._handlerSavePaytype(paytypePopupNode);
+        });
     };
 
     _handlerChangeAddress = () => {
         const addressPopupNode = document.getElementById("addressPopup");
-        // this.view.changeVisibilityPopup(addressPopupNode);
-        addressPopupNode.classList.add('visible');
+        addressPopupNode.classList.add("visible");
         document.body.classList.add("fixe-scroll");
 
         const saveNewAddressBtnNode =
@@ -228,22 +238,25 @@ export default class Controller {
         saveNewAddressBtnNode.addEventListener("click", () => {
             this._handlerSaveAddress(addressPopupNode);
         });
-
     };
 
-
     _handlerSavePaytype = (paytypePopupNode) => {
-        const radioBtns = paytypePopupNode.querySelectorAll('.pay-type-popup__real-radio');
-        radioBtns.forEach(element => {
+        const radioBtns = paytypePopupNode.querySelectorAll(
+            ".pay-type-popup__real-radio"
+        );
+        radioBtns.forEach((element) => {
             if (element.checked) {
-                this.model.setPaytype(element.value)
+                this.model.setPaytype(element.value);
             }
         });
 
-        paytypePopupNode.classList.remove('visible');
+        paytypePopupNode.classList.remove("visible");
         document.body.classList.remove("fixe-scroll");
-        this.view.renderPaytype(this.model.getPayTypeMessage(), this.model.selectedPaytype);
-    }
+        this.view.renderPaytype(
+            this.model.getPayTypeMessage(),
+            this.model.selectedPaytype
+        );
+    };
 
     _handlerSaveAddress = (addressPopupNode) => {
         const name = document.getElementById("newAddressName").value;
@@ -257,7 +270,7 @@ export default class Controller {
         }
 
         this.model.setAddress({ name, street, city, phone });
-        addressPopupNode.classList.remove('visible');
+        addressPopupNode.classList.remove("visible");
         document.body.classList.remove("fixe-scroll");
         this.view.renderAddress(this.model.getAddress());
     };
