@@ -34,7 +34,6 @@ export default class View {
         });
         this.itemsListNode.innerHTML = itemsListHTML;
     }
-    
 
     renderPreviewBag(bag) {
         let previewBagHTML = "";
@@ -52,6 +51,21 @@ export default class View {
         this.previewBagItemsNode.innerHTML = previewBagHTML;
     }
 
+    renderPreviewCompletedOrders(orders) {
+        const completedOrdersListNode = document.getElementById(
+            "previewCompletedOrdersList"
+        );
+        let completedOrdersHTML = "";
+        orders.forEach((order) => {
+            completedOrdersHTML += `
+                <li class="preview-orders__order">
+                    <a>#${order.id}</a>
+                </li>
+            `;
+        });
+        completedOrdersListNode.innerHTML = completedOrdersHTML;
+    }
+
     renderPricePreview(price) {
         document.getElementById(
             "previewOrderCost"
@@ -59,9 +73,15 @@ export default class View {
     }
 
     renderPreviewTakeOrder(orderCost, deliveryCost, finalCost) {
-        document.getElementById('previewTakeOrderCost').innerText = `$ ${orderCost}`;
-        document.getElementById('previewTakeOrderDeliveryCost').innerText = `$ ${deliveryCost}`;
-        document.getElementById('previewTakeOrderFinalCost').innerText = `$ ${finalCost}`;
+        document.getElementById(
+            "previewTakeOrderCost"
+        ).innerText = `$ ${orderCost}`;
+        document.getElementById(
+            "previewTakeOrderDeliveryCost"
+        ).innerText = `$ ${deliveryCost}`;
+        document.getElementById(
+            "previewTakeOrderFinalCost"
+        ).innerText = `$ ${finalCost}`;
     }
 
     renderItemCard(item) {
@@ -293,15 +313,14 @@ export default class View {
     }
 
     renderPaytype(paytypeMessage, selectedPaytype) {
-        document.getElementById('selectedPaytype').innerHTML = 
-        `
+        document.getElementById("selectedPaytype").innerHTML = `
             <img
                 class="pay-type__result-img"
                 src="img/buttons/${selectedPaytype}-pay.png"
                 alt="card"
             />
             <p>${paytypeMessage}</p>
-        `
+        `;
     }
 
     renderError(error) {

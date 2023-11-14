@@ -22,7 +22,9 @@ export default class Controller {
         this.view.renderPreviewBag(this.model.getBag());
 
         this.model.setOrders(this.api.getOrders());
-        // render ids prev orders on stare page
+        // console.log(this.model.getCompletedOrders())
+        this.view.renderPreviewCompletedOrders(this.model.getCompletedOrders())
+        // this.view.renderPreviewCompletedOrders(this.model.getCompletedOrders())
     }
 
     // Open new pages

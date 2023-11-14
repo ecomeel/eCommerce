@@ -150,7 +150,7 @@ export default class Model {
         this.orders = orders
     }
 
-    getOrders() {
+    getCompletedOrders() {
         return this.orders
     }
 
