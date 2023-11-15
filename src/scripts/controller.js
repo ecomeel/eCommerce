@@ -214,6 +214,7 @@ export default class Controller {
         goStartPage.addEventListener("click", this._handlerGoStartPage);
         // })
     };
+    
 
     // handlers
     _handlerGoStartPage = () => {
