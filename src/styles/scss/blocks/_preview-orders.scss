@@ -10,5 +10,13 @@
     }
     &__order {
 
+        & > a {
+            &:hover {
+                border-bottom: 2px solid black;
+                cursor: pointer;
+                font-weight: 700;
+
+            }
+        }
     }
 }
