@@ -3,6 +3,7 @@ import Model from "./model";
 import Api from "./api";
 
 import "../styles/scss/style.scss";
+import { render } from "sass";
 
 export default class Controller {
     constructor() {
@@ -54,7 +55,18 @@ export default class Controller {
                 selectedOrder = order;
             }
         });
-        this.view.renderNewOrder(selectedOrder)
+        this.view.renderNewOrder(selectedOrder);
+        
+
+        const goBackNode = document.getElementById('goStartPage');
+        goBackNode.addEventListener('click', () => {
+            itemsListNode.classList.add('visible');
+            aboutOrderNode.classList.remove('visible');
+            previewItemsListNode.classList.add('visible');
+            previewOrdersListNode.classList.add('visible');
+            previewCreatedOrder.classList.remove('visible');
+
+        })
         
     };
     _handleOpenSelectedItem = (e) => {

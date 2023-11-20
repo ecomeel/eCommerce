@@ -315,7 +315,14 @@ export default class View {
         const newOrderTitleHTML = `
             <h2 class="order__title">Заказ №${newOrder.id}</h2>
         `;
-
+        const goBackBtnHTML = `
+        <button
+            id="goStartPage"
+            class="go-back-btn"
+        >
+            <img src="img/buttons/back.png" alt="back" />
+            <p class="go-back-btn__text">Список товаров</p>
+        </button>`
         const newOrderAddressHTML = `
         <div class="address">
             <h2 class="order__title subtitle">
@@ -413,7 +420,8 @@ export default class View {
         </ul>
         `;
 
-        createdOrderNode.innerHTML +=
+        createdOrderNode.innerHTML = 
+            goBackBtnHTML +
             newOrderTitleHTML +
             newOrderAddressHTML +
             newOrderPaytypeHTML +

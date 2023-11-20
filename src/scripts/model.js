@@ -9,6 +9,10 @@ export default class Model {
 
         this.bagItemsIds = [];
         this.bag = [];
+        this.cost = {
+            order: 0,
+            delivery: 10,
+        };
         this.orderCost = 0;
         this.deliveryCost = 10;
 
@@ -118,24 +122,24 @@ export default class Model {
 
     // Price
     _onBagChanges() {
-        this.orderCost = 0;
+        this.cost.order = 0;
         this.bag.forEach((item) => {
-            this.orderCost += item.price * item.amount;
+            this.cost.order += item.price * item.amount;
         });
         console.log("bag: ", this.bag);
-        console.log(("order cost: ", this.orderCost));
+        console.log(("order cost: ", this.cost.order));
     }
 
     getOrderCost() {
-        return this.orderCost;
+        return this.cost.order;
     }
 
     getDeliveryCost() {
-        return this.deliveryCost;
+        return this.cost.delivery;
     }
 
     getFinalCost() {
-        return this.deliveryCost + this.orderCost;
+        return this.cost.order + this.cost.delivery;
     }
 
     // new order
@@ -143,7 +147,7 @@ export default class Model {
         this.newOrder = {
             id: this.newOrderId,
             order: this.bag,
-            cost: this.getFinalCost(),
+            cost: { order: this.cost.order, delivery: this.cost.delivery },
             paytype: {
                 selectedPaytype: this.selectedPaytype,
                 paytypeMessage: this.getPayTypeMessage(),
@@ -159,7 +163,7 @@ export default class Model {
     }
 
     getOrders() {
-        return this.orders
+        return this.orders;
     }
 
     getNewOrder() {
@@ -198,7 +202,10 @@ export default class Model {
     clearOldDatas() {
         this.bagItemsIds = [];
         this.bag = [];
-        this.orderCost = 0;
+        this.cost = {
+            order: 0,
+            delivery: 10,
+        };
 
         this.address = {
             name: "name",
