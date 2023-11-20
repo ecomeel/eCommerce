@@ -482,10 +482,6 @@ export default class View {
         });
     }
 
-    changeVisibilityPages(closePage, openPage) {
-        closePage.classList.remove(CLASSNAME_CHANGE_VISIBILITY);
-        openPage.classList.add(CLASSNAME_CHANGE_VISIBILITY);
-    }
     changeVisibility(closePages, openPages) {
         closePages.forEach(closePage => {
             closePage.classList.remove(CLASSNAME_CHANGE_VISIBILITY);
@@ -495,8 +491,13 @@ export default class View {
         })
     }
 
-    changeVisibilityPopup(popup) {
-        popup.classList.toggle("visible");
-        document.body.classList.toggle("fixe-scroll");
+    openPopup(popupNode) {
+        popupNode.classList.add("visible");
+        document.body.classList.add("fixe-scroll");
+    }
+
+    closePopup(popupNode) {
+        popupNode.classList.remove('visible')
+        document.body.classList.remove("fixe-scroll")
     }
 }

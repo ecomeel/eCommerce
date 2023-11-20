@@ -36,7 +36,6 @@ export default class Controller {
 
         const itemsListNode = document.getElementById("previewItemsWrapper");
         const aboutOrderNode = document.getElementById("createdOrder");
-
         const previewItemsListNode = document.getElementById("previewBag");
         const previewOrdersListNode = document.getElementById(
             "previewCompletedOrders"
@@ -61,11 +60,6 @@ export default class Controller {
 
         const goBackNode = document.getElementById("goStartPage");
         goBackNode.addEventListener("click", () => {
-            // itemsListNode.classList.add("visible");
-            // aboutOrderNode.classList.remove("visible");
-            // previewItemsListNode.classList.add("visible");
-            // previewOrdersListNode.classList.add("visible");
-            // previewCreatedOrder.classList.remove("visible");
             this.view.changeVisibility(
                 [aboutOrderNode, previewCreatedOrder],
                 [itemsListNode, previewItemsListNode, previewOrdersListNode]
@@ -98,14 +92,13 @@ export default class Controller {
                 "previewItemsWrapper"
             );
             const itemCardNode = document.getElementById("itemCard");
-            this.view.changeVisibilityPages(itemsListNode, itemCardNode);
-
+            this.view.changeVisibility([itemsListNode], [itemCardNode]);
             this.view.renderItemCard(item);
 
             // Вернуться на прошлую страницу
             const backButton = document.getElementById("goBackToItemsBtn");
             backButton.addEventListener("click", () => {
-                this.view.changeVisibilityPages(itemCardNode, itemsListNode);
+                this.view.changeVisibility([itemCardNode], [itemsListNode]);
             });
 
             // Добавить товар в корзину
@@ -116,7 +109,6 @@ export default class Controller {
             });
         }
     };
-
     _handleOpenBag = () => {
         if (this.model.getBag().length == 0) {
             this._showEror("emptyBag");
@@ -127,26 +119,22 @@ export default class Controller {
         const itemsListNode = document.getElementById("previewItemsWrapper");
         const itemCardNode = document.getElementById("itemCard");
         const bagNode = document.getElementById("bag");
-        itemCardNode.classList.remove("visible");
-        this.view.changeVisibilityPages(itemsListNode, bagNode);
-
-        // Change visibility preview
         const previewGoBagBtnNode = document.getElementById("previewGoBagBtn");
         const previewBagPriceNode = document.getElementById("previewBagPrice");
-        this.view.changeVisibilityPages(
-            previewGoBagBtnNode,
-            previewBagPriceNode
+        this.view.changeVisibility(
+            [itemsListNode, itemCardNode, previewGoBagBtnNode],
+            [bagNode, previewBagPriceNode]
         );
+
         this.view.renderPricePreview(this.model.getCost().order);
         this.view.renderBag(this.model.getBag());
 
         // Кнопка возврата к списку товаров
         const goBackBtn = document.getElementById("goBackFromBagBtn");
         goBackBtn.addEventListener("click", () => {
-            this.view.changeVisibilityPages(bagNode, itemsListNode);
-            this.view.changeVisibilityPages(
-                previewBagPriceNode,
-                previewGoBagBtnNode
+            this.view.changeVisibility(
+                [bagNode, previewBagPriceNode],
+                [itemsListNode, previewGoBagBtnNode]
             );
         });
 
@@ -160,7 +148,6 @@ export default class Controller {
         );
         goToTakeOrderBtn.addEventListener("click", this._handerOpenTakeOrder);
     };
-
     _handerOpenTakeOrder = () => {
         if (this.model.getBag().length == 0) {
             this._showEror("emptyOrder");
@@ -170,14 +157,16 @@ export default class Controller {
         // Open new page
         const bagNode = document.getElementById("bag");
         const takeOrderNode = document.getElementById("takeOrder");
-        this.view.changeVisibilityPages(bagNode, takeOrderNode);
 
         // Change preview
         const previewBagNode = document.getElementById("previewBag");
         const previewTakeOrder = document.getElementById("previewTakeOrder");
         const previewBagPriceNode = document.getElementById("previewBagPrice");
-        this.view.changeVisibilityPages(previewBagNode, previewTakeOrder);
-        previewBagPriceNode.classList.remove("visible");
+
+        this.view.changeVisibility(
+            [bagNode, previewBagNode, previewBagPriceNode],
+            [takeOrderNode, previewTakeOrder]
+        );
 
         // render Preview
 
@@ -189,9 +178,10 @@ export default class Controller {
         // Go back btn handler
         const goBackBtnNode = document.getElementById("goBackFromTakeOrder");
         goBackBtnNode.addEventListener("click", () => {
-            this.view.changeVisibilityPages(takeOrderNode, bagNode);
-            this.view.changeVisibilityPages(previewTakeOrder, previewBagNode);
-            previewBagPriceNode.classList.add("visible");
+            this.view.changeVisibility(
+                [takeOrderNode, previewTakeOrder],
+                [bagNode, previewBagNode, previewBagPriceNode]
+            );
         });
 
         // Handler Change Address
@@ -218,7 +208,6 @@ export default class Controller {
         const takeOrderBtnNode = document.getElementById("previewTakeOrderBtn");
         takeOrderBtnNode.addEventListener("click", this._handlerTakeOrder);
     };
-
     _handlerTakeOrder = () => {
         // Create new order && addd it to orders list
         this.model.addNewOrder();
@@ -226,23 +215,20 @@ export default class Controller {
         // open new page
         const takeOrderNode = document.getElementById("takeOrder");
         const createdOrderNode = document.getElementById("createdOrder");
-        this.view.changeVisibilityPages(takeOrderNode, createdOrderNode);
-
-        //render created order
-        this.view.renderNewOrder(this.model.getNewOrder());
-
-        // change preview
         const previewTakeOrderNode =
             document.getElementById("previewTakeOrder");
         const previewCreatedOrderNode = document.getElementById(
             "previewCreatedOrder"
         );
-        this.view.changeVisibilityPages(
-            previewTakeOrderNode,
-            previewCreatedOrderNode
+
+        this.view.changeVisibility(
+            [takeOrderNode, previewTakeOrderNode],
+            [createdOrderNode, previewCreatedOrderNode]
         );
 
         // render preview
+        this.view.renderNewOrder(this.model.getNewOrder());
+
         this.view.renderNewOrderPreview(this.model.getCost());
 
         // Clear old datas
@@ -251,7 +237,6 @@ export default class Controller {
         // handler go to items btn
         const goStartPage = document.getElementById("goStartPage");
         goStartPage.addEventListener("click", this._handlerGoStartPage);
-        // })
     };
 
     // handlers
@@ -274,22 +259,20 @@ export default class Controller {
         this.view.renderPreviewBag(this.model.getBag());
         this.view.renderPreviewCompletedOrders(this.model.getOrders());
     };
-
     _handlerChangePaytype = () => {
         const paytypePopupNode = document.getElementById("paytypePopup");
-        paytypePopupNode.classList.add("visible");
-        document.body.classList.add("fixe-scroll");
+
+        this.view.openPopup(paytypePopupNode);
 
         const saveNewPaytypeBtnNode = document.getElementById("saveNewPaytype");
         saveNewPaytypeBtnNode.addEventListener("click", () => {
             this._handlerSavePaytype(paytypePopupNode);
         });
     };
-
     _handlerChangeAddress = () => {
         const addressPopupNode = document.getElementById("addressPopup");
-        addressPopupNode.classList.add("visible");
-        document.body.classList.add("fixe-scroll");
+
+        this.view.openPopup(addressPopupNode);
 
         const saveNewAddressBtnNode =
             document.getElementById("saveNewAddressBtn");
@@ -308,8 +291,8 @@ export default class Controller {
             }
         });
 
-        paytypePopupNode.classList.remove("visible");
-        document.body.classList.remove("fixe-scroll");
+        this.view.closePopup(paytypePopupNode);
+
         this.view.renderPaytype(
             this.model.getPayTypeMessage(),
             this.model.selectedPaytype
@@ -328,8 +311,9 @@ export default class Controller {
         }
 
         this.model.setAddress({ name, street, city, phone });
-        addressPopupNode.classList.remove("visible");
-        document.body.classList.remove("fixe-scroll");
+
+        this.view.closePopup(addressPopupNode);
+
         this.view.renderAddress(this.model.getAddress());
     };
 
@@ -348,18 +332,19 @@ export default class Controller {
             this.view.renderPreviewBag(this.model.getBag());
 
             if (this.model.getBag().length == 0) {
-                document.getElementById("bag").classList.remove("visible");
-                document
-                    .getElementById("previewItemsWrapper")
-                    .classList.add("visible");
                 this._showEror("emptyBag");
+
+                const bagNode = document.getElementById("bag");
+                const previewItemsNode = document.getElementById(
+                    "previewItemsWrapper"
+                );
                 const previewGoBagBtnNode =
                     document.getElementById("previewGoBagBtn");
                 const previewBagPriceNode =
                     document.getElementById("previewBagPrice");
-                this.view.changeVisibilityPages(
-                    previewBagPriceNode,
-                    previewGoBagBtnNode
+                this.view.changeVisibility(
+                    [bagNode, previewBagPriceNode],
+                    [previewItemsNode, previewGoBagBtnNode]
                 );
             }
         } else {
