@@ -12,7 +12,10 @@ export default class View {
 
         this.itemsListNode.addEventListener("click", userClickedItem);
         this.goToBagBtnNode.addEventListener("click", userGoToBag);
-        this.previewCompletedOrderListNode.addEventListener('click', userSelectedOrder)
+        this.previewCompletedOrderListNode.addEventListener(
+            "click",
+            userSelectedOrder
+        );
     }
 
     renderItems(items) {
@@ -83,9 +86,9 @@ export default class View {
         document.getElementById(
             "previewTakeOrderDeliveryCost"
         ).innerText = `$ ${cost.delivery}`;
-        document.getElementById(
-            "previewTakeOrderFinalCost"
-        ).innerText = `$ ${cost.order + cost.delivery}`;
+        document.getElementById("previewTakeOrderFinalCost").innerText = `$ ${
+            cost.order + cost.delivery
+        }`;
     }
 
     renderItemCard(item) {
@@ -322,7 +325,7 @@ export default class View {
         >
             <img src="img/buttons/back.png" alt="back" />
             <p class="go-back-btn__text">Список товаров</p>
-        </button>`
+        </button>`;
         const newOrderAddressHTML = `
         <div class="address">
             <h2 class="order__title subtitle">
@@ -358,7 +361,7 @@ export default class View {
         </div>
         `;
         let ordersListHTML = "";
-        console.log(newOrder)
+        console.log(newOrder);
         newOrder.order.forEach((item) => {
             ordersListHTML += `
             <li class="bag__item bag-item">
@@ -420,7 +423,7 @@ export default class View {
         </ul>
         `;
 
-        createdOrderNode.innerHTML = 
+        createdOrderNode.innerHTML =
             goBackBtnHTML +
             newOrderTitleHTML +
             newOrderAddressHTML +
@@ -483,12 +486,12 @@ export default class View {
     }
 
     changeVisibility(closePages, openPages) {
-        closePages.forEach(closePage => {
+        closePages.forEach((closePage) => {
             closePage.classList.remove(CLASSNAME_CHANGE_VISIBILITY);
         });
-        openPages.forEach(openPage => {
+        openPages.forEach((openPage) => {
             openPage.classList.add(CLASSNAME_CHANGE_VISIBILITY);
-        })
+        });
     }
 
     openPopup(popupNode) {
@@ -497,7 +500,7 @@ export default class View {
     }
 
     closePopup(popupNode) {
-        popupNode.classList.remove('visible')
-        document.body.classList.remove("fixe-scroll")
+        popupNode.classList.remove("visible");
+        document.body.classList.remove("fixe-scroll");
     }
 }

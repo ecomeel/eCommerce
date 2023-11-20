@@ -131,7 +131,7 @@ export default class Model {
     }
 
     getCost() {
-        return this.cost
+        return this.cost;
     }
 
     // new order
