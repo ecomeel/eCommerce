@@ -56,7 +56,8 @@ export default class Controller {
             }
         });
         this.view.renderNewOrder(selectedOrder);
-        
+        this.view.renderNewOrderPreview(selectedOrder.cost)
+
 
         const goBackNode = document.getElementById('goStartPage');
         goBackNode.addEventListener('click', () => {
@@ -244,9 +245,7 @@ export default class Controller {
 
         // render preview
         this.view.renderNewOrderPreview(
-            this.model.getOrderCost(),
-            this.model.getDeliveryCost(),
-            this.model.getFinalCost()
+            this.model.getCost()
         );
 
         // Clear old datas

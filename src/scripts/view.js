@@ -428,22 +428,22 @@ export default class View {
             newOrderBagListHTML;
     }
 
-    renderNewOrderPreview(orderCost, deliveryCost, finalCost) {
+    renderNewOrderPreview(cost) {
         const previewNewOrderHTML = `
         <h3 class="preview-make-order__title">Сумма</h3>
         <div class="preview-make-order__price">
             <p>Товары</p>
-            <p>$ ${orderCost}</p>
+            <p>$ ${cost.order}</p>
         </div>
         <div class="preview-make-order__price">
             <p>Доставка</p>
-            <p>$ ${deliveryCost}</p>
+            <p>$ ${cost.delivery}</p>
         </div>
         <div
             class="preview-make-order__total preview-make-order__total_done"
         >
             <p>Стоимость</p>
-            <p>$ ${finalCost}</p>
+            <p>$ ${cost.order + cost.delivery}</p>
         </div>
         `;
         document.getElementById("previewCreatedOrder").innerHTML =

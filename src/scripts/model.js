@@ -130,6 +130,10 @@ export default class Model {
         console.log(("order cost: ", this.cost.order));
     }
 
+    getCost() {
+        return this.cost
+    }
+
     getOrderCost() {
         return this.cost.order;
     }
