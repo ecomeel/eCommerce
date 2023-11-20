@@ -486,6 +486,14 @@ export default class View {
         closePage.classList.remove(CLASSNAME_CHANGE_VISIBILITY);
         openPage.classList.add(CLASSNAME_CHANGE_VISIBILITY);
     }
+    changeVisibility(closePages, openPages) {
+        closePages.forEach(closePage => {
+            closePage.classList.remove(CLASSNAME_CHANGE_VISIBILITY);
+        });
+        openPages.forEach(openPage => {
+            openPage.classList.add(CLASSNAME_CHANGE_VISIBILITY);
+        })
+    }
 
     changeVisibilityPopup(popup) {
         popup.classList.toggle("visible");

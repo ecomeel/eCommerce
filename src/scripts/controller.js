@@ -36,39 +36,41 @@ export default class Controller {
 
         const itemsListNode = document.getElementById("previewItemsWrapper");
         const aboutOrderNode = document.getElementById("createdOrder");
-        itemsListNode.classList.remove('visible');
-        aboutOrderNode.classList.add('visible')
 
         const previewItemsListNode = document.getElementById("previewBag");
         const previewOrdersListNode = document.getElementById(
             "previewCompletedOrders"
         );
-        const previewCreatedOrder = document.getElementById('previewCreatedOrder')
-        previewItemsListNode.classList.remove('visible');
-        previewOrdersListNode.classList.remove('visible');
-        previewCreatedOrder.classList.add('visible')
+        const previewCreatedOrder = document.getElementById(
+            "previewCreatedOrder"
+        );
+        this.view.changeVisibility(
+            [itemsListNode, previewItemsListNode, previewCreatedOrder],
+            [aboutOrderNode, previewCreatedOrder]
+        );
 
         const orders = this.model.getOrders();
         let selectedOrder;
-        orders.forEach(order => {
+        orders.forEach((order) => {
             if (selectedOrderId == order.id) {
                 selectedOrder = order;
             }
         });
         this.view.renderNewOrder(selectedOrder);
-        this.view.renderNewOrderPreview(selectedOrder.cost)
+        this.view.renderNewOrderPreview(selectedOrder.cost);
 
-
-        const goBackNode = document.getElementById('goStartPage');
-        goBackNode.addEventListener('click', () => {
-            itemsListNode.classList.add('visible');
-            aboutOrderNode.classList.remove('visible');
-            previewItemsListNode.classList.add('visible');
-            previewOrdersListNode.classList.add('visible');
-            previewCreatedOrder.classList.remove('visible');
-
-        })
-        
+        const goBackNode = document.getElementById("goStartPage");
+        goBackNode.addEventListener("click", () => {
+            // itemsListNode.classList.add("visible");
+            // aboutOrderNode.classList.remove("visible");
+            // previewItemsListNode.classList.add("visible");
+            // previewOrdersListNode.classList.add("visible");
+            // previewCreatedOrder.classList.remove("visible");
+            this.view.changeVisibility(
+                [aboutOrderNode, previewCreatedOrder],
+                [itemsListNode, previewItemsListNode, previewOrdersListNode]
+            );
+        });
     };
     _handleOpenSelectedItem = (e) => {
         const elementClicked = e.target;
@@ -241,9 +243,7 @@ export default class Controller {
         );
 
         // render preview
-        this.view.renderNewOrderPreview(
-            this.model.getCost()
-        );
+        this.view.renderNewOrderPreview(this.model.getCost());
 
         // Clear old datas
         this.model.clearOldDatas();
@@ -259,8 +259,6 @@ export default class Controller {
         // render go to start page
         const createdOrderNode = document.getElementById("createdOrder");
         const startPageNode = document.getElementById("previewItemsWrapper");
-        createdOrderNode.classList.remove("visible");
-        startPageNode.classList.add("visible");
 
         //render preview start page
         const previewCreatedOrderNode = document.getElementById(
@@ -268,9 +266,10 @@ export default class Controller {
         );
         const previewStartPageNode = document.getElementById("previewBag");
         const previewGoBagBtnNode = document.getElementById("previewGoBagBtn");
-        previewCreatedOrderNode.classList.remove("visible");
-        previewStartPageNode.classList.add("visible");
-        previewGoBagBtnNode.classList.add("visible");
+        this.view.changeVisibility(
+            [previewCreatedOrderNode, createdOrderNode],
+            [previewStartPageNode, previewGoBagBtnNode, startPageNode]
+        );
 
         this.view.renderPreviewBag(this.model.getBag());
         this.view.renderPreviewCompletedOrders(this.model.getOrders());
