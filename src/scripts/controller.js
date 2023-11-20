@@ -9,7 +9,7 @@ export default class Controller {
         this.view = new View({
             userClickedItem: this._handleOpenSelectedItem,
             userGoToBag: this._handleOpenBag,
-            userSelectedOrder: this._handleOpenSelectedOrder
+            userSelectedOrder: this._handleOpenSelectedOrder,
         });
         this.model = new Model();
         this.api = new Api();
@@ -29,13 +29,34 @@ export default class Controller {
     // Open new pages
     _handleOpenSelectedOrder = (e) => {
         const clickedItem = e.target;
-        if (clickedItem.tagName != 'A') return 
+        if (clickedItem.tagName != "A") return;
 
         const selectedOrderId = Number(clickedItem.innerText.slice(1));
 
+        const itemsListNode = document.getElementById("previewItemsWrapper");
+        const aboutOrderNode = document.getElementById("createdOrder");
+        itemsListNode.classList.remove('visible');
+        aboutOrderNode.classList.add('visible')
 
-    }
+        const previewItemsListNode = document.getElementById("previewBag");
+        const previewOrdersListNode = document.getElementById(
+            "previewCompletedOrders"
+        );
+        const previewCreatedOrder = document.getElementById('previewCreatedOrder')
+        previewItemsListNode.classList.remove('visible');
+        previewOrdersListNode.classList.remove('visible');
+        previewCreatedOrder.classList.add('visible')
 
+        const orders = this.model.getOrders();
+        let selectedOrder;
+        orders.forEach(order => {
+            if (selectedOrderId == order.id) {
+                selectedOrder = order;
+            }
+        });
+        this.view.renderNewOrder(selectedOrder)
+        
+    };
     _handleOpenSelectedItem = (e) => {
         const elementClicked = e.target;
         const selectedItemNode = elementClicked.closest("li");
@@ -224,28 +245,28 @@ export default class Controller {
         goStartPage.addEventListener("click", this._handlerGoStartPage);
         // })
     };
-    
 
     // handlers
     _handlerGoStartPage = () => {
         // render go to start page
         const createdOrderNode = document.getElementById("createdOrder");
-        const startPageNode = document.getElementById('previewItemsWrapper')
-        createdOrderNode.classList.remove('visible');
-        startPageNode.classList.add('visible');
+        const startPageNode = document.getElementById("previewItemsWrapper");
+        createdOrderNode.classList.remove("visible");
+        startPageNode.classList.add("visible");
 
         //render preview start page
-        const previewCreatedOrderNode = document.getElementById('previewCreatedOrder');
-        const previewStartPageNode = document.getElementById('previewBag');
-        const previewGoBagBtnNode = document.getElementById('previewGoBagBtn');
-        previewCreatedOrderNode.classList.remove('visible');
-        previewStartPageNode.classList.add('visible');
-        previewGoBagBtnNode.classList.add('visible');
+        const previewCreatedOrderNode = document.getElementById(
+            "previewCreatedOrder"
+        );
+        const previewStartPageNode = document.getElementById("previewBag");
+        const previewGoBagBtnNode = document.getElementById("previewGoBagBtn");
+        previewCreatedOrderNode.classList.remove("visible");
+        previewStartPageNode.classList.add("visible");
+        previewGoBagBtnNode.classList.add("visible");
 
-        this.view.renderPreviewBag(this.model.getBag())
-        this.view.renderPreviewCompletedOrders(this.model.getOrders())
-
-    }
+        this.view.renderPreviewBag(this.model.getBag());
+        this.view.renderPreviewCompletedOrders(this.model.getOrders());
+    };
 
     _handlerChangePaytype = () => {
         const paytypePopupNode = document.getElementById("paytypePopup");
