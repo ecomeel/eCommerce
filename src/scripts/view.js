@@ -76,16 +76,16 @@ export default class View {
         ).innerText = `Сумма: $ ${price}`;
     }
 
-    renderPreviewTakeOrder(orderCost, deliveryCost, finalCost) {
+    renderPreviewTakeOrder(cost) {
         document.getElementById(
             "previewTakeOrderCost"
-        ).innerText = `$ ${orderCost}`;
+        ).innerText = `$ ${cost.order}`;
         document.getElementById(
             "previewTakeOrderDeliveryCost"
-        ).innerText = `$ ${deliveryCost}`;
+        ).innerText = `$ ${cost.delivery}`;
         document.getElementById(
             "previewTakeOrderFinalCost"
-        ).innerText = `$ ${finalCost}`;
+        ).innerText = `$ ${cost.order + cost.delivery}`;
     }
 
     renderItemCard(item) {

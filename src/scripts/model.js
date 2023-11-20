@@ -134,18 +134,6 @@ export default class Model {
         return this.cost
     }
 
-    getOrderCost() {
-        return this.cost.order;
-    }
-
-    getDeliveryCost() {
-        return this.cost.delivery;
-    }
-
-    getFinalCost() {
-        return this.cost.order + this.cost.delivery;
-    }
-
     // new order
     addNewOrder() {
         this.newOrder = {

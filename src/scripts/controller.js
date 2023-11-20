@@ -135,8 +135,7 @@ export default class Controller {
             previewGoBagBtnNode,
             previewBagPriceNode
         );
-        // this.view.renderPreviewPrice(this.model.getOrderCost());
-        this.view.renderPricePreview(this.model.getOrderCost());
+        this.view.renderPricePreview(this.model.getCost().order);
         this.view.renderBag(this.model.getBag());
 
         // Кнопка возврата к списку товаров
@@ -179,10 +178,8 @@ export default class Controller {
         previewBagPriceNode.classList.remove("visible");
 
         // render Preview
-        const orderCost = this.model.getOrderCost();
-        const deliveryCost = this.model.getDeliveryCost();
-        const finalCost = this.model.getFinalCost();
-        this.view.renderPreviewTakeOrder(orderCost, deliveryCost, finalCost);
+
+        this.view.renderPreviewTakeOrder(this.model.getCost());
 
         // Render itemList
         this.view.renderTakeOrderItemsList(this.model.getBag());
@@ -370,7 +367,7 @@ export default class Controller {
             this._handleAddItemToBag(clickedItemId);
         }
         this.view.renderBag(this.model.getBag());
-        this.view.renderPricePreview(this.model.getOrderCost());
+        this.view.renderPricePreview(this.model.getCost().order);
     };
 
     _handleAddItemToBag(id) {
