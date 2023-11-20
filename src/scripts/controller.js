@@ -9,6 +9,7 @@ export default class Controller {
         this.view = new View({
             userClickedItem: this._handleOpenSelectedItem,
             userGoToBag: this._handleOpenBag,
+            userSelectedOrder: this._handleOpenSelectedOrder
         });
         this.model = new Model();
         this.api = new Api();
@@ -26,6 +27,15 @@ export default class Controller {
     }
 
     // Open new pages
+    _handleOpenSelectedOrder = (e) => {
+        const clickedItem = e.target;
+        if (clickedItem.tagName != 'A') return 
+
+        const selectedOrderId = Number(clickedItem.innerText.slice(1));
+
+
+    }
+
     _handleOpenSelectedItem = (e) => {
         const elementClicked = e.target;
         const selectedItemNode = elementClicked.closest("li");

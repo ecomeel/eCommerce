@@ -1,14 +1,18 @@
 const CLASSNAME_CHANGE_VISIBILITY = "visible";
 
 export default class View {
-    constructor({ userClickedItem, userGoToBag, changeAmountItems }) {
+    constructor({ userClickedItem, userGoToBag, userSelectedOrder }) {
         this.itemsListNode = document.getElementById("itemsList");
         this.itemCardNode = document.getElementById("itemCard");
         this.previewBagItemsNode = document.getElementById("previewBagItems");
         this.goToBagBtnNode = document.getElementById("goToBagBtn");
+        this.previewCompletedOrderListNode = document.getElementById(
+            "previewCompletedOrdersList"
+        );
 
         this.itemsListNode.addEventListener("click", userClickedItem);
         this.goToBagBtnNode.addEventListener("click", userGoToBag);
+        this.previewCompletedOrderListNode.addEventListener('click', userSelectedOrder)
     }
 
     renderItems(items) {
