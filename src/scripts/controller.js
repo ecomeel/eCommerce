@@ -280,7 +280,6 @@ export default class Controller {
             this._handlerSaveAddress(addressPopupNode);
         });
     };
-
     _handlerSavePaytype = (paytypePopupNode) => {
         const radioBtns = paytypePopupNode.querySelectorAll(
             ".pay-type-popup__real-radio"
@@ -298,7 +297,6 @@ export default class Controller {
             this.model.selectedPaytype
         );
     };
-
     _handlerSaveAddress = (addressPopupNode) => {
         const name = document.getElementById("newAddressName").value;
         const street = document.getElementById("newAddressStreet").value;
@@ -316,7 +314,6 @@ export default class Controller {
 
         this.view.renderAddress(this.model.getAddress());
     };
-
     _handlerChangeAmountItem = (e) => {
         const onElementClicked = e.target;
         const clickedItem = e.target.closest("li");
@@ -353,7 +350,6 @@ export default class Controller {
         this.view.renderBag(this.model.getBag());
         this.view.renderPricePreview(this.model.getCost().order);
     };
-
     _handleAddItemToBag(id) {
         this.model.addItemToBag(Number(id));
         this.view.renderPreviewBag(this.model.getBag());
