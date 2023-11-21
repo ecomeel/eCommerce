@@ -25,6 +25,8 @@ export default class Controller {
 
         this.model.setOrders(this.api.getOrders());
         this.view.renderPreviewCompletedOrders(this.model.getCompletedOrders());
+
+        this.api.getProductsFromDatabase()
     }
 
     // Open new pages
