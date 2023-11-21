@@ -11,7 +11,7 @@ export default class Api {
                 name: "Apple watch",
                 model: "Series 5 SE",
                 price: 529,
-                imgSrc: "./img/products/apple-watch.png",
+                imgSrc: "./img/products/samsung-galaxy-Note21.png",
                 shortDesc:
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, ratione?",
                 mainDesc:
