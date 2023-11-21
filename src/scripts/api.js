@@ -11,7 +11,7 @@ export default class Api {
                 name: "Apple watch",
                 model: "Series 5 SE",
                 price: 529,
-                imgSrc: "./img/products/samsung-galaxy-Note21.png",
+                imgSrc: "./img/products/samsung-galaxy-s21+.png",
                 shortDesc:
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, ratione?",
                 mainDesc:
@@ -128,9 +128,9 @@ export default class Api {
 
     async getProductsFromDatabase() {
         const querySnapshot = await getDocs(collection(this.db, "products"));
+        const productsList = []
         querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data().name}`);
-            const newItem = {
+            productsList.push({
                 id: doc.id,
                 name: doc.data().name,
                 model: doc.data().model,
@@ -139,9 +139,9 @@ export default class Api {
                 shortDesc: doc.data().shortDesc,
                 mainDesc: doc.data().mainDesc,
                 fullDesc: doc.data().fullDesc
-            }
-            console.log(newItem)
+            })
         });
+        return productsList
     }
 
     getItems() {

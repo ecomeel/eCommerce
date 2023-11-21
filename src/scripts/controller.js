@@ -17,16 +17,21 @@ export default class Controller {
     }
 
     init() {
-        this.model.setItems(this.api.getItems());
-        this.view.renderItems(this.model.getItems());
+        // this.model.setItems(this.api.getItems());
+        // this.view.renderItems(this.model.getItems());
+
+        this.api
+            .getProductsFromDatabase()
+            .then((products) => {
+                this.model.setItems(products);
+                this.view.renderItems(this.model.getItems());
+            });
 
         this.model.setBag(this.api.getBagItems());
         this.view.renderPreviewBag(this.model.getBag());
 
         this.model.setOrders(this.api.getOrders());
         this.view.renderPreviewCompletedOrders(this.model.getCompletedOrders());
-
-        this.api.getProductsFromDatabase()
     }
 
     // Open new pages
@@ -353,7 +358,8 @@ export default class Controller {
         this.view.renderPricePreview(this.model.getCost().order);
     };
     _handleAddItemToBag(id) {
-        this.model.addItemToBag(Number(id));
+        // this.model.addItemToBag(Number(id));
+        this.model.addItemToBag(id);
         this.view.renderPreviewBag(this.model.getBag());
     }
 
