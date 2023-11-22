@@ -17,20 +17,15 @@ export default class Controller {
     }
 
     init() {
+        this.api.getProductsFromDatabase().then((products) => {
+            this.model.setItems(products);
+            this.view.renderItems(this.model.getItems());
+        });
 
-        this.api
-            .getProductsFromDatabase()
-            .then((products) => {
-                this.model.setItems(products);
-                this.view.renderItems(this.model.getItems());
-            });
-
-        // this.api.getBagFromDatabase()
-        //     .then(bag => console.log(bag))
-        // this.api.getBagFromDatabase()
-
-        this.model.setBag(this.api.getBagItems());
-        this.view.renderPreviewBag(this.model.getBag());
+        this.api.getBagFromDatabase().then((bag) => {
+            this.model.setBag(bag);
+            this.view.renderPreviewBag(this.model.getBag())
+        });
 
         this.model.setOrders(this.api.getOrders());
         this.view.renderPreviewCompletedOrders(this.model.getCompletedOrders());

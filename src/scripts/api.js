@@ -5,39 +5,6 @@ import { getFirestore, collection, doc, getDocs, setDoc  } from "firebase/firest
 
 export default class Api {
     constructor() {
-        this.bagMock = [
-            {
-                id: 1,
-                name: "Apple watch",
-                model: "Series 5 SE",
-                price: 529,
-                imgSrc: "./img/products/apple-watch.png",
-                shortDesc:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, ratione?",
-                mainDesc:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi temporibus magnam dolorem nobis repellendus alias ab aspernatur error illum dolores.",
-                fullDesc:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eius repellendus, omnis dolorum dolor et est natus quae tempora quidem labore sequi possimus quia ex odit cupiditate, excepturi provident reiciendis exercitationem eos. Quidem sunt quibusdam eius, qui autem soluta magni deserunt corrupti fugit velit architecto nam et magnam ut, officia nemo labore voluptatibus est consequatur quaerat tempore placeat, provident veritatis! Debitis aspernatur voluptatibus sapiente sed nisi dolorum eius enim at officia similique ipsa, laboriosam pariatur aliquam eum dolore corporis quas temporibus, deserunt fugit non atque, necessitatibus illo. Cum laborum sed ullam, ab consequatur natus nemo perspiciatis odit porro quisquam consectetur!",
-                rating: 4,
-                amount: 2,
-            },
-            {
-                id: 2,
-                name: "Apple watch 2",
-                model: "Series 5 SE",
-                price: 529,
-                imgSrc: "./img/products/apple-watch.png",
-                shortDesc:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, ratione?",
-                mainDesc:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi temporibus magnam dolorem nobis repellendus alias ab aspernatur error illum dolores.",
-                fullDesc:
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eius repellendus, omnis dolorum dolor et est natus quae tempora quidem labore sequi possimus quia ex odit cupiditate, excepturi provident reiciendis exercitationem eos. Quidem sunt quibusdam eius, qui autem soluta magni deserunt corrupti fugit velit architecto nam et magnam ut, officia nemo labore voluptatibus est consequatur quaerat tempore placeat, provident veritatis! Debitis aspernatur voluptatibus sapiente sed nisi dolorum eius enim at officia similique ipsa, laboriosam pariatur aliquam eum dolore corporis quas temporibus, deserunt fugit non atque, necessitatibus illo. Cum laborum sed ullam, ab consequatur natus nemo perspiciatis odit porro quisquam consectetur!",
-                rating: 4,
-                amount: 1,
-            },
-        ];
-
         this.ordersMock = [
             {
                 id: 111,
@@ -93,7 +60,7 @@ export default class Api {
                 imgSrc: doc.data().imgSrc,
                 shortDesc: doc.data().shortDesc,
                 mainDesc: doc.data().mainDesc,
-                fullDesc: doc.data().fullDesc,
+                fullDesc: doc.data().fullDesc
             });
         });
         return productsList;
@@ -101,9 +68,21 @@ export default class Api {
 
     async getBagFromDatabase() {
         const querySnapshot = await getDocs(collection(this.db, "bag"));
+        const bag = [];
         querySnapshot.forEach(doc => {
-            console.log(doc.data().name)
-        })
+            bag.push({
+                id: doc.id,
+                name: doc.data().name,
+                model: doc.data().model,
+                amount: doc.data().amount,
+                price: doc.data().price,
+                imgSrc: doc.data().imgSrc,
+                shortDesc: doc.data().shortDesc,
+                mainDesc: doc.data().mainDesc,
+                fullDesc: doc.data().fullDesc
+            })
+        });
+        return bag;
     }
 
     async pushProductToBagDatabase(product) {
