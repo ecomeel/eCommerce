@@ -48,6 +48,7 @@ export default class Api {
         this.db = getFirestore(this.app);
     }
 
+    // Products
     async getProductsFromDatabase() {
         const querySnapshot = await getDocs(collection(this.db, "products"));
         const productsList = [];
@@ -66,6 +67,7 @@ export default class Api {
         return productsList;
     }
 
+    // Bag
     async getBagFromDatabase() {
         const querySnapshot = await getDocs(collection(this.db, "bag"));
         const bag = [];
@@ -85,9 +87,11 @@ export default class Api {
         return bag;
     }
 
-    async pushProductToBagDatabase(product) {
+    async addProductToBagDatabase(product) {
 
     }
+
+    //Orders
 
     getBagItems() {
         return this.bagMock;

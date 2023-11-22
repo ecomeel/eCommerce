@@ -75,18 +75,22 @@ export default class Model {
         return this.bag;
     }
 
-    addItemToBag(id) {
-        const item = this.getItemById(id);
-
-        if (this.bagItemsIds.includes(id)) {
-            this.incrementItemToBag(id);
-        } else {
-            this.bagItemsIds.push(id);
-            this.bag.push({ ...item, amount: 1 });
-        }
-
-        this._onBagChanges();
+    getBagIds() {
+        return this.bagItemsIds;
     }
+
+    // addItemToBag(id) {
+    //     const item = this.getItemById(id);
+
+    //     if (this.bagItemsIds.includes(id)) {
+    //         this.incrementItemToBag(id);
+    //     } else {
+    //         this.bagItemsIds.push(id);
+    //         this.bag.push({ ...item, amount: 1 });
+    //     }
+
+    //     this._onBagChanges();
+    // }
 
     incrementItemToBag(id) {
         this.bag.forEach((item) => {
@@ -94,6 +98,17 @@ export default class Model {
                 item.amount = item.amount + 1;
             }
         });
+        this._onBagChanges();
+        // onBagChanges
+        // where else use 'increment item to bag'
+    }
+
+    pushItemToBag(id) {
+        const item = this.getItemById(id);
+
+        this.bagItemsIds.push(id);
+        this.bag.push({ ...item, amount: 1 });
+        this._onBagChanges();
     }
 
     decrementItemToBag(id) {
@@ -123,6 +138,8 @@ export default class Model {
         this.cost.order = 0;
         this.bag.forEach((item) => {
             this.cost.order += item.price * item.amount;
+            this.cost.order =
+                Math.round(parseFloat(this.cost.order) * 100) / 100;
         });
         console.log("bag: ", this.bag);
         console.log(("order cost: ", this.cost.order));

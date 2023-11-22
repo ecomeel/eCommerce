@@ -332,6 +332,7 @@ export default class Controller {
             this.model.decrementItemToBag(clickedItemId);
             this.view.renderPreviewBag(this.model.getBag());
 
+            // render error empty bag
             if (this.model.getBag().length == 0) {
                 this._showEror("emptyBag");
 
@@ -355,8 +356,15 @@ export default class Controller {
         this.view.renderPricePreview(this.model.getCost().order);
     };
     _handleAddItemToBag(id) {
-        // this.model.addItemToBag(Number(id));
-        this.model.addItemToBag(id);
+
+        if (this.model.getBagIds().includes(id)) {
+            this.model.incrementItemToBag(id)
+            // increment item on db bag
+        } else {
+            this.model.pushItemToBag(id);
+            // add to db bag
+        }
+
         this.view.renderPreviewBag(this.model.getBag());
     }
 
