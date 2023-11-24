@@ -13,37 +13,6 @@ import {
 
 export default class Api {
     constructor() {
-        // this.ordersMock = [
-        //     {
-        //         id: 111,
-        //         order: [
-        //             {
-        //                 id: 1,
-        //                 name: "Apple watch",
-        //                 model: "Series 5 SE",
-        //                 price: 529,
-        //                 imgSrc: "./img/products/apple-watch.png",
-        //                 shortDesc:
-        //                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, ratione?",
-        //                 mainDesc:
-        //                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi temporibus magnam dolorem nobis repellendus alias ab aspernatur error illum dolores.",
-        //                 fullDesc:
-        //                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eius repellendus, omnis dolorum dolor et est natus quae tempora quidem labore sequi possimus quia ex odit cupiditate, excepturi provident reiciendis exercitationem eos. Quidem sunt quibusdam eius, qui autem soluta magni deserunt corrupti fugit velit architecto nam et magnam ut, officia nemo labore voluptatibus est consequatur quaerat tempore placeat, provident veritatis! Debitis aspernatur voluptatibus sapiente sed nisi dolorum eius enim at officia similique ipsa, laboriosam pariatur aliquam eum dolore corporis quas temporibus, deserunt fugit non atque, necessitatibus illo. Cum laborum sed ullam, ab consequatur natus nemo perspiciatis odit porro quisquam consectetur!",
-        //                 rating: 4,
-        //                 amount: 2,
-        //             },
-        //         ],
-        //         cost: 1234,
-        //         paytype: "cash",
-        //         address: {
-        //             name: "Вася Пупкин",
-        //             street: "Московская 9",
-        //             city: "Петрозаводск",
-        //             phone: "+79999999999",
-        //         },
-        //     },
-        // ];
-
         this.firebaseConfig = {
             apiKey: "AIzaSyA5qmjxOLa-eq6925FJsXHCtQdWcuj2TL0",
             authDomain: "ecommerce-d840d.firebaseapp.com",
@@ -122,6 +91,18 @@ export default class Api {
         await deleteDoc(itemBagRef);
     }
 
+    async clearBag() {
+        const querySnapshot = await getDocs(collection(this.db, "bag"));
+        const bagIds = [];
+        querySnapshot.forEach((doc) => {
+            bagIds.push(doc.id)
+        });
+
+        bagIds.forEach(id => {
+            this.deleteItemFromBag(id)
+        });
+    }
+
     //Orders
     async getOrdersFromDatabase() {
         const querySnapshot = await getDocs(collection(this.db, "orders"));
@@ -129,12 +110,21 @@ export default class Api {
         querySnapshot.forEach((doc) => {
             orders.push({
                 id: Number(doc.id),
+                paytype: JSON.parse(doc.data().paytype),
                 cost: JSON.parse(doc.data().cost),
-                paytype: doc.data().paytype,
                 address: JSON.parse(doc.data().address),
-                order: JSON.parse(doc.data().order)
+                order: JSON.parse(doc.data().order),
             });
         });
         return orders;
+    }
+
+    async setNewOrder(order) {
+        await setDoc(doc(this.db, "orders", `${order.id}`), {
+            paytype: JSON.stringify(order.paytype),
+            cost: JSON.stringify(order.cost),
+            address: JSON.stringify(order.address),
+            order: JSON.stringify(order.order),
+        });
     }
 }

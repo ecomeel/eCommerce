@@ -361,7 +361,7 @@ export default class View {
         </div>
         `;
         let ordersListHTML = "";
-        console.log(newOrder);
+
         newOrder.order.forEach((item) => {
             ordersListHTML += `
             <li class="bag__item bag-item">
