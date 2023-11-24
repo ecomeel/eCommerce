@@ -378,17 +378,14 @@ export default class Controller {
         if (this.model.getBagIds().includes(id)) {
             // Increment item
             this.model.incrementItemToBag(id);
-
-            // increment item on db bag
             this.api.updateAmountItemBag(
                 id,
                 this.model.getAmountItemToBagById(id)
             );
         } else {
-            this.model.pushItemToBag(id, item);
-            // add to db bag
+            // Add item to bag
+            this.model.pushItemToBag(item);
             this.api.setItemBag({ ...item, amount: 1 });
-            // this.api.setItemBag(item)
         }
 
         this.view.renderPreviewBag(this.model.getBag());

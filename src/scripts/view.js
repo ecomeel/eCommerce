@@ -4,10 +4,14 @@ export default class View {
     constructor({ userClickedItem, userGoToBag, userSelectedOrder }) {
         this.itemsListNode = document.getElementById("itemsList");
         this.itemCardNode = document.getElementById("itemCard");
+
         this.previewBagItemsNode = document.getElementById("previewBagItems");
         this.goToBagBtnNode = document.getElementById("goToBagBtn");
         this.previewCompletedOrderListNode = document.getElementById(
             "previewCompletedOrdersList"
+        );
+        this.previewCompletedOrdersNode = document.getElementById(
+            "previewCompletedOrders"
         );
 
         this.itemsListNode.addEventListener("click", userClickedItem);
@@ -59,10 +63,8 @@ export default class View {
     }
 
     renderPreviewCompletedOrders(orders) {
-        const completedOrdersNode = document.getElementById(
-            "previewCompletedOrders"
-        );
-        completedOrdersNode.classList.add(CLASSNAME_CHANGE_VISIBILITY);
+        this.previewCompletedOrdersNode.classList.add(CLASSNAME_CHANGE_VISIBILITY);
+
         const completedOrdersListNode = document.getElementById(
             "previewCompletedOrdersList"
         );
@@ -267,7 +269,7 @@ export default class View {
                         ${item.name}
                     </h3>
                     <p class="bag-item__model">
-                        ${item.shortDesc}
+                        ${item.model}
                     </p>
                     <p class="bag-item__description">
                         ${item.shortDesc}

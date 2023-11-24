@@ -1,4 +1,5 @@
 import normalizedItems from "./utils/normalizedItems.js";
+import { v4 as uuidv4 } from 'uuid';
 
 export default class Model {
     constructor() {
@@ -98,10 +99,8 @@ export default class Model {
         return amount
     }
 
-    pushItemToBag(id, item) {
-        // const item = this.getItemById(id);
-
-        this.bagItemsIds.push(id);
+    pushItemToBag(item) {
+        this.bagItemsIds.push(item.id);
         this.bag.push({ ...item, amount: 1 });
         this._onBagChanges();
     }
@@ -136,8 +135,6 @@ export default class Model {
             this.cost.order =
                 Math.round(parseFloat(this.cost.order) * 100) / 100;
         });
-        console.log("bag: ", this.bag);
-        console.log(("order cost: ", this.cost.order));
     }
 
     getCost() {
