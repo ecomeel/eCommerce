@@ -14,7 +14,7 @@
     &__img {
         height: 64px;
         width: 64px;
-        object-fit: cover;
+        object-fit: contain;
         object-position: 50% 50%;
     }
     &__bag-btn {

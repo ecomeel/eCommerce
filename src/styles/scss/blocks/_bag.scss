@@ -53,7 +53,7 @@
     &__img {
         width: 203px;
         height: 302px;
-        object-fit: cover;
+        object-fit: contain;
         object-position: 50% 50%;
     }
     &__text {

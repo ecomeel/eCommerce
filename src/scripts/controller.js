@@ -332,6 +332,15 @@ export default class Controller {
             this.model.decrementItemToBag(clickedItemId);
             this.view.renderPreviewBag(this.model.getBag());
 
+            if (this.model.getAmountItemToBagById(clickedItemId)) {
+                this.api.updateAmountItemBag(
+                    clickedItemId,
+                    this.model.getAmountItemToBagById(clickedItemId)
+                );
+            } else {
+                this.api.deleteItemFromBag(clickedItemId)
+            }
+
             // render error empty bag
             if (this.model.getBag().length == 0) {
                 this._showEror("emptyBag");
@@ -355,6 +364,7 @@ export default class Controller {
         this.view.renderBag(this.model.getBag());
         this.view.renderPricePreview(this.model.getCost().order);
     };
+
     _handleAddItemToBag(id) {
         const item = this.model.getItemById(id);
         if (this.model.getBagIds().includes(id)) {

@@ -5,10 +5,10 @@ import {
     getFirestore,
     collection,
     doc,
-    writeBatch,
     getDocs,
     setDoc,
-    updateDoc
+    updateDoc,
+    deleteDoc
 } from "firebase/firestore";
 
 export default class Api {
@@ -114,6 +114,12 @@ export default class Api {
         await updateDoc(itemBagRef, {
             amount: amount
         })
+    }
+
+    async deleteItemFromBag(id) {
+        const itemBagRef = doc(this.db, 'bag', id);
+
+        await deleteDoc(itemBagRef)
     }
 
     //Orders
