@@ -1,7 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
 
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, getDocs, setDoc  } from "firebase/firestore";
+import {
+    getFirestore,
+    collection,
+    doc,
+    writeBatch,
+    getDocs,
+    setDoc,
+    updateDoc
+} from "firebase/firestore";
 
 export default class Api {
     constructor() {
@@ -61,7 +69,7 @@ export default class Api {
                 imgSrc: doc.data().imgSrc,
                 shortDesc: doc.data().shortDesc,
                 mainDesc: doc.data().mainDesc,
-                fullDesc: doc.data().fullDesc
+                fullDesc: doc.data().fullDesc,
             });
         });
         return productsList;
@@ -71,7 +79,7 @@ export default class Api {
     async getBagFromDatabase() {
         const querySnapshot = await getDocs(collection(this.db, "bag"));
         const bag = [];
-        querySnapshot.forEach(doc => {
+        querySnapshot.forEach((doc) => {
             bag.push({
                 id: doc.id,
                 name: doc.data().name,
@@ -81,14 +89,31 @@ export default class Api {
                 imgSrc: doc.data().imgSrc,
                 shortDesc: doc.data().shortDesc,
                 mainDesc: doc.data().mainDesc,
-                fullDesc: doc.data().fullDesc
-            })
+                fullDesc: doc.data().fullDesc,
+            });
         });
         return bag;
     }
 
-    async addProductToBagDatabase(product) {
+    async setItemBag(item) {
+        await setDoc(doc(this.db, "bag", item.id), {
+            name: item.name,
+            model: item.model,
+            amount: item.amount,
+            price: item.price,
+            imgSrc: item.imgSrc,
+            shortDesc: item.shortDesc,
+            mainDesc: item.mainDesc,
+            fullDesc: item.fullDesc,
+        });
+    }
 
+    async updateAmountItemBag(id, amount) {
+        const itemBagRef = doc(this.db, 'bag', id);
+
+        await updateDoc(itemBagRef, {
+            amount: amount
+        })
     }
 
     //Orders

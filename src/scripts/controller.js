@@ -24,7 +24,7 @@ export default class Controller {
 
         this.api.getBagFromDatabase().then((bag) => {
             this.model.setBag(bag);
-            this.view.renderPreviewBag(this.model.getBag())
+            this.view.renderPreviewBag(this.model.getBag());
         });
 
         this.model.setOrders(this.api.getOrders());
@@ -356,13 +356,21 @@ export default class Controller {
         this.view.renderPricePreview(this.model.getCost().order);
     };
     _handleAddItemToBag(id) {
-
+        const item = this.model.getItemById(id);
         if (this.model.getBagIds().includes(id)) {
-            this.model.incrementItemToBag(id)
+            // Increment item
+            this.model.incrementItemToBag(id);
+
             // increment item on db bag
+            this.api.updateAmountItemBag(
+                id,
+                this.model.getAmountItemToBagById(id)
+            );
         } else {
-            this.model.pushItemToBag(id);
+            this.model.pushItemToBag(id, item);
             // add to db bag
+            this.api.setItemBag({ ...item, amount: 1 });
+            // this.api.setItemBag(item)
         }
 
         this.view.renderPreviewBag(this.model.getBag());

@@ -79,19 +79,6 @@ export default class Model {
         return this.bagItemsIds;
     }
 
-    // addItemToBag(id) {
-    //     const item = this.getItemById(id);
-
-    //     if (this.bagItemsIds.includes(id)) {
-    //         this.incrementItemToBag(id);
-    //     } else {
-    //         this.bagItemsIds.push(id);
-    //         this.bag.push({ ...item, amount: 1 });
-    //     }
-
-    //     this._onBagChanges();
-    // }
-
     incrementItemToBag(id) {
         this.bag.forEach((item) => {
             if (item.id == id) {
@@ -99,12 +86,20 @@ export default class Model {
             }
         });
         this._onBagChanges();
-        // onBagChanges
-        // where else use 'increment item to bag'
     }
 
-    pushItemToBag(id) {
-        const item = this.getItemById(id);
+    getAmountItemToBagById(id) {
+        let amount;
+        this.bag.forEach(bagItem => {
+            if (bagItem.id == id) {
+                amount = bagItem.amount
+            }
+        });
+        return amount
+    }
+
+    pushItemToBag(id, item) {
+        // const item = this.getItemById(id);
 
         this.bagItemsIds.push(id);
         this.bag.push({ ...item, amount: 1 });
