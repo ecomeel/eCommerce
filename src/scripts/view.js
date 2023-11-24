@@ -172,6 +172,7 @@ export default class View {
         const bagItemsListNode = document.getElementById("bagItemsList");
         let bagHTML = "";
         bag.forEach((item) => {
+            console.log(item)
             bagHTML += `
                 <li data-item-id=${item.id} class="bag__item bag-item">
                 <img
