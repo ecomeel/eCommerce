@@ -59,6 +59,10 @@ export default class View {
     }
 
     renderPreviewCompletedOrders(orders) {
+        const completedOrdersNode = document.getElementById(
+            "previewCompletedOrders"
+        );
+        completedOrdersNode.classList.add(CLASSNAME_CHANGE_VISIBILITY);
         const completedOrdersListNode = document.getElementById(
             "previewCompletedOrdersList"
         );

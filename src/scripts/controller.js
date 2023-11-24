@@ -28,8 +28,10 @@ export default class Controller {
         });
 
         this.api.getOrdersFromDatabase().then((orders) => {
-            this.model.setOrders(orders);
-            this.view.renderPreviewCompletedOrders(orders);
+            if (!orders.length == 0) {
+                this.model.setOrders(orders);
+                this.view.renderPreviewCompletedOrders(orders);
+            }
         });
     }
 
@@ -218,8 +220,8 @@ export default class Controller {
         // Create new order && addd it to orders list
         this.model.addNewOrder();
 
-        console.log(this.model.getNewOrder())
-        this.api.setNewOrder(this.model.getNewOrder())
+        console.log(this.model.getNewOrder());
+        this.api.setNewOrder(this.model.getNewOrder());
 
         // open new page
         const takeOrderNode = document.getElementById("takeOrder");
@@ -240,10 +242,9 @@ export default class Controller {
 
         this.view.renderNewOrderPreview(this.model.getCost());
 
-
         // Clear old datas
         this.model.clearOldDatas();
-        this.api.clearBag()
+        this.api.clearBag();
 
         // handler go to items btn
         const goStartPage = document.getElementById("goStartPage");
