@@ -27,8 +27,11 @@ export default class Controller {
             this.view.renderPreviewBag(this.model.getBag());
         });
 
-        this.model.setOrders(this.api.getOrders());
-        this.view.renderPreviewCompletedOrders(this.model.getCompletedOrders());
+        this.api.getOrdersFromDatabase().then((orders) => {
+            console.log(orders);
+            this.model.setOrders(orders);
+            this.view.renderPreviewCompletedOrders(orders);
+        });
     }
 
     // Open new pages
@@ -338,7 +341,7 @@ export default class Controller {
                     this.model.getAmountItemToBagById(clickedItemId)
                 );
             } else {
-                this.api.deleteItemFromBag(clickedItemId)
+                this.api.deleteItemFromBag(clickedItemId);
             }
 
             // render error empty bag
