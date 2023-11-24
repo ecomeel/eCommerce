@@ -253,11 +253,8 @@ export default class Controller {
 
     // handlers
     _handlerGoStartPage = () => {
-        // render go to start page
         const createdOrderNode = document.getElementById("createdOrder");
         const startPageNode = document.getElementById("previewItemsWrapper");
-
-        //render preview start page
         const previewCreatedOrderNode = document.getElementById(
             "previewCreatedOrder"
         );
@@ -327,14 +324,15 @@ export default class Controller {
         this.view.renderAddress(this.model.getAddress());
     };
     _handlerChangeAmountItem = (e) => {
-        const onElementClicked = e.target;
-        const clickedItem = e.target.closest("li");
-        const clickedBtn = e.target.closest("button");
-        const clickedItemId = clickedItem.getAttribute("data-item-id");
+        if (e.target.tagName == "UL") return;
 
-        if (!onElementClicked) return;
+        const clickedBtn = e.target.closest("button");
 
         if (!clickedBtn) return;
+
+        const clickedItemId = e.target
+            .closest("li")
+            .getAttribute("data-item-id");
 
         if (clickedBtn.classList.contains("bag__change-amount_minus")) {
             this.model.decrementItemToBag(clickedItemId);
