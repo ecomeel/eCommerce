@@ -3,7 +3,7 @@ import Model from "./model";
 import Api from "./api";
 
 import "../styles/scss/style.scss";
-import { render } from "sass";
+// import { render } from "sass";
 
 export default class Controller {
     constructor() {
@@ -122,7 +122,6 @@ export default class Controller {
         }
     };
 
-    // refact renderPreview to render
     _handleOpenBag = () => {
         // error empty bag
         if (this.model.getBag().length == 0) {
@@ -209,11 +208,6 @@ export default class Controller {
         changeAddressBtnNode.addEventListener(
             "click",
             this._handlerChangeAddress
-        );
-
-        this.view.renderPaytype(
-            this.model.getPayTypeMessage(),
-            this.model.selectedPaytype
         );
 
         // Handler Change paytype
