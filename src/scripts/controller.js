@@ -149,8 +149,7 @@ export default class Controller {
             [bagNode, previewBagPriceNode]
         );
 
-        this.view.renderPricePreview(this.model.getCost().order);
-        this.view.renderBag(this.model.getBag());
+        this.view.renderBag(this.model.getBag(), this.model.getCost().order);
 
         // Кнопка возврата к списку товаров
         const goBackBtn = document.getElementById("goBackFromBagBtn");
@@ -172,7 +171,6 @@ export default class Controller {
         goToTakeOrderBtn.addEventListener("click", this._handerOpenTakeOrder);
     };
 
-    // refact renderPreviewTake to renderTakeOrderItemsList
     // render paytype 2 time. Need to fix!
     _handerOpenTakeOrder = () => {
         if (this.model.getBag().length == 0) {
@@ -194,10 +192,7 @@ export default class Controller {
             [takeOrderNode, previewTakeOrder]
         );
 
-        this.view.renderTakeOrderItemsList(
-            this.model.getBag(),
-            this.model.getCost()
-        );
+        this.view.renderTakeOrder(this.model.getBag(), this.model.getCost());
 
         // Go back btn handler
         const goBackBtnNode = document.getElementById("goBackFromTakeOrder");
@@ -388,8 +383,7 @@ export default class Controller {
             this._handleAddItemToBag(clickedItemId);
         }
 
-        this.view.renderBag(this.model.getBag());
-        this.view.renderPricePreview(this.model.getCost().order);
+        this.view.renderBag(this.model.getBag(), this.model.getCost().order);
     };
 
     _handleAddItemToBag(id) {

@@ -79,11 +79,7 @@ export default class View {
         completedOrdersListNode.innerHTML = completedOrdersHTML;
     }
 
-    renderPricePreview(price) {
-        document.getElementById(
-            "previewOrderCost"
-        ).innerText = `Сумма: $ ${price}`;
-    }
+
 
     renderItemCard(item) {
         let itemCardHTML = `
@@ -156,7 +152,8 @@ export default class View {
         this.itemCardNode.innerHTML = itemCardHTML;
     }
 
-    renderBag(bag) {
+
+    renderBag(bag, price) {
         const bagItemsListNode = document.getElementById("bagItemsList");
         let bagHTML = "";
         bag.forEach((item) => {
@@ -235,10 +232,12 @@ export default class View {
             </li>`;
         });
         bagItemsListNode.innerHTML = bagHTML;
+
+        this._renderPricePreview(price)
     }
 
     //Take a order
-    renderTakeOrderItemsList(bag, cost) {
+    renderTakeOrder(bag, cost) {
         const takeOrderItemsListNode =
             document.getElementById("takeOrderItemsList");
 
@@ -304,7 +303,7 @@ export default class View {
 
         takeOrderItemsListNode.innerHTML = takeOrderListHTML;
 
-        this._renderPreviewTakeOrder(cost)
+        this._renderTakeOrderPreview(cost)
     }
 
     //new Order
@@ -481,6 +480,13 @@ export default class View {
         document.body.classList.remove("fixe-scroll");
     }
 
+
+    _renderPricePreview(price) {
+        document.getElementById(
+            "previewOrderCost"
+        ).innerText = `Сумма: $ ${price}`;
+    }
+
     _renderNewOrderPreview(cost) {
         const previewNewOrderHTML = `
         <h3 class="preview-make-order__title">Сумма</h3>
@@ -503,7 +509,7 @@ export default class View {
             previewNewOrderHTML;
     }
 
-    _renderPreviewTakeOrder(cost) {
+    _renderTakeOrderPreview(cost) {
         document.getElementById(
             "previewTakeOrderCost"
         ).innerText = `$ ${cost.order}`;
