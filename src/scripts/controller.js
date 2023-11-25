@@ -36,6 +36,7 @@ export default class Controller {
     }
 
     // Open new pages
+    // refact renderPreview to render func
     _handleOpenSelectedOrder = (e) => {
         const clickedItem = e.target;
         if (clickedItem.tagName != "A") return;
@@ -74,6 +75,8 @@ export default class Controller {
             );
         });
     };
+
+    // refactored
     _handleOpenSelectedItem = (e) => {
         const elementClicked = e.target;
         const selectedItemNode = elementClicked.closest("li");
@@ -93,8 +96,10 @@ export default class Controller {
         );
 
         if (onAddToBagBtnClick) {
+            // ADD ITEM TO BAG
             this._handleAddItemToBag(itemId);
         } else {
+            // OPEN ITEM CARD
             // Change visible pages
             const itemsListNode = document.getElementById(
                 "previewItemsWrapper"
@@ -103,21 +108,25 @@ export default class Controller {
             this.view.changeVisibility([itemsListNode], [itemCardNode]);
             this.view.renderItemCard(item);
 
-            // Вернуться на прошлую страницу
-            const backButton = document.getElementById("goBackToItemsBtn");
-            backButton.addEventListener("click", () => {
-                this.view.changeVisibility([itemCardNode], [itemsListNode]);
-            });
-
             // Добавить товар в корзину
             const addBtnNode = document.getElementById("addToBagFromItemcard");
             const idItem = addBtnNode.getAttribute("data-item-id");
             addBtnNode.addEventListener("click", () => {
                 this._handleAddItemToBag(idItem);
             });
+
+            // Вернуться на прошлую страницу
+            const goBackButtonNode =
+                document.getElementById("goBackToItemsBtn");
+            backButton.addEventListener("click", () => {
+                this.view.changeVisibility([itemCardNode], [itemsListNode]);
+            });
         }
     };
+
+    // refact renderPreview to render
     _handleOpenBag = () => {
+        // error empty bag
         if (this.model.getBag().length == 0) {
             this._showEror("emptyBag");
             return;
@@ -156,6 +165,9 @@ export default class Controller {
         );
         goToTakeOrderBtn.addEventListener("click", this._handerOpenTakeOrder);
     };
+
+    // refact renderPreviewTake to renderTakeOrderItemsList
+    // render paytype 2 time. Need to fix!
     _handerOpenTakeOrder = () => {
         if (this.model.getBag().length == 0) {
             this._showEror("emptyOrder");
@@ -177,10 +189,7 @@ export default class Controller {
         );
 
         // render Preview
-
         this.view.renderPreviewTakeOrder(this.model.getCost());
-
-        // Render itemList
         this.view.renderTakeOrderItemsList(this.model.getBag());
 
         // Go back btn handler
@@ -204,6 +213,7 @@ export default class Controller {
             this.model.getPayTypeMessage(),
             this.model.selectedPaytype
         );
+
         // Handler Change paytype
         const changePaytypeBtnNode =
             document.getElementById("changePaytypeBtn");
@@ -216,11 +226,10 @@ export default class Controller {
         const takeOrderBtnNode = document.getElementById("previewTakeOrderBtn");
         takeOrderBtnNode.addEventListener("click", this._handlerTakeOrder);
     };
+    //refact renderPreview to render
     _handlerTakeOrder = () => {
         // Create new order && addd it to orders list
         this.model.addNewOrder();
-
-        console.log(this.model.getNewOrder());
         this.api.setNewOrder(this.model.getNewOrder());
 
         // open new page
@@ -231,7 +240,6 @@ export default class Controller {
         const previewCreatedOrderNode = document.getElementById(
             "previewCreatedOrder"
         );
-
         this.view.changeVisibility(
             [takeOrderNode, previewTakeOrderNode],
             [createdOrderNode, previewCreatedOrderNode]
@@ -239,7 +247,6 @@ export default class Controller {
 
         // render preview
         this.view.renderNewOrder(this.model.getNewOrder());
-
         this.view.renderNewOrderPreview(this.model.getCost());
 
         // Clear old datas
@@ -251,6 +258,7 @@ export default class Controller {
         goStartPage.addEventListener("click", this._handlerGoStartPage);
     };
 
+    // REFACTORED
     // handlers
     _handlerGoStartPage = () => {
         const createdOrderNode = document.getElementById("createdOrder");
@@ -268,9 +276,9 @@ export default class Controller {
         this.view.renderPreviewBag(this.model.getBag());
         this.view.renderPreviewCompletedOrders(this.model.getOrders());
     };
+
     _handlerChangePaytype = () => {
         const paytypePopupNode = document.getElementById("paytypePopup");
-
         this.view.openPopup(paytypePopupNode);
 
         const saveNewPaytypeBtnNode = document.getElementById("saveNewPaytype");
@@ -278,9 +286,9 @@ export default class Controller {
             this._handlerSavePaytype(paytypePopupNode);
         });
     };
+
     _handlerChangeAddress = () => {
         const addressPopupNode = document.getElementById("addressPopup");
-
         this.view.openPopup(addressPopupNode);
 
         const saveNewAddressBtnNode =
@@ -289,6 +297,7 @@ export default class Controller {
             this._handlerSaveAddress(addressPopupNode);
         });
     };
+
     _handlerSavePaytype = (paytypePopupNode) => {
         const radioBtns = paytypePopupNode.querySelectorAll(
             ".pay-type-popup__real-radio"
@@ -306,6 +315,7 @@ export default class Controller {
             this.model.selectedPaytype
         );
     };
+
     _handlerSaveAddress = (addressPopupNode) => {
         const name = document.getElementById("newAddressName").value;
         const street = document.getElementById("newAddressStreet").value;
@@ -323,6 +333,7 @@ export default class Controller {
 
         this.view.renderAddress(this.model.getAddress());
     };
+
     _handlerChangeAmountItem = (e) => {
         if (e.target.tagName == "UL") return;
 
@@ -334,6 +345,7 @@ export default class Controller {
             .closest("li")
             .getAttribute("data-item-id");
 
+        // click on minus button
         if (clickedBtn.classList.contains("bag__change-amount_minus")) {
             this.model.decrementItemToBag(clickedItemId);
             this.view.renderPreviewBag(this.model.getBag());
@@ -347,7 +359,7 @@ export default class Controller {
                 this.api.deleteItemFromBag(clickedItemId);
             }
 
-            // render error empty bag
+            // render Error if bag is empty
             if (this.model.getBag().length == 0) {
                 this._showEror("emptyBag");
 
@@ -364,9 +376,12 @@ export default class Controller {
                     [previewItemsNode, previewGoBagBtnNode]
                 );
             }
-        } else {
+        }
+        //click on plus button
+        if (clickedBtn.classList.contains("bag__change-amount_plus")) {
             this._handleAddItemToBag(clickedItemId);
         }
+
         this.view.renderBag(this.model.getBag());
         this.view.renderPricePreview(this.model.getCost().order);
     };
