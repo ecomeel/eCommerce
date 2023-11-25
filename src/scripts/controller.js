@@ -36,7 +36,7 @@ export default class Controller {
     }
 
     // Open new pages
-    // refact renderPreview to render func
+
     _handleOpenSelectedOrder = (e) => {
         const clickedItem = e.target;
         if (clickedItem.tagName != "A") return;
@@ -65,7 +65,6 @@ export default class Controller {
             }
         });
         this.view.renderNewOrder(selectedOrder);
-        this.view.renderNewOrderPreview(selectedOrder.cost);
 
         const goBackNode = document.getElementById("goStartPage");
         goBackNode.addEventListener("click", () => {
@@ -76,7 +75,6 @@ export default class Controller {
         });
     };
 
-    // refactored
     _handleOpenSelectedItem = (e) => {
         const elementClicked = e.target;
         const selectedItemNode = elementClicked.closest("li");
@@ -118,7 +116,7 @@ export default class Controller {
             // Вернуться на прошлую страницу
             const goBackButtonNode =
                 document.getElementById("goBackToItemsBtn");
-            backButton.addEventListener("click", () => {
+            goBackButtonNode.addEventListener("click", () => {
                 this.view.changeVisibility([itemCardNode], [itemsListNode]);
             });
         }
@@ -138,8 +136,16 @@ export default class Controller {
         const bagNode = document.getElementById("bag");
         const previewGoBagBtnNode = document.getElementById("previewGoBagBtn");
         const previewBagPriceNode = document.getElementById("previewBagPrice");
+        const previewOrdersNode = document.getElementById(
+            "previewCompletedOrders"
+        );
         this.view.changeVisibility(
-            [itemsListNode, itemCardNode, previewGoBagBtnNode],
+            [
+                itemsListNode,
+                itemCardNode,
+                previewGoBagBtnNode,
+                previewOrdersNode,
+            ],
             [bagNode, previewBagPriceNode]
         );
 
@@ -151,7 +157,7 @@ export default class Controller {
         goBackBtn.addEventListener("click", () => {
             this.view.changeVisibility(
                 [bagNode, previewBagPriceNode],
-                [itemsListNode, previewGoBagBtnNode]
+                [itemsListNode, previewGoBagBtnNode, previewOrdersNode]
             );
         });
 
@@ -188,9 +194,10 @@ export default class Controller {
             [takeOrderNode, previewTakeOrder]
         );
 
-        // render Preview
-        this.view.renderPreviewTakeOrder(this.model.getCost());
-        this.view.renderTakeOrderItemsList(this.model.getBag());
+        this.view.renderTakeOrderItemsList(
+            this.model.getBag(),
+            this.model.getCost()
+        );
 
         // Go back btn handler
         const goBackBtnNode = document.getElementById("goBackFromTakeOrder");
@@ -226,7 +233,7 @@ export default class Controller {
         const takeOrderBtnNode = document.getElementById("previewTakeOrderBtn");
         takeOrderBtnNode.addEventListener("click", this._handlerTakeOrder);
     };
-    //refact renderPreview to render
+
     _handlerTakeOrder = () => {
         // Create new order && addd it to orders list
         this.model.addNewOrder();
@@ -247,7 +254,6 @@ export default class Controller {
 
         // render preview
         this.view.renderNewOrder(this.model.getNewOrder());
-        this.view.renderNewOrderPreview(this.model.getCost());
 
         // Clear old datas
         this.model.clearOldDatas();

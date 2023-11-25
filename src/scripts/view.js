@@ -85,18 +85,6 @@ export default class View {
         ).innerText = `Сумма: $ ${price}`;
     }
 
-    renderPreviewTakeOrder(cost) {
-        document.getElementById(
-            "previewTakeOrderCost"
-        ).innerText = `$ ${cost.order}`;
-        document.getElementById(
-            "previewTakeOrderDeliveryCost"
-        ).innerText = `$ ${cost.delivery}`;
-        document.getElementById("previewTakeOrderFinalCost").innerText = `$ ${
-            cost.order + cost.delivery
-        }`;
-    }
-
     renderItemCard(item) {
         let itemCardHTML = `
         <button id='goBackToItemsBtn' class="go-back-btn">
@@ -250,7 +238,7 @@ export default class View {
     }
 
     //Take a order
-    renderTakeOrderItemsList(bag) {
+    renderTakeOrderItemsList(bag, cost) {
         const takeOrderItemsListNode =
             document.getElementById("takeOrderItemsList");
 
@@ -315,9 +303,12 @@ export default class View {
         });
 
         takeOrderItemsListNode.innerHTML = takeOrderListHTML;
+
+        this._renderPreviewTakeOrder(cost)
     }
 
     //new Order
+    // refact vars to 1 element
     renderNewOrder(newOrder) {
         const createdOrderNode = document.getElementById("createdOrder");
 
@@ -325,30 +316,30 @@ export default class View {
             <h2 class="order__title">Заказ №${newOrder.id}</h2>
         `;
         const goBackBtnHTML = `
-        <button
-            id="goStartPage"
-            class="go-back-btn"
-        >
-            <img src="img/buttons/back.png" alt="back" />
-            <p class="go-back-btn__text">Список товаров</p>
-        </button>`;
+            <button
+                id="goStartPage"
+                class="go-back-btn"
+            >
+                <img src="img/buttons/back.png" alt="back" />
+                <p class="go-back-btn__text">Список товаров</p>
+            </button>`;
         const newOrderAddressHTML = `
-        <div class="address">
-            <h2 class="order__title subtitle">
-                Адрес доставки
-            </h2>
-            <div class="address__content">
-                <p class="address__name">${newOrder.address.name}</p>
-                <p class="address__street">
-                    ${newOrder.address.street}
-                </p>
-                <p class="address__city">${newOrder.address.city}</p>
-                <p class="address__phone">
-                    ${newOrder.address.phone}
-                </p>
+            <div class="address">
+                <h2 class="order__title subtitle">
+                    Адрес доставки
+                </h2>
+                <div class="address__content">
+                    <p class="address__name">${newOrder.address.name}</p>
+                    <p class="address__street">
+                        ${newOrder.address.street}
+                    </p>
+                    <p class="address__city">${newOrder.address.city}</p>
+                    <p class="address__phone">
+                        ${newOrder.address.phone}
+                    </p>
+                </div>
             </div>
-        </div>
-        `;
+            `;
         const newOrderPaytypeHTML = `
         <div class="pay-type">
             <h2 class="order__title subtitle">
@@ -435,28 +426,8 @@ export default class View {
             newOrderAddressHTML +
             newOrderPaytypeHTML +
             newOrderBagListHTML;
-    }
 
-    renderNewOrderPreview(cost) {
-        const previewNewOrderHTML = `
-        <h3 class="preview-make-order__title">Сумма</h3>
-        <div class="preview-make-order__price">
-            <p>Товары</p>
-            <p>$ ${cost.order}</p>
-        </div>
-        <div class="preview-make-order__price">
-            <p>Доставка</p>
-            <p>$ ${cost.delivery}</p>
-        </div>
-        <div
-            class="preview-make-order__total preview-make-order__total_done"
-        >
-            <p>Стоимость</p>
-            <p>$ ${cost.order + cost.delivery}</p>
-        </div>
-        `;
-        document.getElementById("previewCreatedOrder").innerHTML =
-            previewNewOrderHTML;
+        this._renderNewOrderPreview(newOrder.cost)
     }
 
     renderAddress(address) {
@@ -508,5 +479,39 @@ export default class View {
     closePopup(popupNode) {
         popupNode.classList.remove("visible");
         document.body.classList.remove("fixe-scroll");
+    }
+
+    _renderNewOrderPreview(cost) {
+        const previewNewOrderHTML = `
+        <h3 class="preview-make-order__title">Сумма</h3>
+        <div class="preview-make-order__price">
+            <p>Товары</p>
+            <p>$ ${cost.order}</p>
+        </div>
+        <div class="preview-make-order__price">
+            <p>Доставка</p>
+            <p>$ ${cost.delivery}</p>
+        </div>
+        <div
+            class="preview-make-order__total preview-make-order__total_done"
+        >
+            <p>Стоимость</p>
+            <p>$ ${cost.order + cost.delivery}</p>
+        </div>
+        `;
+        document.getElementById("previewCreatedOrder").innerHTML =
+            previewNewOrderHTML;
+    }
+
+    _renderPreviewTakeOrder(cost) {
+        document.getElementById(
+            "previewTakeOrderCost"
+        ).innerText = `$ ${cost.order}`;
+        document.getElementById(
+            "previewTakeOrderDeliveryCost"
+        ).innerText = `$ ${cost.delivery}`;
+        document.getElementById("previewTakeOrderFinalCost").innerText = `$ ${
+            cost.order + cost.delivery
+        }`;
     }
 }
