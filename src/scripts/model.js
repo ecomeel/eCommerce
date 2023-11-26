@@ -16,10 +16,10 @@ export default class Model {
         this.deliveryCost = 10;
 
         this.address = {
-            name: "name",
-            street: "street",
-            city: "City",
-            phone: "phone",
+            name: "",
+            street: "",
+            city: "",
+            phone: "",
         };
 
         this.paytypes = {

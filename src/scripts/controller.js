@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 import View from "./view";
 import Model from "./model";
 import Api from "./api";
@@ -17,6 +19,21 @@ export default class Controller {
     }
 
     init() {
+
+        // local storage
+        let userId = localStorage.getItem('userId');
+        if (!userId) {
+            userId = uuidv4();
+            const bag = [];
+
+        } else {
+            const bag = JSON.parse(localStorage.getItem('bag'));
+            // setBag
+            //render Bag
+        }
+        //setBag
+        //renderBag
+
         this.api.getProductsFromDatabase().then((products) => {
             this.model.setItems(products);
             this.view.renderItems(this.model.getItems());
