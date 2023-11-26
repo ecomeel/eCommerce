@@ -7,6 +7,8 @@ import Api from "./api";
 import "../styles/scss/style.scss";
 // import { render } from "sass";
 
+let localBag;
+
 export default class Controller {
     constructor() {
         this.view = new View({
@@ -19,17 +21,16 @@ export default class Controller {
     }
 
     init() {
-
         // local storage
         let userId = localStorage.getItem('userId');
         if (!userId) {
             userId = uuidv4();
-            const bag = [];
+            localBag = [];
+            localStorage.setItem('userId', userId);
+            localStorage.setItem('bag', JSON.stringify(bag))
 
         } else {
-            const bag = JSON.parse(localStorage.getItem('bag'));
-            // setBag
-            //render Bag
+            localBag = JSON.parse(localStorage.getItem('bag'));
         }
         //setBag
         //renderBag
@@ -409,6 +410,10 @@ export default class Controller {
             this.model.pushItemToBag(item);
             this.api.setItemBag({ ...item, amount: 1 });
         }
+
+        localBag = this.model.getBag()
+        localStorage.setItem('bag', JSON.stringify(localBag));
+        console.log(localBag)
 
         this.view.renderPreviewBag(this.model.getBag());
     }

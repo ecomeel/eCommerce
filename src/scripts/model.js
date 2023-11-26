@@ -1,5 +1,5 @@
 import normalizedItems from "./utils/normalizedItems.js";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export default class Model {
     constructor() {
@@ -15,12 +15,7 @@ export default class Model {
         this.orderCost = 0;
         this.deliveryCost = 10;
 
-        this.address = {
-            name: "",
-            street: "",
-            city: "",
-            phone: "",
-        };
+        this.address = {};
 
         this.paytypes = {
             card: "Оплата картой при получении",
@@ -91,12 +86,12 @@ export default class Model {
 
     getAmountItemToBagById(id) {
         let amount;
-        this.bag.forEach(bagItem => {
+        this.bag.forEach((bagItem) => {
             if (bagItem.id == id) {
-                amount = bagItem.amount
+                amount = bagItem.amount;
             }
         });
-        return amount
+        return amount;
     }
 
     pushItemToBag(item) {
