@@ -36,7 +36,6 @@ export default class Controller {
     }
 
     // Open new pages
-
     _handleOpenSelectedOrder = (e) => {
         const clickedItem = e.target;
         if (clickedItem.tagName != "A") return;
@@ -170,7 +169,6 @@ export default class Controller {
         goToTakeOrderBtn.addEventListener("click", this._handerOpenTakeOrder);
     };
 
-    // render paytype 2 time. Need to fix!
     _handerOpenTakeOrder = () => {
         if (this.model.getBag().length == 0) {
             this._showEror("emptyOrder");
