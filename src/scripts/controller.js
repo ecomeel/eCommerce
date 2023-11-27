@@ -2,7 +2,8 @@ import { v4 as uuidv4 } from "uuid";
 
 import View from "./view";
 import Model from "./model";
-import Api from "./api";
+import Api from "./storage/api";
+import LocalStorage from "./storage/localStorage";
 
 import "../styles/scss/style.scss";
 // import { render } from "sass";
@@ -18,32 +19,23 @@ export default class Controller {
         });
         this.model = new Model();
         this.api = new Api();
+        this.storage = new LocalStorage();
     }
 
     init() {
-        // local storage
-        let userId = localStorage.getItem('userId');
-        if (!userId) {
-            userId = uuidv4();
-            localBag = [];
-            localStorage.setItem('userId', userId);
-            localStorage.setItem('bag', JSON.stringify(bag))
-
-        } else {
-            localBag = JSON.parse(localStorage.getItem('bag'));
-        }
-        //setBag
-        //renderBag
-
         this.api.getProductsFromDatabase().then((products) => {
             this.model.setItems(products);
             this.view.renderItems(this.model.getItems());
         });
 
-        this.api.getBagFromDatabase().then((bag) => {
-            this.model.setBag(bag);
+        // Initialization bag and user id
+        if (!this.storage.getUserIdFromStorage()) {
+            this.storage.setUserIdToStorage(uuidv4());
+            this.storage.setBagToStorage([])
+        } else {
+            this.model.setBag(this.storage.getBagFromStorage());
             this.view.renderPreviewBag(this.model.getBag());
-        });
+        }
 
         this.api.getOrdersFromDatabase().then((orders) => {
             if (!orders.length == 0) {
@@ -262,7 +254,9 @@ export default class Controller {
 
         // Clear old datas
         this.model.clearOldDatas();
-        this.api.clearBag();
+        localStorage.setItem("bag", JSON.stringify(this.model.getBag()));
+
+        // localBag = this.model.getBag();
 
         // handler go to items btn
         const goStartPage = document.getElementById("goStartPage");
@@ -345,6 +339,7 @@ export default class Controller {
         this.view.renderAddress(this.model.getAddress());
     };
 
+    // delete db bag
     _handlerChangeAmountItem = (e) => {
         if (e.target.tagName == "UL") return;
 
@@ -361,14 +356,18 @@ export default class Controller {
             this.model.decrementItemToBag(clickedItemId);
             this.view.renderPreviewBag(this.model.getBag());
 
-            if (this.model.getAmountItemToBagById(clickedItemId)) {
-                this.api.updateAmountItemBag(
-                    clickedItemId,
-                    this.model.getAmountItemToBagById(clickedItemId)
-                );
-            } else {
-                this.api.deleteItemFromBag(clickedItemId);
-            }
+            //
+            localStorage.setItem("bag", JSON.stringify(this.model.getBag()));
+
+            // is realle need this.model.getAMount
+            // if (this.model.getAmountItemToBagById(clickedItemId)) {
+            //     this.api.updateAmountItemBag(
+            //         clickedItemId,
+            //         this.model.getAmountItemToBagById(clickedItemId)
+            //     );
+            // } else {
+            //     this.api.deleteItemFromBag(clickedItemId);
+            // }
 
             // render Error if bag is empty
             if (this.model.getBag().length == 0) {
@@ -401,19 +400,11 @@ export default class Controller {
         if (this.model.getBagIds().includes(id)) {
             // Increment item
             this.model.incrementItemToBag(id);
-            this.api.updateAmountItemBag(
-                id,
-                this.model.getAmountItemToBagById(id)
-            );
         } else {
             // Add item to bag
             this.model.pushItemToBag(item);
-            this.api.setItemBag({ ...item, amount: 1 });
         }
-
-        localBag = this.model.getBag()
-        localStorage.setItem('bag', JSON.stringify(localBag));
-        console.log(localBag)
+        localStorage.setItem("bag", JSON.stringify(this.model.getBag()));
 
         this.view.renderPreviewBag(this.model.getBag());
     }

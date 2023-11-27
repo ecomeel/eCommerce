@@ -6,9 +6,7 @@ import {
     collection,
     doc,
     getDocs,
-    setDoc,
-    updateDoc,
-    deleteDoc,
+    setDoc
 } from "firebase/firestore";
 
 export default class Api {
@@ -43,66 +41,6 @@ export default class Api {
             });
         });
         return productsList;
-    }
-
-    // Bag
-    async getBagFromDatabase() {
-        const querySnapshot = await getDocs(collection(this.db, "bag"));
-        const bag = [];
-        querySnapshot.forEach((doc) => {
-            bag.push({
-                id: doc.id,
-                name: doc.data().name,
-                model: doc.data().model,
-                amount: doc.data().amount,
-                rating: doc.data().rating,
-                price: doc.data().price,
-                imgSrc: doc.data().imgSrc,
-                shortDesc: doc.data().shortDesc,
-                mainDesc: doc.data().mainDesc,
-                fullDesc: doc.data().fullDesc,
-            });
-        });
-        return bag;
-    }
-
-    async setItemBag(item) {
-        await setDoc(doc(this.db, "bag", item.id), {
-            name: item.name,
-            model: item.model,
-            amount: item.amount,
-            price: item.price,
-            imgSrc: item.imgSrc,
-            shortDesc: item.shortDesc,
-            mainDesc: item.mainDesc,
-            fullDesc: item.fullDesc,
-        });
-    }
-
-    async updateAmountItemBag(id, amount) {
-        const itemBagRef = doc(this.db, "bag", id);
-
-        await updateDoc(itemBagRef, {
-            amount: amount,
-        });
-    }
-
-    async deleteItemFromBag(id) {
-        const itemBagRef = doc(this.db, "bag", id);
-
-        await deleteDoc(itemBagRef);
-    }
-
-    async clearBag() {
-        const querySnapshot = await getDocs(collection(this.db, "bag"));
-        const bagIds = [];
-        querySnapshot.forEach((doc) => {
-            bagIds.push(doc.id)
-        });
-
-        bagIds.forEach(id => {
-            this.deleteItemFromBag(id)
-        });
     }
 
     //Orders
