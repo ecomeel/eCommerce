@@ -28,7 +28,6 @@ export default class Controller {
             this.view.renderItems(this.model.getItems());
         });
 
-        // Initialization bag and user id
         if (!this.storage.getUserIdFromStorage()) {
             this.storage.setUserIdToStorage(uuidv4());
             this.storage.setBagToStorage([])
@@ -254,16 +253,13 @@ export default class Controller {
 
         // Clear old datas
         this.model.clearOldDatas();
-        localStorage.setItem("bag", JSON.stringify(this.model.getBag()));
-
-        // localBag = this.model.getBag();
+        this.storage.setBagToStorage(this.model.getBag())
 
         // handler go to items btn
         const goStartPage = document.getElementById("goStartPage");
         goStartPage.addEventListener("click", this._handlerGoStartPage);
     };
 
-    // REFACTORED
     // handlers
     _handlerGoStartPage = () => {
         const createdOrderNode = document.getElementById("createdOrder");
@@ -355,19 +351,8 @@ export default class Controller {
         if (clickedBtn.classList.contains("bag__change-amount_minus")) {
             this.model.decrementItemToBag(clickedItemId);
             this.view.renderPreviewBag(this.model.getBag());
+            this.storage.setBagToStorage(this.model.getBag())
 
-            //
-            localStorage.setItem("bag", JSON.stringify(this.model.getBag()));
-
-            // is realle need this.model.getAMount
-            // if (this.model.getAmountItemToBagById(clickedItemId)) {
-            //     this.api.updateAmountItemBag(
-            //         clickedItemId,
-            //         this.model.getAmountItemToBagById(clickedItemId)
-            //     );
-            // } else {
-            //     this.api.deleteItemFromBag(clickedItemId);
-            // }
 
             // render Error if bag is empty
             if (this.model.getBag().length == 0) {
@@ -387,7 +372,7 @@ export default class Controller {
                 );
             }
         }
-        //click on plus button
+        // click on plus button
         if (clickedBtn.classList.contains("bag__change-amount_plus")) {
             this._handleAddItemToBag(clickedItemId);
         }
@@ -404,8 +389,7 @@ export default class Controller {
             // Add item to bag
             this.model.pushItemToBag(item);
         }
-        localStorage.setItem("bag", JSON.stringify(this.model.getBag()));
-
+        this.storage.setBagToStorage(this.model.getBag());
         this.view.renderPreviewBag(this.model.getBag());
     }
 

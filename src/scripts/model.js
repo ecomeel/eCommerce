@@ -84,16 +84,6 @@ export default class Model {
         this._onBagChanges();
     }
 
-    getAmountItemToBagById(id) {
-        let amount;
-        this.bag.forEach((bagItem) => {
-            if (bagItem.id == id) {
-                amount = bagItem.amount;
-            }
-        });
-        return amount;
-    }
-
     pushItemToBag(item) {
         this.bagItemsIds.push(item.id);
         this.bag.push({ ...item, amount: 1 });
