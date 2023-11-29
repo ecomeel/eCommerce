@@ -437,6 +437,14 @@ export default class View {
         document.getElementById("addressPhone").innerText = address.phone;
     }
 
+    showErrorEmptyAddress() {
+        document.getElementById('address').classList.add('red-border')
+        alert('Не указан адрес доставки')
+    }
+    hideRedBorder() {
+        document.getElementById('address').classList.remove('red-border')
+    }
+
     renderPaytype(paytypeMessage, selectedPaytype) {
         document.getElementById("selectedPaytype").innerHTML = `
             <img

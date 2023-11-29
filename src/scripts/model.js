@@ -23,7 +23,7 @@ export default class Model {
         };
         this.selectedPaytype = "card";
 
-        this.newOrderId = 1;
+        this.newOrderId = null;
         this.newOrder = {};
         this.orders = [];
 
@@ -139,11 +139,35 @@ export default class Model {
             address: this.getAddress(),
         };
         this.orders.push(this.newOrder);
+
         this.newOrderId += 1;
     }
 
     setOrders(orders) {
         this.orders = orders;
+
+        this._setNewOrderId()
+    }
+
+    _setNewOrderId() {
+        let idsOrders = [];
+        this.orders.forEach((order) => {
+            idsOrders.push(parseInt(order.id));
+        });
+
+        if (idsOrders.length == 0) {
+            this.newOrderId = 1;
+        }
+        if (idsOrders.length == 1) {
+            this.newOrderId = idsOrders[0] + 1;
+        }
+
+        if (idsOrders.length > 1) {
+            idsOrders.sort((a, b) => {
+                a - b;
+            });
+            this.newOrderId = idsOrders[idsOrders.length - 1] + 1;
+        }
     }
 
     getOrders() {

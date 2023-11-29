@@ -30,7 +30,7 @@ export default class Controller {
 
         if (!this.storage.getUserIdFromStorage()) {
             this.storage.setUserIdToStorage(uuidv4());
-            this.storage.setBagToStorage([])
+            this.storage.setBagToStorage([]);
         } else {
             this.model.setBag(this.storage.getBagFromStorage());
             this.view.renderPreviewBag(this.model.getBag());
@@ -227,7 +227,13 @@ export default class Controller {
 
         // Handler take order
         const takeOrderBtnNode = document.getElementById("previewTakeOrderBtn");
-        takeOrderBtnNode.addEventListener("click", this._handlerTakeOrder);
+        takeOrderBtnNode.addEventListener("click", () => {
+            if (Object.keys(this.model.getAddress()).length === 0) {
+                this.view.showErrorEmptyAddress();
+                return;
+            }
+            this._handlerTakeOrder();
+        });
     };
 
     _handlerTakeOrder = () => {
@@ -253,7 +259,7 @@ export default class Controller {
 
         // Clear old datas
         this.model.clearOldDatas();
-        this.storage.setBagToStorage(this.model.getBag())
+        this.storage.setBagToStorage(this.model.getBag());
 
         // handler go to items btn
         const goStartPage = document.getElementById("goStartPage");
@@ -333,6 +339,8 @@ export default class Controller {
         this.view.closePopup(addressPopupNode);
 
         this.view.renderAddress(this.model.getAddress());
+
+        this.view.hideRedBorder();
     };
 
     // delete db bag
@@ -351,8 +359,7 @@ export default class Controller {
         if (clickedBtn.classList.contains("bag__change-amount_minus")) {
             this.model.decrementItemToBag(clickedItemId);
             this.view.renderPreviewBag(this.model.getBag());
-            this.storage.setBagToStorage(this.model.getBag())
-
+            this.storage.setBagToStorage(this.model.getBag());
 
             // render Error if bag is empty
             if (this.model.getBag().length == 0) {

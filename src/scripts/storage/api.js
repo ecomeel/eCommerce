@@ -6,7 +6,7 @@ import {
     collection,
     doc,
     getDocs,
-    setDoc
+    setDoc,
 } from "firebase/firestore";
 
 export default class Api {
@@ -25,38 +25,52 @@ export default class Api {
 
     // Products
     async getProductsFromDatabase() {
-        const querySnapshot = await getDocs(collection(this.db, "products"));
-        const productsList = [];
-        querySnapshot.forEach((doc) => {
-            productsList.push({
-                id: doc.id,
-                name: doc.data().name,
-                model: doc.data().model,
-                price: doc.data().price,
-                rating: doc.data().rating,
-                imgSrc: doc.data().imgSrc,
-                shortDesc: doc.data().shortDesc,
-                mainDesc: doc.data().mainDesc,
-                fullDesc: doc.data().fullDesc,
+        try {
+            const querySnapshot = await getDocs(
+                collection(this.db, "products")
+            );
+            const productsList = [];
+            querySnapshot.forEach((doc) => {
+                productsList.push({
+                    id: doc.id,
+                    name: doc.data().name,
+                    model: doc.data().model,
+                    price: doc.data().price,
+                    rating: doc.data().rating,
+                    imgSrc: doc.data().imgSrc,
+                    shortDesc: doc.data().shortDesc,
+                    mainDesc: doc.data().mainDesc,
+                    fullDesc: doc.data().fullDesc,
+                });
             });
-        });
-        return productsList;
+            return productsList;
+        } catch (e) {
+            alert(
+                "Ошибка загрузки списка продуктов, попробуйте обновить страницу"
+            );
+        }
     }
 
     //Orders
     async getOrdersFromDatabase() {
-        const querySnapshot = await getDocs(collection(this.db, "orders"));
-        const orders = [];
-        querySnapshot.forEach((doc) => {
-            orders.push({
-                id: Number(doc.id),
-                paytype: JSON.parse(doc.data().paytype),
-                cost: JSON.parse(doc.data().cost),
-                address: JSON.parse(doc.data().address),
-                order: JSON.parse(doc.data().order),
+        try {
+            const querySnapshot = await getDocs(collection(this.db, "orders"));
+            const orders = [];
+            querySnapshot.forEach((doc) => {
+                orders.push({
+                    id: Number(doc.id),
+                    paytype: JSON.parse(doc.data().paytype),
+                    cost: JSON.parse(doc.data().cost),
+                    address: JSON.parse(doc.data().address),
+                    order: JSON.parse(doc.data().order),
+                });
             });
-        });
-        return orders;
+            return orders;
+        } catch (error) {
+            alert(
+                "Ошибка загрузки списка заказов, попробуйте обновить страницу"
+            );
+        }
     }
 
     async setNewOrder(order) {
@@ -68,4 +82,3 @@ export default class Api {
         });
     }
 }
-
