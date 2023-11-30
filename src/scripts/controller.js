@@ -6,9 +6,6 @@ import Api from "./storage/api";
 import LocalStorage from "./storage/localStorage";
 
 import "../styles/scss/style.scss";
-// import { render } from "sass";
-
-let localBag;
 
 export default class Controller {
     constructor() {
