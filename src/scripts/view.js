@@ -3,16 +3,29 @@ const CLASSNAME_CHANGE_VISIBILITY = "visible";
 export default class View {
     constructor({ userClickedItem, userGoToBag, userSelectedOrder }) {
         this.itemsListNode = document.getElementById("itemsList");
-        this.itemCardNode = document.getElementById("itemCard");
-
         this.previewBagItemsNode = document.getElementById("previewBagItems");
-        this.goToBagBtnNode = document.getElementById("goToBagBtn");
         this.previewCompletedOrderListNode = document.getElementById(
             "previewCompletedOrdersList"
         );
         this.previewCompletedOrdersNode = document.getElementById(
             "previewCompletedOrders"
         );
+        this.previewCreatedOrderNode = document.getElementById('previewCreatedOrder')
+        this.itemCardNode = document.getElementById("itemCard");
+        this.bagItemsListNode = document.getElementById("bagItemsList");
+        this.takeOrderItemsListNode =
+            document.getElementById("takeOrderItemsList");
+        this.createdOrderNode = document.getElementById("createdOrder");
+        this.goToBagBtnNode = document.getElementById("goToBagBtn");
+        this.previewOrderCostNode = document.getElementById('previewOrderCost')
+
+        this.addressDatasWrapperNode = document.getElementById(
+            "addressDatasWrapper"
+        );
+        this.addressNode = document.getElementById('address');
+        this.selectedPaytypeNode = document.getElementById('selectedPaytype');
+
+        this.errorPageNode = document.getElementById('errorPage')
 
         this.itemsListNode.addEventListener("click", userClickedItem);
         this.goToBagBtnNode.addEventListener("click", userGoToBag);
@@ -63,7 +76,9 @@ export default class View {
     }
 
     renderPreviewCompletedOrders(orders) {
-        this.previewCompletedOrdersNode.classList.add(CLASSNAME_CHANGE_VISIBILITY);
+        this.previewCompletedOrdersNode.classList.add(
+            CLASSNAME_CHANGE_VISIBILITY
+        );
 
         const completedOrdersListNode = document.getElementById(
             "previewCompletedOrdersList"
@@ -78,8 +93,6 @@ export default class View {
         });
         completedOrdersListNode.innerHTML = completedOrdersHTML;
     }
-
-
 
     renderItemCard(item) {
         let itemCardHTML = `
@@ -152,9 +165,7 @@ export default class View {
         this.itemCardNode.innerHTML = itemCardHTML;
     }
 
-
     renderBag(bag, price) {
-        const bagItemsListNode = document.getElementById("bagItemsList");
         let bagHTML = "";
         bag.forEach((item) => {
             bagHTML += `
@@ -231,16 +242,12 @@ export default class View {
                 </div>
             </li>`;
         });
-        bagItemsListNode.innerHTML = bagHTML;
+        this.bagItemsListNode.innerHTML = bagHTML;
 
-        this._renderPricePreview(price)
+        this._renderPricePreview(price);
     }
 
-    //Take a order
     renderTakeOrder(bag, cost) {
-        const takeOrderItemsListNode =
-            document.getElementById("takeOrderItemsList");
-
         let takeOrderListHTML = "";
 
         bag.forEach((item) => {
@@ -301,16 +308,13 @@ export default class View {
             `;
         });
 
-        takeOrderItemsListNode.innerHTML = takeOrderListHTML;
+        this.takeOrderItemsListNode.innerHTML = takeOrderListHTML;
 
-        this._renderTakeOrderPreview(cost)
+        this._renderTakeOrderPreview(cost);
     }
 
     //new Order
-    // refact vars to 1 element
     renderNewOrder(newOrder) {
-        const createdOrderNode = document.getElementById("createdOrder");
-
         const newOrderTitleHTML = `
             <h2 class="order__title">Заказ №${newOrder.id}</h2>
         `;
@@ -321,7 +325,8 @@ export default class View {
             >
                 <img src="img/buttons/back.png" alt="back" />
                 <p class="go-back-btn__text">Список товаров</p>
-            </button>`;
+            </button>
+        `;
         const newOrderAddressHTML = `
             <div class="address">
                 <h2 class="order__title subtitle">
@@ -338,7 +343,7 @@ export default class View {
                     </p>
                 </div>
             </div>
-            `;
+        `;
         const newOrderPaytypeHTML = `
         <div class="pay-type">
             <h2 class="order__title subtitle">
@@ -419,34 +424,34 @@ export default class View {
         </ul>
         `;
 
-        createdOrderNode.innerHTML =
+        this.createdOrderNode.innerHTML =
             goBackBtnHTML +
             newOrderTitleHTML +
             newOrderAddressHTML +
             newOrderPaytypeHTML +
             newOrderBagListHTML;
 
-        this._renderNewOrderPreview(newOrder.cost)
+        this._renderNewOrderPreview(newOrder.cost);
     }
 
     renderAddress(address) {
-        console.log(address);
-        document.getElementById("addressName").innerText = address.name;
-        document.getElementById("addressStreet").innerText = address.street;
-        document.getElementById("addressCity").innerText = address.city;
-        document.getElementById("addressPhone").innerText = address.phone;
+        this.addressDatasWrapperNode.innerHTML = `
+            <p class="address__name">${address.name}</p>
+            <p class="address__street">${address.street}</p>
+            <p class="address__city">${address.city}</p>
+            <p class="address__phone">${address.phone}</p>
+        `;
     }
-
     showErrorEmptyAddress() {
-        document.getElementById('address').classList.add('red-border')
-        alert('Не указан адрес доставки')
+        this.addressNode.classList.add("red-border");
+        alert("Не указан адрес доставки");
     }
     hideRedBorder() {
-        document.getElementById('address').classList.remove('red-border')
+        this.addressNode.classList.remove("red-border");
     }
 
     renderPaytype(paytypeMessage, selectedPaytype) {
-        document.getElementById("selectedPaytype").innerHTML = `
+        this.selectedPaytypeNode.innerHTML = `
             <img
                 class="pay-type__result-img"
                 src="img/buttons/${selectedPaytype}-pay.png"
@@ -457,16 +462,19 @@ export default class View {
     }
 
     renderError(error) {
-        const errorPageNode = document.getElementById("errorPage");
-        errorPageNode.classList.add(CLASSNAME_CHANGE_VISIBILITY);
-
-        const errorTitleNode = document.getElementById("errorTitle");
-        errorTitleNode.innerText = error;
-
-        const btnClosePage = document.getElementById("closeErrorPageBtn");
-        btnClosePage.addEventListener("click", () => {
-            errorPageNode.classList.remove(CLASSNAME_CHANGE_VISIBILITY);
-        });
+        this.errorPageNode.innerHTML = `
+            <div class="container">
+                <button id="closeErrorPageBtn" class="go-back-btn">
+                    <img src="img/buttons/back.png" alt="" />
+                    <p class="go-back-btn__text">Список товаров</p>
+                </button>
+                <h2 id="errorTitle" class="title">${error}</h2>
+            </div>
+        `;
+        this.errorPageNode.classList.add(CLASSNAME_CHANGE_VISIBILITY)
+        document.getElementById('closeErrorPageBtn').addEventListener('click', () => {
+            this.errorPageNode.classList.remove(CLASSNAME_CHANGE_VISIBILITY);
+        })
     }
 
     changeVisibility(closePages, openPages) {
@@ -488,33 +496,28 @@ export default class View {
         document.body.classList.remove("fixe-scroll");
     }
 
-
     _renderPricePreview(price) {
-        document.getElementById(
-            "previewOrderCost"
-        ).innerText = `Сумма: $ ${price}`;
+        this.previewOrderCostNode.innerText = `Сумма: $ ${price}`;
     }
 
     _renderNewOrderPreview(cost) {
-        const previewNewOrderHTML = `
-        <h3 class="preview-make-order__title">Сумма</h3>
-        <div class="preview-make-order__price">
-            <p>Товары</p>
-            <p>$ ${cost.order}</p>
-        </div>
-        <div class="preview-make-order__price">
-            <p>Доставка</p>
-            <p>$ ${cost.delivery}</p>
-        </div>
-        <div
-            class="preview-make-order__total preview-make-order__total_done"
-        >
-            <p>Стоимость</p>
-            <p>$ ${cost.order + cost.delivery}</p>
-        </div>
+        this.previewCreatedOrderNode.innerHTML = `
+            <h3 class="preview-make-order__title">Сумма</h3>
+            <div class="preview-make-order__price">
+                <p>Товары</p>
+                <p>$ ${cost.order}</p>
+            </div>
+            <div class="preview-make-order__price">
+                <p>Доставка</p>
+                <p>$ ${cost.delivery}</p>
+            </div>
+            <div
+                class="preview-make-order__total preview-make-order__total_done"
+            >
+                <p>Стоимость</p>
+                <p>$ ${cost.order + cost.delivery}</p>
+            </div>
         `;
-        document.getElementById("previewCreatedOrder").innerHTML =
-            previewNewOrderHTML;
     }
 
     _renderTakeOrderPreview(cost) {

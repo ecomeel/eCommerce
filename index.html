@@ -44,27 +44,18 @@
                                 <img src="img/buttons/back.png" alt="" />
                                 <p class="go-back-btn__text">Назад в корзину</p>
                             </button>
-                            <div id="address" class="pre-order__address address">
+                            <div
+                                id="address"
+                                class="pre-order__address address"
+                            >
                                 <h2 class="order__title subtitle">
                                     Адрес доставки
                                 </h2>
                                 <div class="address__content">
-                                    <p
-                                        id="addressName"
-                                        class="address__name"
-                                    ></p>
-                                    <p
-                                        id="addressStreet"
-                                        class="address__street"
-                                    ></p>
-                                    <p
-                                        id="addressCity"
-                                        class="address__city"
-                                    ></p>
-                                    <p
-                                        id="addressPhone"
-                                        class="address__phone"
-                                    ></p>
+                                    <div
+                                        id="addressDatasWrapper"
+                                        class="address__datas-wrapper"
+                                    ></div>
                                     <button
                                         id="changeAddressBtn"
                                         class="pre-order__change-btn"
@@ -107,12 +98,7 @@
                                 ></ul>
                             </div>
                         </div>
-                        <div id="createdOrder" class="order">
-                            <button id="goStartPage" class="go-back-btn">
-                                <img src="img/buttons/back.png" alt="back" />
-                                <p class="go-back-btn__text">Список товаров</p>
-                            </button>
-                        </div>
+                        <div id="createdOrder" class="order"></div>
                     </div>
                     <div class="right-col">
                         <div id="previewBag" class="preview-bag visible">
@@ -183,15 +169,7 @@
                 </div>
             </div>
         </div>
-        <div id="errorPage" class="error">
-            <div class="container">
-                <button id="closeErrorPageBtn" class="go-back-btn">
-                    <img src="img/buttons/back.png" alt="" />
-                    <p class="go-back-btn__text">Список товаров</p>
-                </button>
-                <h2 id="errorTitle" class="title"></h2>
-            </div>
-        </div>
+        <div id="errorPage" class="error"></div>
         <div id="addressPopup" class="address-popup-wrapper">
             <div class="address-popup popup">
                 <div class="address-popup__form">

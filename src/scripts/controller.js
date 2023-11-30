@@ -37,10 +37,8 @@ export default class Controller {
         }
 
         this.api.getOrdersFromDatabase().then((orders) => {
-            if (!orders.length == 0) {
-                this.model.setOrders(orders);
-                this.view.renderPreviewCompletedOrders(orders);
-            }
+            this.model.setOrders(orders);
+            this.view.renderPreviewCompletedOrders(orders);
         });
     }
 
@@ -61,7 +59,7 @@ export default class Controller {
             "previewCreatedOrder"
         );
         this.view.changeVisibility(
-            [itemsListNode, previewItemsListNode, previewCreatedOrder],
+            [itemsListNode, previewItemsListNode, previewOrdersListNode],
             [aboutOrderNode, previewCreatedOrder]
         );
 
@@ -227,17 +225,16 @@ export default class Controller {
 
         // Handler take order
         const takeOrderBtnNode = document.getElementById("previewTakeOrderBtn");
-        takeOrderBtnNode.addEventListener("click", () => {
-            if (Object.keys(this.model.getAddress()).length === 0) {
-                this.view.showErrorEmptyAddress();
-                return;
-            }
-            this._handlerTakeOrder();
-        });
+        takeOrderBtnNode.addEventListener("click", this._handlerTakeOrder);
     };
 
     _handlerTakeOrder = () => {
         // Create new order && addd it to orders list
+        if (Object.keys(this.model.getAddress()).length === 0) {
+            this.view.showErrorEmptyAddress();
+            return;
+        }
+
         this.model.addNewOrder();
         this.api.setNewOrder(this.model.getNewOrder());
 

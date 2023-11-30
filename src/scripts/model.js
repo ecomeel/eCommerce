@@ -1,5 +1,4 @@
 import normalizedItems from "./utils/normalizedItems.js";
-import { v4 as uuidv4 } from "uuid";
 
 export default class Model {
     constructor() {
@@ -23,7 +22,7 @@ export default class Model {
         };
         this.selectedPaytype = "card";
 
-        this.newOrderId = null;
+        this.newOrderId = 0;
         this.newOrder = {};
         this.orders = [];
 
@@ -139,23 +138,22 @@ export default class Model {
             address: this.getAddress(),
         };
         this.orders.push(this.newOrder);
-
-        this.newOrderId += 1;
+        this._setNewOrderId()
+        // this.newOrderId += 1;
     }
 
     setOrders(orders) {
-        this.orders = orders;
-
+        this.orders = [...orders];
         this._setNewOrderId()
     }
 
     _setNewOrderId() {
         let idsOrders = [];
         this.orders.forEach((order) => {
-            idsOrders.push(parseInt(order.id));
+            idsOrders.push(Number(order.id));
         });
 
-        if (idsOrders.length == 0) {
+        if (idsOrders.length == null || idsOrders.length == 0) {
             this.newOrderId = 1;
         }
         if (idsOrders.length == 1) {
@@ -164,7 +162,7 @@ export default class Model {
 
         if (idsOrders.length > 1) {
             idsOrders.sort((a, b) => {
-                a - b;
+                return a - b;
             });
             this.newOrderId = idsOrders[idsOrders.length - 1] + 1;
         }
